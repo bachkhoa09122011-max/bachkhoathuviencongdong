@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <!-- Ngăn gửi Referer để tránh bị chặn bởi một số trang như sachmoi.net -->
   <meta name="referrer" content="no-referrer">
   <title>📚 Thư viện sách cộng đồng – Chia sẻ tri thức</title>
   
@@ -86,6 +85,7 @@
     .btn-add-community:hover { background: #5a4bd1; }
     .btn-library { background: #2c3e50; color: #fff; }
     .btn-library:hover { background: #1a252f; }
+    .btn-copy { background: #5c6b7a; color: #fff; font-size: 0.7rem; padding: 0.3rem 0.6rem; }
     .spinner { display: inline-block; width: 1.2rem; height: 1.2rem; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem; }
@@ -112,8 +112,9 @@
       max-width: 500px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
     .modal-content h3 { color: #4b2e1a; margin-bottom: 1rem; }
-    .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
-    .modal-buttons button { flex: 1; }
+    .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .modal-buttons button { flex: 1; min-width: 120px; }
+    .link-box { background: #f4eedf; padding: 0.8rem; border-radius: 0.8rem; word-break: break-all; margin: 1rem 0; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -155,10 +156,8 @@
       </div>
     </div>
 
-    <!-- Thống kê nhanh -->
     <div class="stats-bar" id="statsBar"></div>
 
-    <!-- Khu vực tải sách lên -->
     <div class="card" id="uploadCard" style="display:none;">
       <div class="section-title">📤 Tải sách lên</div>
       <p style="font-size:0.85rem; color:#7a624e; margin-bottom:1rem">Chia sẻ sách hay với mọi người. Hỗ trợ PDF, Word, TXT.</p>
@@ -169,7 +168,6 @@
       </div>
       <div id="fileInfo" style="display:none; margin:0.8rem 0; font-weight:600; color:#2d6a4f"></div>
       
-      <!-- Form thông tin sách -->
       <div id="bookForm" class="hidden" style="margin-top:1rem;">
         <div class="form-group"><label>📖 Tên sách</label><input type="text" id="bookTitleInput" placeholder="Nhập tên sách"></div>
         <div class="form-group"><label>✍️ Tác giả</label><input type="text" id="bookAuthorInput" placeholder="Nhập tên tác giả"></div>
@@ -194,7 +192,6 @@
       </div>
     </div>
 
-    <!-- Thư viện sách với 3 tab -->
     <div class="card">
       <div class="tab-container">
         <div class="tab active" data-tab="discover">📚 Thư viện hệ thống</div>
@@ -259,6 +256,19 @@
     <div class="modal-buttons">
       <button class="btn" id="searchLibraryBtn">🔍 Tra cứu</button>
       <button class="btn btn-outline" id="closeLibraryModal">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal mở link an toàn -->
+<div id="linkModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3>🔗 Mở liên kết đọc sách</h3>
+    <p style="font-size:0.9rem; color:#7a624e; margin-bottom:0.5rem;">Do chính sách bảo mật của trang web, bạn cần mở link này trong tab mới:</p>
+    <div class="link-box" id="linkModalUrl"></div>
+    <div class="modal-buttons">
+      <button class="btn" id="copyAndOpenBtn">📋 Sao chép & Mở tab mới</button>
+      <button class="btn btn-outline" id="closeLinkModal">Đóng</button>
     </div>
   </div>
 </div>
@@ -552,8 +562,7 @@ const sampleBooks = [
   {title:"Suy nghĩ nhanh và chậm",author:"Daniel Kahneman",genre:"kinhte",desc:"Tâm lý học.",read:"https://sachmoi.net/suy-nghi-nhanh-va-cham/"},
   {title:"Tiền bạc và cuộc sống",author:"Vicki Robin",genre:"kinhte",desc:"Tài chính cá nhân.",read:"https://sachmoi.net/tien-bac-va-cuoc-song/"}
 ];
-</script>
-<script>
+
 // ==========================================================================
 // DANH SÁCH HỌC SINH THƯ VIỆN SỐ (đầy đủ)
 // ==========================================================================
@@ -1050,9 +1059,10 @@ const studentList = [
   {fullName:"Nguyễn Bảo Gia", class:"6A3", account:"2515683284", password:"DLibK12@2025"},
   {fullName:"Nguyễn Bảo Khoa", class:"6A3", account:"2515683304", password:"DLibK12@2025"}
 ];
-
+</script>
+<script>
 // ==========================================================================
-// BIẾN TOÀN CỤC
+// BIẾN TOÀN CỤC VÀ KHỞI TẠO
 // ==========================================================================
 let currentUser = null;
 let currentTab = 'discover';
@@ -1169,6 +1179,27 @@ function openReader(text) {
 }
 
 // ==========================================================================
+// MODAL MỞ LINK AN TOÀN (KHÔNG BỊ CLOUDFLARE CHẶN)
+// ==========================================================================
+function showLinkModal(url) {
+  document.getElementById('linkModalUrl').textContent = url;
+  document.getElementById('linkModal').classList.remove('hidden');
+}
+document.getElementById('closeLinkModal').addEventListener('click', () => {
+  document.getElementById('linkModal').classList.add('hidden');
+});
+document.getElementById('copyAndOpenBtn').addEventListener('click', () => {
+  const url = document.getElementById('linkModalUrl').textContent;
+  navigator.clipboard.writeText(url).then(() => {
+    alert('✅ Đã sao chép liên kết!\n\n👉 Hãy mở tab mới (Ctrl+T), dán liên kết (Ctrl+V) và nhấn Enter để đọc sách.');
+    document.getElementById('linkModal').classList.add('hidden');
+  }).catch(() => {
+    prompt('Sao chép thủ công:', url);
+    document.getElementById('linkModal').classList.add('hidden');
+  });
+});
+
+// ==========================================================================
 // RENDER SÁCH
 // ==========================================================================
 function renderBooks(containerId, books, showDelete = false, isCommunity = false) {
@@ -1180,10 +1211,7 @@ function renderBooks(containerId, books, showDelete = false, isCommunity = false
   }
   container.innerHTML = books.map(b => {
     const safeTextPreview = b.textPreview ? encodeURIComponent(b.textPreview).replace(/'/g, "%27") : '';
-    const safeTitle = (b.title || 'Không có tiêu đề').replace(/'/g, "\\'").replace(/"/g, "&quot;");
-    const safeAuthor = (b.author || 'Đang cập nhật').replace(/'/g, "\\'").replace(/"/g, "&quot;");
-    // Sử dụng referrerpolicy="no-referrer" để tránh bị chặn bởi sachmoi.net
-    const readLink = b.read ? `<a href="${b.read}" target="_blank" rel="noreferrer" referrerpolicy="no-referrer" class="btn-read">📖 Đọc online</a>` : '';
+    const readLink = b.read ? `<button onclick="showLinkModal('${b.read.replace(/'/g, "\\'")}')" class="btn-read">📖 Đọc online</button>` : '';
     const readLocal = (!b.read && b.textPreview) ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Đọc nội dung</button>` : '';
     return `
     <div class="book-card">
@@ -1426,5 +1454,3 @@ function initAppUI() {
 }
 (function() { const u = getSession(); if (u) { currentUser = u; initAppUI(); } })();
 </script>
-</body>
-</html>
