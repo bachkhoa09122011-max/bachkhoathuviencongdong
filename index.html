@@ -1188,16 +1188,20 @@ function showLinkModal(url) {
 document.getElementById('closeLinkModal').addEventListener('click', () => {
   document.getElementById('linkModal').classList.add('hidden');
 });
-document.getElementById('copyAndOpenBtn').addEventListener('click', () => {
-  const url = document.getElementById('linkModalUrl').textContent;
-  navigator.clipboard.writeText(url).then(() => {
-    alert('✅ Đã sao chép liên kết!\n\n👉 Hãy mở tab mới (Ctrl+T), dán liên kết (Ctrl+V) và nhấn Enter để đọc sách.');
-    document.getElementById('linkModal').classList.add('hidden');
-  }).catch(() => {
-    prompt('Sao chép thủ công:', url);
-    document.getElementById('linkModal').classList.add('hidden');
-  });
-});
+document.getElementById('copyAndOpenBtn').onclick = () => {
+    // Lấy link hiện tại từ Modal
+    const url = document.getElementById('linkModalUrl').textContent;
+    
+    // 1. Mở link ngay lập tức để trình duyệt không chặn Pop-up
+    window.open(url, '_blank', 'noopener,noreferrer');
+    
+    // 2. Chạy ngầm việc copy link và đóng Modal
+    navigator.clipboard.writeText(url).then(() => {
+      document.getElementById('linkModal').classList.add('hidden');
+    }).catch(err => {
+      document.getElementById('linkModal').classList.add('hidden');
+    });
+};
 
 // ==========================================================================
 // RENDER SÁCH
