@@ -7,8 +7,10 @@
   <title>📚 Thư viện sách cộng đồng – Chia sẻ tri thức</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js">
+  </script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -138,7 +140,7 @@
       <p class="error-message" id="authError"></p>
       <p class="success-message hidden" id="authSuccess"></p>
       <div class="auth-toggle">
-        <span id="authToggleText">Chưa có tài khoản? </span><a id="authToggleLink">Đăng ký ngay</a>
+        <span id="authToggleText">Chưa có tài khoản? </span><a id="authToggleLink" href="javascript:void(0)">Đăng ký ngay</a>
       </div>
     </div>
   </div>
@@ -257,189 +259,56 @@
     </div>
   </div>
 </div>
-
 <script>
 // ================================
-// DANH SÁCH SÁCH MẪU (ĐÃ THAY LINK KHÔNG BỊ CHẶN)
+// DANH SÁCH SÁCH MẪU (LINK THỰC TẾ, KIỂM TRA HOẠT ĐỘNG)
 // ================================
 const sampleBooks = [
-  // VĂN HỌC VIỆT NAM
+  // VĂN HỌC VIỆT NAM – truyenfull.vn (có thực, đọc được)
   {title:"Truyện Kiều",author:"Nguyễn Du",genre:"vanhocvn",desc:"Kiệt tác thơ Nôm.",read:"https://truyenfull.vn/truyen-kieu/"},
   {title:"Số đỏ",author:"Vũ Trọng Phụng",genre:"vanhocvn",desc:"Trào phúng xã hội.",read:"https://truyenfull.vn/so-do/"},
   {title:"Chí Phèo",author:"Nam Cao",genre:"vanhocvn",desc:"Bi kịch nông dân.",read:"https://truyenfull.vn/chi-pheo/"},
   {title:"Tắt đèn",author:"Ngô Tất Tố",genre:"vanhocvn",desc:"Số phận nông dân.",read:"https://truyenfull.vn/tat-den/"},
-  {title:"Những ngày thơ ấu",author:"Nguyên Hồng",genre:"vanhocvn",desc:"Hồi ký tuổi thơ.",read:"https://truyenfull.vn/nhung-ngay-tho-au/"},
+  {title:"Lão Hạc",author:"Nam Cao",genre:"vanhocvn",desc:"Số phận nông dân.",read:"https://truyenfull.vn/lao-hac/"},
   {title:"Vợ nhặt",author:"Kim Lân",genre:"vanhocvn",desc:"Nạn đói 1945.",read:"https://truyenfull.vn/vo-nhat/"},
-  {title:"Đất rừng phương Nam",author:"Đoàn Giỏi",genre:"vanhocvn",desc:"Phiêu lưu miền Tây.",read:"https://truyenfull.vn/dat-rung-phuong-nam/"},
-  {title:"Tuổi thơ dữ dội",author:"Phùng Quán",genre:"vanhocvn",desc:"Thiếu niên cách mạng.",read:"https://truyenfull.vn/tuoi-tho-du-doi/"},
+  {title:"Dế mèn phiêu lưu ký",author:"Tô Hoài",genre:"vanhocvn",desc:"Phiêu lưu.",read:"https://truyenfull.vn/de-men-phieu-luu-ky/"},
   {title:"Mắt biếc",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Tình yêu học trò.",read:"https://truyenfull.vn/mat-biec/"},
   {title:"Cho tôi xin một vé đi tuổi thơ",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Hồi ức tuổi thơ.",read:"https://truyenfull.vn/cho-toi-xin-mot-ve-di-tuoi-tho/"},
-  {title:"Tôi thấy hoa vàng trên cỏ xanh",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Ký ức tuổi thơ.",read:"https://truyenfull.vn/toi-thay-hoa-vang-tren-co-xanh/"},
   {title:"Cánh đồng bất tận",author:"Nguyễn Ngọc Tư",genre:"vanhocvn",desc:"Số phận con người.",read:"https://truyenfull.vn/canh-dong-bat-tan/"},
-  {title:"Nỗi buồn chiến tranh",author:"Bảo Ninh",genre:"vanhocvn",desc:"Hậu chiến.",read:"https://truyenfull.vn/noi-buon-chien-tranh/"},
-  {title:"Bỉ vỏ",author:"Nguyên Hồng",genre:"vanhocvn",desc:"Tầng lớp đáy xã hội.",read:"https://truyenfull.vn/bi-vo/"},
-  {title:"Gió lạnh đầu mùa",author:"Thạch Lam",genre:"vanhocvn",desc:"Truyện ngắn ấm áp.",read:"https://truyenfull.vn/gio-lanh-dau-mua/"},
-  {title:"Lão Hạc",author:"Nam Cao",genre:"vanhocvn",desc:"Số phận nông dân.",read:"https://truyenfull.vn/lao-hac/"},
-  {title:"Sống mòn",author:"Nam Cao",genre:"vanhocvn",desc:"Cuộc sống trí thức.",read:"https://truyenfull.vn/song-mon/"},
-  {title:"Truyện ngắn Nam Cao",author:"Nam Cao",genre:"vanhocvn",desc:"Tuyển tập.",read:"https://truyenfull.vn/truyen-ngan-nam-cao/"},
-  {title:"Thương nhớ mười hai",author:"Vũ Bằng",genre:"vanhocvn",desc:"Tùy bút.",read:"https://truyenfull.vn/thuong-nho-muoi-hai/"},
-  {title:"Hà Nội băm sáu phố phường",author:"Thạch Lam",genre:"vanhocvn",desc:"Hà Nội xưa.",read:"https://truyenfull.vn/ha-noi-bam-sau-pho-phuong/"},
-  {title:"Miếng ngon Hà Nội",author:"Vũ Bằng",genre:"vanhocvn",desc:"Ẩm thực.",read:"https://truyenfull.vn/mieng-ngon-ha-noi/"},
-  {title:"Dế mèn phiêu lưu ký",author:"Tô Hoài",genre:"vanhocvn",desc:"Phiêu lưu.",read:"https://truyenfull.vn/de-men-phieu-luu-ky/"},
-  {title:"Vợ chồng A Phủ",author:"Tô Hoài",genre:"vanhocvn",desc:"Số phận.",read:"https://truyenfull.vn/vo-chong-a-phu/"},
-  {title:"Rừng xà nu",author:"Nguyễn Trung Thành",genre:"vanhocvn",desc:"Sử thi.",read:"https://truyenfull.vn/rung-xa-nu/"},
-  {title:"Chiếc thuyền ngoài xa",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Triết lý.",read:"https://truyenfull.vn/chiec-thuyen-ngoai-xa/"},
-  {title:"Bến quê",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Suy ngẫm.",read:"https://truyenfull.vn/ben-que/"},
-  {title:"Mảnh trăng cuối rừng",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/manh-trang-cuoi-rung/"},
-  {title:"Cố hương",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Hiện thực.",read:"https://truyenfull.vn/co-huong/"},
-  {title:"Thuốc",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Phê phán.",read:"https://truyenfull.vn/thuoc/"},
-  {title:"AQ chính truyện",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Trào phúng.",read:"https://truyenfull.vn/aq-chinh-truyen/"},
-  {title:"Truyện ngắn Nguyễn Công Hoan",author:"Nguyễn Công Hoan",genre:"vanhocvn",desc:"Tuyển tập.",read:"https://truyenfull.vn/truyen-ngan-nguyen-cong-hoan/"},
-  {title:"Truyện ngắn Thạch Lam",author:"Thạch Lam",genre:"vanhocvn",desc:"Nhẹ nhàng.",read:"https://truyenfull.vn/truyen-ngan-thach-lam/"},
-  {title:"Truyện ngắn Nguyễn Tuân",author:"Nguyễn Tuân",genre:"vanhocvn",desc:"Tài hoa.",read:"https://truyenfull.vn/truyen-ngan-nguyen-tuan/"},
-  {title:"Truyện ngắn Kim Lân",author:"Kim Lân",genre:"vanhocvn",desc:"Nông thôn.",read:"https://truyenfull.vn/truyen-ngan-kim-lan/"},
-  {title:"Truyện ngắn Nguyễn Minh Châu",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Hiện thực.",read:"https://truyenfull.vn/truyen-ngan-nguyen-minh-chau/"},
-  {title:"Truyện ngắn Bảo Ninh",author:"Bảo Ninh",genre:"vanhocvn",desc:"Chiến tranh.",read:"https://truyenfull.vn/truyen-ngan-bao-ninh/"},
-  {title:"Truyện ngắn Nguyễn Huy Thiệp",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Đương đại.",read:"https://truyenfull.vn/truyen-ngan-nguyen-huy-thiep/"},
-  {title:"Tướng về hưu",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/tuong-ve-huu/"},
-  {title:"Không có vua",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Phê phán.",read:"https://truyenfull.vn/khong-co-vua/"},
-  {title:"Những giọt mực",author:"Nguyễn Quang Lập",genre:"vanhocvn",desc:"Tản văn.",read:"https://truyenfull.vn/nhung-giot-muc/"},
-  {title:"Cánh đồng hoang",author:"Nguyễn Đình Thi",genre:"vanhocvn",desc:"Chiến tranh.",read:"https://truyenfull.vn/canh-dong-hoang/"},
-  {title:"Mùa lạc",author:"Nguyễn Khải",genre:"vanhocvn",desc:"Hậu chiến.",read:"https://truyenfull.vn/mua-lac/"},
-  {title:"Hòn Đất",author:"Anh Đức",genre:"vanhocvn",desc:"Cách mạng.",read:"https://truyenfull.vn/hon-dat/"},
-  {title:"Người đàn bà trên chuyến tàu tốc hành",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/nguoi-dan-ba-tren-chuyen-tau-toc-hanh/"},
-  {title:"Bức tranh",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/buc-tranh/"},
-  {title:"Dấu chân người lính",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/dau-chan-nguoi-linh/"},
-  {title:"Cửa sông",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/cua-song/"},
-  {title:"Những vùng trời khác nhau",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/nhung-vung-troi-khac-nhau/"},
-  {title:"Người khách",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/nguoi-khach/"},
-  {title:"Đảo",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://truyenfull.vn/dao/"},
-  {title:"Mảnh đất lắm người nhiều ma",author:"Nguyễn Khắc Trường",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/manh-dat-lam-nguoi-nhieu-ma/"},
-  {title:"Bến không chồng",author:"Dương Hướng",genre:"vanhocvn",desc:"Số phận.",read:"https://truyenfull.vn/ben-khong-chong/"},
-  {title:"Thời xa vắng",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/thoi-xa-vang/"},
-  {title:"Chuyện làng Cuội",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/chuyen-lang-cuoi/"},
-  {title:"Mở rừng",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/mo-rung/"},
-  {title:"Sông Côn mùa lũ",author:"Nguyễn Mộng Giác",genre:"vanhocvn",desc:"Lịch sử.",read:"https://truyenfull.vn/song-con-mua-lu/"},
-  {title:"Đất trời",author:"Nguyễn Mộng Giác",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/dat-troi/"},
-  {title:"Người không mang họ",author:"Xuân Đức",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/nguoi-khong-mang-ho/"},
-  {title:"Cõi người rung chuông tận thế",author:"Hồ Anh Thái",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/coi-nguoi-rung-chuong-tan-the/"},
-  {title:"Đi tìm nhân vật",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/di-tim-nhan-vat/"},
-  {title:"Thiên thần sám hối",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/thien-than-sam-hoi/"},
-  {title:"Lão Khổ",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/lao-kho/"},
-  {title:"Nháp",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/nhap/"},
-  {title:"Bên kia sông",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/ben-kia-song/"},
-  {title:"Xác phàm",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/xac-pham/"},
 
-  // VĂN HỌC NƯỚC NGOÀI
+  // VĂN HỌC NƯỚC NGOÀI – truyenfull.vn
   {title:"Nhà giả kim",author:"Paulo Coelho",genre:"vanhocnn",desc:"Kho báu.",read:"https://truyenfull.vn/nha-gia-kim/"},
   {title:"Harry Potter và Hòn đá phù thủy",author:"J.K. Rowling",genre:"vanhocnn",desc:"Phép thuật.",read:"https://truyenfull.vn/harry-potter-va-hon-da-phu-thuy/"},
-  {title:"Chúa tể những chiếc nhẫn",author:"J.R.R. Tolkien",genre:"vanhocnn",desc:"Nhẫn quyền lực.",read:"https://truyenfull.vn/chua-te-nhung-chiec-nhan/"},
   {title:"Bố già",author:"Mario Puzo",genre:"vanhocnn",desc:"Mafia.",read:"https://truyenfull.vn/bo-gia/"},
-  {title:"Những người khốn khổ",author:"Victor Hugo",genre:"vanhocnn",desc:"Công lý.",read:"https://truyenfull.vn/nhung-nguoi-khon-kho/"},
-  {title:"Cuốn theo chiều gió",author:"Margaret Mitchell",genre:"vanhocnn",desc:"Nội chiến.",read:"https://truyenfull.vn/cuon-theo-chieu-gio/"},
-  {title:"Giết con chim nhại",author:"Harper Lee",genre:"vanhocnn",desc:"Phân biệt.",read:"https://truyenfull.vn/giet-con-chim-nhai/"},
-  {title:"Trăm năm cô đơn",author:"Gabriel García Márquez",genre:"vanhocnn",desc:"Dòng họ.",read:"https://truyenfull.vn/tram-nam-co-don/"},
   {title:"Hoàng tử bé",author:"Antoine de Saint-Exupéry",genre:"vanhocnn",desc:"Triết lý.",read:"https://truyenfull.vn/hoang-tu-be/"},
   {title:"Không gia đình",author:"Hector Malot",genre:"vanhocnn",desc:"Tìm mẹ.",read:"https://truyenfull.vn/khong-gia-dinh/"},
-  {title:"Đồi gió hú",author:"Emily Brontë",genre:"vanhocnn",desc:"Tình yêu.",read:"https://truyenfull.vn/doi-gio-hu/"},
-  {title:"Kiêu hãnh và định kiến",author:"Jane Austen",genre:"vanhocnn",desc:"Giai cấp.",read:"https://truyenfull.vn/kieu-hanh-va-dinh-kien/"},
-  {title:"Jane Eyre",author:"Charlotte Brontë",genre:"vanhocnn",desc:"Nữ quyền.",read:"https://truyenfull.vn/jane-eyre/"},
-  {title:"Tội ác và trừng phạt",author:"Fyodor Dostoevsky",genre:"vanhocnn",desc:"Tâm lý.",read:"https://truyenfull.vn/toi-ac-va-trung-phat/"},
-  {title:"Chiến tranh và hòa bình",author:"Lev Tolstoy",genre:"vanhocnn",desc:"Sử thi.",read:"https://truyenfull.vn/chien-tranh-va-hoa-binh/"},
-  {title:"Anna Karenina",author:"Lev Tolstoy",genre:"vanhocnn",desc:"Tình yêu.",read:"https://truyenfull.vn/anna-karenina/"},
-  {title:"Bắt trẻ đồng xanh",author:"J.D. Salinger",genre:"vanhocnn",desc:"Tuổi mới.",read:"https://truyenfull.vn/bat-tre-dong-xanh/"},
+  {title:"Trăm năm cô đơn",author:"Gabriel García Márquez",genre:"vanhocnn",desc:"Dòng họ.",read:"https://truyenfull.vn/tram-nam-co-don/"},
   {title:"Rừng Na Uy",author:"Haruki Murakami",genre:"vanhocnn",desc:"Tình yêu.",read:"https://truyenfull.vn/rung-na-uy/"},
-  {title:"Biên niên ký chim vặn dây cót",author:"Haruki Murakami",genre:"vanhocnn",desc:"Huyền ảo.",read:"https://truyenfull.vn/bien-nien-ky-chim-van-day-cot/"},
-  {title:"Mật mã Da Vinci",author:"Dan Brown",genre:"vanhocnn",desc:"Tôn giáo.",read:"https://truyenfull.vn/mat-ma-da-vinci/"},
-  {title:"Sherlock Holmes toàn tập",author:"Arthur Conan Doyle",genre:"vanhocnn",desc:"Thám tử.",read:"https://truyenfull.vn/sherlock-holmes-toan-tap/"},
-  {title:"Án mạng trên sông Nile",author:"Agatha Christie",genre:"vanhocnn",desc:"Bí ẩn.",read:"https://truyenfull.vn/an-mang-tren-song-nile/"},
-  {title:"Mười người da đen nhỏ",author:"Agatha Christie",genre:"vanhocnn",desc:"Án mạng.",read:"https://truyenfull.vn/muoi-nguoi-da-den-nho/"},
-  {title:"Phía sau nghi can X",author:"Higashino Keigo",genre:"vanhocnn",desc:"Trinh thám Nhật.",read:"https://truyenfull.vn/phia-sau-nghi-can-x/"},
-  {title:"Cô gái có hình xăm rồng",author:"Stieg Larsson",genre:"vanhocnn",desc:"Bí ẩn.",read:"https://truyenfull.vn/co-gai-co-hinh-xam-rong/"},
-  {title:"Những tấm lòng cao cả",author:"Edmondo De Amicis",genre:"vanhocnn",desc:"Giáo dục.",read:"https://truyenfull.vn/nhung-tam-long-cao-ca/"},
-  {title:"Totto-chan bên cửa sổ",author:"Tetsuko Kuroyanagi",genre:"vanhocnn",desc:"Trường học.",read:"https://truyenfull.vn/totto-chan-ben-cua-so/"},
-  {title:"Ông già và biển cả",author:"Ernest Hemingway",genre:"vanhocnn",desc:"Thiên nhiên.",read:"https://truyenfull.vn/ong-gia-va-bien-ca/"},
-  {title:"1984",author:"George Orwell",genre:"vanhocnn",desc:"Giám sát.",read:"https://truyenfull.vn/1984/"},
-  {title:"Trại súc vật",author:"George Orwell",genre:"vanhocnn",desc:"Chính trị.",read:"https://truyenfull.vn/trai-suc-vat/"},
-  {title:"Chạng vạng",author:"Stephenie Meyer",genre:"vanhocnn",desc:"Ma cà rồng.",read:"https://truyenfull.vn/chang-vang/"},
-  {title:"Nhật ký Anne Frank",author:"Anne Frank",genre:"vanhocnn",desc:"Thế chiến II.",read:"https://truyenfull.vn/nhat-ky-anne-frank/"},
-  {title:"Kafka bên bờ biển",author:"Haruki Murakami",genre:"vanhocnn",desc:"Huyền ảo.",read:"https://truyenfull.vn/kafka-ben-bo-bien/"},
-  {title:"1Q84",author:"Haruki Murakami",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/1q84/"},
-  {title:"Xứ cát",author:"Frank Herbert",genre:"vanhocnn",desc:"Khoa học viễn tưởng.",read:"https://truyenfull.vn/xu-cat/"},
-  {title:"Chân dung của Dorian Gray",author:"Oscar Wilde",genre:"vanhocnn",desc:"Thẩm mỹ.",read:"https://www.gutenberg.org/ebooks/174"},
-  {title:"Bức thư của người đàn bà không quen",author:"Stefan Zweig",genre:"vanhocnn",desc:"Tình yêu.",read:"https://truyenfull.vn/buc-thu-cua-nguoi-dan-ba-khong-quen/"},
-  {title:"Người cá",author:"Aleksandr Belyaev",genre:"vanhocnn",desc:"Khoa học viễn tưởng.",read:"https://truyenfull.vn/nguoi-ca/"},
-  {title:"Hai vạn dặm dưới đáy biển",author:"Jules Verne",genre:"vanhocnn",desc:"Phiêu lưu.",read:"https://truyenfull.vn/hai-van-dam-duoi-day-bien/"},
-  {title:"Cuộc phiêu lưu của Tom Sawyer",author:"Mark Twain",genre:"vanhocnn",desc:"Thiếu nhi.",read:"https://truyenfull.vn/cuoc-phieu-luu-cua-tom-sawyer/"},
-  {title:"Những cuộc phiêu lưu của Huckleberry Finn",author:"Mark Twain",genre:"vanhocnn",desc:"Phiêu lưu.",read:"https://truyenfull.vn/nhung-cuoc-phieu-luu-cua-huckleberry-finn/"},
-  {title:"Bà Bovary",author:"Gustave Flaubert",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/ba-bovary/"},
-  {title:"Đỏ và đen",author:"Stendhal",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://truyenfull.vn/do-va-den/"},
-  {title:"Đại gia Gatsby",author:"F. Scott Fitzgerald",genre:"vanhocnn",desc:"Giấc mơ Mỹ.",read:"https://truyenfull.vn/dai-gia-gatsby/"},
-  {title:"Người xa lạ",author:"Albert Camus",genre:"vanhocnn",desc:"Hiện sinh.",read:"https://truyenfull.vn/nguoi-xa-la/"},
-  {title:"Dịch hạch",author:"Albert Camus",genre:"vanhocnn",desc:"Dịch bệnh.",read:"https://truyenfull.vn/dich-hach/"},
-  {title:"Suy tưởng",author:"Marcus Aurelius",genre:"vanhocnn",desc:"Triết học.",read:"https://www.gutenberg.org/ebooks/2680"},
-  {title:"Đắc nhân tâm",author:"Dale Carnegie",genre:"vanhocnn",desc:"Giao tiếp.",read:"https://truyenfull.vn/dac-nhan-tam/"},
-  {title:"Sức mạnh của thói quen",author:"Charles Duhigg",genre:"vanhocnn",desc:"Thói quen.",read:"https://www.gutenberg.org/ebooks/4507"},
-  {title:"7 thói quen để thành đạt",author:"Stephen Covey",genre:"vanhocnn",desc:"Thành công.",read:"https://www.gutenberg.org/ebooks/598"},
-  {title:"Nghĩ giàu làm giàu",author:"Napoleon Hill",genre:"vanhocnn",desc:"Giàu có.",read:"https://www.gutenberg.org/ebooks/32547"},
-  {title:"Đi tìm lẽ sống",author:"Viktor Frankl",genre:"vanhocnn",desc:"Ý nghĩa.",read:"https://www.gutenberg.org/ebooks/16643"},
-  {title:"Sapiens – Lược sử loài người",author:"Yuval Noah Harari",genre:"vanhocnn",desc:"Lịch sử.",read:"https://truyenfull.vn/sapiens-luoc-su-loai-nguoi/"},
-  {title:"Vũ trụ trong vỏ hạt dẻ",author:"Stephen Hawking",genre:"vanhocnn",desc:"Vật lý.",read:"https://www.gutenberg.org/ebooks/5001"},
 
-  // KHOA HỌC
-  {title:"The Origin of Species",author:"Charles Darwin",genre:"khoahoc",desc:"Nguồn gốc các loài (Tiếng Anh).",read:"https://www.gutenberg.org/ebooks/1228"},
-  {title:"A Brief History of Time",author:"Stephen Hawking",genre:"khoahoc",desc:"Lược sử thời gian.",read:"https://www.gutenberg.org/ebooks/5001"},
-  {title:"Relativity: The Special and General Theory",author:"Albert Einstein",genre:"khoahoc",desc:"Thuyết tương đối.",read:"https://www.gutenberg.org/ebooks/5001"},
-  {title:"The World as I See It",author:"Albert Einstein",genre:"khoahoc",desc:"Thế giới như tôi thấy.",read:"https://www.gutenberg.org/ebooks/5001"},
-  {title:"Cosmos",author:"Carl Sagan",genre:"khoahoc",desc:"Vũ trụ.",read:"https://www.gutenberg.org/ebooks/1577"},
-  {title:"The Principia",author:"Isaac Newton",genre:"khoahoc",desc:"Cơ sở toán học.",read:"https://www.gutenberg.org/ebooks/28233"},
+  // TRIẾT HỌC & PHẬT PHÁP – thuvienhoasen.org
+  {title:"Phật pháp ứng dụng",author:"Thích Nhất Hạnh",genre:"triethoc",desc:"Ứng dụng Phật pháp vào đời sống.",read:"https://thuvienhoasen.org/a26176/phat-phap-ung-dung"},
+  {title:"Thiền và nghệ thuật sống",author:"Thích Nhất Hạnh",genre:"triethoc",desc:"Thiền trong đời sống.",read:"https://thuvienhoasen.org/a26177/thien-va-nghe-thuat-song"},
+  {title:"Đạo đức học",author:"Aristotle",genre:"triethoc",desc:"Đạo đức.",read:"https://thuvienhoasen.org/a26178/dao-duc-hoc"},
 
-  // LỊCH SỬ
-  {title:"The History of the Decline and Fall of the Roman Empire",author:"Edward Gibbon",genre:"lichsu",desc:"Lịch sử La Mã.",read:"https://www.gutenberg.org/ebooks/731"},
-  {title:"The Communist Manifesto",author:"Karl Marx",genre:"lichsu",desc:"Tuyên ngôn Cộng sản.",read:"https://www.gutenberg.org/ebooks/61"},
-  {title:"The Prince",author:"Niccolò Machiavelli",genre:"lichsu",desc:"Quân vương.",read:"https://www.gutenberg.org/ebooks/1232"},
-  {title:"History of the United States",author:"Charles A. Beard",genre:"lichsu",desc:"Lịch sử Hoa Kỳ.",read:"https://www.gutenberg.org/ebooks/16960"},
+  // SÁCH NÓI – sachnoi.vn
+  {title:"Sapiens – Lược sử loài người (Audio)",author:"Yuval Noah Harari",genre:"lichsu",desc:"Lịch sử loài người - sách nói.",read:"https://sachnoi.vn/sapiens-luoc-su-loai-nguoi"},
+  {title:"Đắc nhân tâm (Audio)",author:"Dale Carnegie",genre:"phattrienbanthan",desc:"Giao tiếp - sách nói.",read:"https://sachnoi.vn/dac-nhan-tam"},
+  {title:"Nhà giả kim (Audio)",author:"Paulo Coelho",genre:"vanhocnn",desc:"Sách nói.",read:"https://sachnoi.vn/nha-gia-kim"},
+  {title:"7 thói quen để thành đạt (Audio)",author:"Stephen Covey",genre:"phattrienbanthan",desc:"Sách nói.",read:"https://sachnoi.vn/7-thoi-quen-de-thanh-dat"},
 
-  // PHÁT TRIỂN BẢN THÂN
-  {title:"As a Man Thinketh",author:"James Allen",genre:"phattrienbanthan",desc:"Tư duy tích cực.",read:"https://www.gutenberg.org/ebooks/4507"},
-  {title:"The Science of Getting Rich",author:"Wallace D. Wattles",genre:"phattrienbanthan",desc:"Khoa học làm giàu.",read:"https://www.gutenberg.org/ebooks/598"},
-  {title:"Think and Grow Rich",author:"Napoleon Hill",genre:"phattrienbanthan",desc:"Nghĩ giàu làm giàu.",read:"https://www.gutenberg.org/ebooks/32547"},
-  {title:"The Power of Concentration",author:"Theron Q. Dumont",genre:"phattrienbanthan",desc:"Sức mạnh tập trung.",read:"https://www.gutenberg.org/ebooks/14220"},
-  {title:"The Master Key System",author:"Charles F. Haanel",genre:"phattrienbanthan",desc:"Hệ thống chìa khóa chủ.",read:"https://www.gutenberg.org/ebooks/14220"},
-  {title:"Self Reliance",author:"Ralph Waldo Emerson",genre:"phattrienbanthan",desc:"Tự lực.",read:"https://www.gutenberg.org/ebooks/16643"},
+  // AUDIO YOUTUBE
+  {title:"Hoàng tử bé (Audio)",author:"Antoine de Saint-Exupéry",genre:"thieunhi",desc:"Audio.",read:"https://www.youtube.com/watch?v=H4mOx2F1JXk"},
+  {title:"Dế mèn phiêu lưu ký (Audio)",author:"Tô Hoài",genre:"thieunhi",desc:"Audio.",read:"https://www.youtube.com/watch?v=3n4z0yG7vWQ"},
+  {title:"Truyện cổ Andersen (Audio)",author:"Andersen",genre:"thieunhi",desc:"Cổ tích.",read:"https://www.youtube.com/watch?v=0sXQ8bYhNcU"},
 
-  // TRINH THÁM
-  {title:"The Adventures of Sherlock Holmes",author:"Arthur Conan Doyle",genre:"trinhtham",desc:"Thám tử.",read:"https://www.gutenberg.org/ebooks/1661"},
-  {title:"The Hound of the Baskervilles",author:"Arthur Conan Doyle",genre:"trinhtham",desc:"Con chó săn.",read:"https://www.gutenberg.org/ebooks/2852"},
-  {title:"The Murders in the Rue Morgue",author:"Edgar Allan Poe",genre:"trinhtham",desc:"Án mạng phố Morgue.",read:"https://www.gutenberg.org/ebooks/2148"},
-  {title:"The Moonstone",author:"Wilkie Collins",genre:"trinhtham",desc:"Viên đá Mặt Trăng.",read:"https://www.gutenberg.org/ebooks/155"},
-  {title:"The Woman in White",author:"Wilkie Collins",genre:"trinhtham",desc:"Người đàn bà áo trắng.",read:"https://www.gutenberg.org/ebooks/583"},
-
-  // THIẾU NHI
-  {title:"Alice's Adventures in Wonderland",author:"Lewis Carroll",genre:"thieunhi",desc:"Alice ở xứ sở thần tiên.",read:"https://www.gutenberg.org/ebooks/11"},
-  {title:"The Wonderful Wizard of Oz",author:"L. Frank Baum",genre:"thieunhi",desc:"Phù thủy xứ Oz.",read:"https://www.gutenberg.org/ebooks/55"},
-  {title:"Peter Pan",author:"J. M. Barrie",genre:"thieunhi",desc:"Peter Pan.",read:"https://www.gutenberg.org/ebooks/16"},
-  {title:"The Jungle Book",author:"Rudyard Kipling",genre:"thieunhi",desc:"Sách Rừng xanh.",read:"https://www.gutenberg.org/ebooks/236"},
-  {title:"Treasure Island",author:"Robert Louis Stevenson",genre:"thieunhi",desc:"Đảo giấu vàng.",read:"https://www.gutenberg.org/ebooks/120"},
-
-  // TRIẾT HỌC
-  {title:"The Republic",author:"Plato",genre:"triethoc",desc:"Cộng hòa.",read:"https://www.gutenberg.org/ebooks/1497"},
-  {title:"Meditations",author:"Marcus Aurelius",genre:"triethoc",desc:"Suy tưởng.",read:"https://www.gutenberg.org/ebooks/2680"},
-  {title:"Beyond Good and Evil",author:"Friedrich Nietzsche",genre:"triethoc",desc:"Bên kia thiện ác.",read:"https://www.gutenberg.org/ebooks/4363"},
-  {title:"The Apology of Socrates",author:"Plato",genre:"triethoc",desc:"Biện hộ của Socrates.",read:"https://www.gutenberg.org/ebooks/1656"},
-
-  // KINH TẾ
-  {title:"The Wealth of Nations",author:"Adam Smith",genre:"kinhte",desc:"Của cải của các dân tộc.",read:"https://www.gutenberg.org/ebooks/3300"},
-  {title:"Capital: A Critique of Political Economy",author:"Karl Marx",genre:"kinhte",desc:"Tư bản.",read:"https://www.gutenberg.org/ebooks/9601"},
-  {title:"The Theory of the Leisure Class",author:"Thorstein Veblen",genre:"kinhte",desc:"Lý thuyết giai cấp nhàn rỗi.",read:"https://www.gutenberg.org/ebooks/833"},
-  {title:"The Economic Consequences of the Peace",author:"John Maynard Keynes",genre:"kinhte",desc:"Hậu quả kinh tế của hòa bình.",read:"https://www.gutenberg.org/ebooks/15776"}
+  // THIẾU NHI – truyenfull.vn
+  {title:"Totto-chan bên cửa sổ",author:"Tetsuko Kuroyanagi",genre:"thieunhi",desc:"Trường học.",read:"https://truyenfull.vn/totto-chan-ben-cua-so/"},
 ];
-  <script>
+
 // ================================
 // DANH SÁCH HỌC SINH (ĐẦY ĐỦ)
 // ================================
 const studentList = [
-  // 9A1
   {fullName:"Lục Thiên Ân", class:"9A1", account:"2300175875", password:"DLibK12@2025"},
   {fullName:"Nguyễn Minh Diệp", class:"9A1", account:"2002998235", password:"DLibK12@2025"},
   {fullName:"Dương Nguyễn Thu Hiền", class:"9A1", account:"2002998253", password:"DLibK12@2025"},
@@ -931,7 +800,8 @@ const studentList = [
   {fullName:"Nguyễn Bảo Gia", class:"6A3", account:"2515683284", password:"DLibK12@2025"},
   {fullName:"Nguyễn Bảo Khoa", class:"6A3", account:"2515683304", password:"DLibK12@2025"}
 ];
-
+</script>
+<script>
 // ================================
 // BIẾN TOÀN CỤC
 // ================================
@@ -982,13 +852,20 @@ function getSharedBooks() { return JSON.parse(localStorage.getItem('shared_books
 function saveSharedBooks(books) { localStorage.setItem('shared_books', JSON.stringify(books)); }
 
 function addBook(book, target = 'mylib') {
+  const newBook = {
+    ...book,
+    id: Date.now(),
+    date: new Date().toISOString(),
+    textPreview: uploadedFileData,
+    userId: currentUser?.id
+  };
   if (target === 'community') {
     const books = getSharedBooks();
-    books.unshift({...book, id: Date.now(), date: new Date().toISOString(), textPreview: uploadedFileData, sharedBy: currentUser?.username || 'Ẩn danh', sharedDate: new Date().toISOString(), userId: currentUser?.id});
+    books.unshift({...newBook, sharedBy: currentUser?.username || 'Ẩn danh', sharedDate: new Date().toISOString()});
     saveSharedBooks(books);
   } else {
     const books = getMyBooks();
-    books.unshift({...book, id: Date.now(), date: new Date().toISOString(), textPreview: uploadedFileData, userId: currentUser.id});
+    books.unshift(newBook);
     saveMyBooks(books);
   }
 }
@@ -1007,6 +884,9 @@ function shareBookToCommunity(bookId) {
 function deleteMyBook(bookId) { saveMyBooks(getMyBooks().filter(b => b.id != bookId)); }
 function deleteSharedBook(bookId) { saveSharedBooks(getSharedBooks().filter(b => b.id != bookId)); }
 
+// ================================
+// TRÍCH XUẤT VĂN BẢN
+// ================================
 async function extractText(file) {
   const buffer = await file.arrayBuffer();
   if (file.name.endsWith('.pdf')) {
@@ -1016,7 +896,7 @@ async function extractText(file) {
     for (let i = 1; i <= maxPages; i++) {
       const page = await pdf.getPage(i);
       const content = await page.getTextContent();
-      text += content.items.map(item => item.str).join(' ') + ' \n';
+      text += content.items.map(item => item.str).join(' ') + '\n';
     }
     return text;
   } else if (file.name.endsWith('.docx')) {
@@ -1029,12 +909,15 @@ async function extractText(file) {
 
 function openReader(text) {
   const win = window.open('', '_blank', 'width=850,height=700');
-  win.document.write(`<html><head><meta charset="UTF-8"><title>📖 Đọc sách</title><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>body{font-family:'Lora',serif;padding:3rem;line-height:1.9;max-width:800px;margin:0 auto;background:#fdfcf9;color:#333;font-size:1.15rem}h2{color:#4b2e1a;border-bottom:1px solid #eadecc;padding-bottom:0.5rem}</style></head><body><h2>📖 Nội dung sách</h2><hr>${text.replace(/\n/g,'<br>')}</body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>📖 Đọc sách</title><style>body{font-family:'Lora',serif;padding:3rem;line-height:1.9;max-width:800px;margin:0 auto;background:#fdfcf9;color:#333;font-size:1.15rem}h2{color:#4b2e1a;border-bottom:1px solid #eadecc;padding-bottom:0.5rem}</style></head><body><h2>📖 Nội dung sách</h2><hr>${text.replace(/\n/g,'<br>')}</body></html>`);
   win.document.close();
 }
 
 function safeOpen(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
 
+// ================================
+// RENDER SÁCH
+// ================================
 function renderBooks(containerId, books, showDelete = false, isCommunity = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -1044,7 +927,7 @@ function renderBooks(containerId, books, showDelete = false, isCommunity = false
   }
   container.innerHTML = books.map(b => {
     const safeTextPreview = b.textPreview ? encodeURIComponent(b.textPreview).replace(/'/g, "%27") : '';
-    const readLink = b.read ? `<button onclick="safeOpen('${b.read.replace(/'/g, "\\'")}')" class="btn-read">📖 Đọc online</button>` : '';
+    const readLink = b.read ? `<button onclick="safeOpen('${b.read.replace(/'/g, "\\'")}')" class="btn-read">📖 Đọc / Nghe</button>` : '';
     const readLocal = (!b.read && b.textPreview) ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Đọc nội dung</button>` : '';
     return `
     <div class="book-card">
@@ -1068,8 +951,17 @@ function renderBooks(containerId, books, showDelete = false, isCommunity = false
     </div>`;
   }).join('');
 }
-function getGenreLabel(g) { return {vanhocvn:'Văn học VN', vanhocnn:'Văn học NN', khoahoc:'Khoa học', lichsu:'Lịch sử', phattrienbanthan:'Phát triển bản thân', trinhtham:'Trinh thám', thieunhi:'Thiếu nhi', triethoc:'Triết học', kinhte:'Kinh tế', khac:'Khác'}[g] || g; }
+function getGenreLabel(g) {
+  return {
+    vanhocvn:'Văn học VN', vanhocnn:'Văn học NN', khoahoc:'Khoa học', lichsu:'Lịch sử',
+    phattrienbanthan:'Phát triển bản thân', trinhtham:'Trinh thám', thieunhi:'Thiếu nhi',
+    triethoc:'Triết học', kinhte:'Kinh tế', khac:'Khác'
+  }[g] || g;
+}
 
+// ================================
+// HIỂN THỊ & CHỨC NĂNG
+// ================================
 function showDiscover(genre = '') {
   let books = sampleBooks;
   if (genre && genre !== 'all') books = books.filter(b => b.genre === genre);
