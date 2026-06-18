@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>📚 Bạn đồng hành đọc sách – Phiên bản Cộng đồng</title>
+  <title>📚 Thư viện sách cộng đồng – Chia sẻ tri thức</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
@@ -32,301 +32,164 @@
       border: 1px solid #eadecc;
     }
     .hidden { display: none !important; }
-    h1 {
-      color: #4b2e1a;
-      font-size: 2rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    h2 {
-      color: #4b2e1a;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      font-size: 1.8rem;
-    }
-    p.subtitle {
-      text-align: center;
-      color: #7a624e;
-      margin-top: -1rem;
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
+    h1 { color: #4b2e1a; font-size: 2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    h2 { color: #4b2e1a; margin-bottom: 1.5rem; text-align: center; font-size: 1.8rem; }
+    p.subtitle { text-align: center; color: #7a624e; margin-top: -1rem; margin-bottom: 2rem; font-size: 0.95rem; }
     .form-group { margin-bottom: 1.2rem; }
-    label {
-      font-weight: 600;
-      color: #4b3621;
-      display: block;
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
-    }
+    label { font-weight: 600; color: #4b3621; display: block; margin-bottom: 0.4rem; font-size: 0.95rem; }
     input, select, textarea {
-      width: 100%;
-      padding: 0.85rem 1.2rem;
-      border-radius: 1rem;
-      border: 1px solid #dcd1be;
-      background: #fdfcf9;
-      font-size: 1rem;
-      outline: none;
-      color: #3a2e2b;
-      transition: all 0.2s ease;
+      width: 100%; padding: 0.85rem 1.2rem; border-radius: 1rem; border: 1px solid #dcd1be;
+      background: #fdfcf9; font-size: 1rem; outline: none; color: #3a2e2b; transition: all 0.2s ease;
     }
-    input:focus, select:focus {
-      border-color: #b8875a;
-      box-shadow: 0 0 0 3px rgba(184, 135, 90, 0.15);
-      background: #ffffff;
-    }
+    input:focus, select:focus { border-color: #b8875a; box-shadow: 0 0 0 3px rgba(184, 135, 90, 0.15); background: #ffffff; }
     .btn {
-      background: linear-gradient(135deg, #b8875a, #9b6e44);
-      border: none;
-      color: #ffffff;
-      font-weight: 600;
-      padding: 0.85rem 2rem;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
+      background: linear-gradient(135deg, #b8875a, #9b6e44); border: none; color: #ffffff; font-weight: 600;
+      padding: 0.85rem 2rem; border-radius: 1rem; cursor: pointer; font-size: 1rem; display: inline-flex;
+      align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s ease;
       box-shadow: 0 4px 12px rgba(155, 110, 68, 0.2);
     }
-    .btn:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 15px rgba(155, 110, 68, 0.3);
-    }
+    .btn:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 6px 15px rgba(155, 110, 68, 0.3); }
     .btn:active { transform: translateY(1px); }
-    .btn-outline {
-      background: transparent;
-      color: #8c5e34;
-      border: 1.5px solid #c79a6e;
-      box-shadow: none;
-    }
-    .btn-outline:hover {
-      background: #fdf7ee;
-      color: #6f4621;
-      box-shadow: none;
-    }
-    .card {
-      background: #ffffff;
-      border-radius: 1.5rem;
-      padding: 1.8rem;
-      margin-bottom: 1.8rem;
-      box-shadow: 0 8px 24px rgba(120, 70, 20, 0.04);
-      border: 1px solid #f2e6d5;
-    }
+    .btn-outline { background: transparent; color: #8c5e34; border: 1.5px solid #c79a6e; box-shadow: none; }
+    .btn-outline:hover { background: #fdf7ee; color: #6f4621; box-shadow: none; }
+    .btn-small { padding: 0.4rem 1rem; font-size: 0.85rem; }
+    .card { background: #ffffff; border-radius: 1.5rem; padding: 1.8rem; margin-bottom: 1.8rem; box-shadow: 0 8px 24px rgba(120, 70, 20, 0.04); border: 1px solid #f2e6d5; }
     .drop-zone {
-      border: 2px dashed #c79a6e;
-      border-radius: 1.5rem;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      background: #fefcf9;
-      cursor: pointer;
-      margin-bottom: 1rem;
-      transition: all 0.2s ease;
+      border: 2px dashed #c79a6e; border-radius: 1.5rem; padding: 2.5rem 1.5rem; text-align: center;
+      background: #fefcf9; cursor: pointer; margin-bottom: 1rem; transition: all 0.2s ease;
     }
-    .drop-zone:hover, .drop-zone.dragover {
-      border-color: #9b6e44;
-      background: #fdf3e7;
-    }
+    .drop-zone:hover, .drop-zone.dragover { border-color: #9b6e44; background: #fdf3e7; }
     .drop-zone p { color: #5c4636; font-size: 1.05rem; margin-bottom: 0.5rem; }
-    .tab-container {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.2rem;
-      border-bottom: 2px solid #f0e3d0;
-      padding-bottom: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .tab {
-      padding: 0.6rem 1.5rem;
-      border-radius: 0.8rem 0.8rem 0 0;
-      cursor: pointer;
-      background: transparent;
-      color: #7a624e;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.2s ease;
-    }
+    .tab-container { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; border-bottom: 2px solid #f0e3d0; padding-bottom: 0.5rem; flex-wrap: wrap; }
+    .tab { padding: 0.6rem 1.5rem; border-radius: 0.8rem 0.8rem 0 0; cursor: pointer; background: transparent; color: #7a624e; font-weight: 600; font-size: 1rem; transition: all 0.2s ease; }
     .tab.active { background: #b8875a; color: #ffffff; }
-    .search-box {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
+    .search-box { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .search-box select, .search-box input { flex: 1; min-width: 180px; }
-    .book-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-    .book-card {
-      background: #fdfaf4;
-      border-radius: 1.2rem;
-      padding: 1.2rem;
-      border-left: 5px solid #b8875a;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .book-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(120, 70, 20, 0.08);
-    }
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+    .book-card { background: #fdfaf4; border-radius: 1.2rem; padding: 1.2rem; border-left: 5px solid #b8875a; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: all 0.2s ease; display: flex; flex-direction: column; justify-content: space-between; }
+    .book-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(120, 70, 20, 0.08); }
     .book-title { font-weight: 700; color: #4b2e1a; font-size: 1.05rem; margin-bottom: 0.3rem; }
     .book-author { font-size: 0.85rem; color: #9b7a5a; font-style: italic; margin-bottom: 0.6rem; }
     .book-desc { font-size: 0.88rem; color: #5c4a33; line-height: 1.4; margin-bottom: 1rem; }
-    .book-links {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-    .book-links a, .book-links button {
-      padding: 0.4rem 0.8rem;
-      border-radius: 1.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+    .book-meta { font-size: 0.75rem; color: #8c7664; margin-bottom: 0.5rem; }
+    .book-links { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; }
+    .book-links a, .book-links button { padding: 0.4rem 0.8rem; border-radius: 1.5rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.2s ease; }
     .btn-read { background: #2d6a4f; color: #ffffff; }
     .btn-read:hover { background: #1b4332; }
-    .btn-review { background: #7b4b8a; color: #ffffff; }
-    .btn-review:hover { background: #5a3366; }
     .btn-share { background: #d4a373; color: #fff; }
     .btn-share:hover { background: #b8875a; }
-    .chat-box {
-      background: #faf7f2;
-      border-radius: 1rem;
-      padding: 1.2rem;
-      height: 300px;
-      overflow-y: auto;
-      margin: 1rem 0;
-      border: 1px solid #ebdcc5;
-    }
-    .msg { margin-bottom: 1rem; display: flex; flex-direction: column; }
-    .msg.user { align-items: flex-end; }
-    .msg.ai { align-items: flex-start; }
-    .msg .bubble {
-      max-width: 85%;
-      padding: 0.7rem 1.1rem;
-      border-radius: 1.2rem;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      word-wrap: break-word;
-    }
-    .msg.user .bubble {
-      background: #e2ede4;
-      color: #1b4332;
-      border-bottom-right-radius: 0.2rem;
-    }
-    .msg.ai .bubble {
-      background: #ffffff;
-      color: #3a2b20;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      border-bottom-left-radius: 0.2rem;
-      border: 1px solid #f0e4d3;
-    }
-    .msg .sender-name { font-size: 0.75rem; color: #8c7664; margin-bottom: 0.2rem; font-weight: 500; }
-    .timer-box {
-      background: linear-gradient(135deg, #f7efe2, #ebdcc5);
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #4b2e1a;
-      letter-spacing: 1px;
-      border: 1px solid #decbb2;
-    }
-    .progress-bar-container {
-      height: 10px;
-      background: #e6d5bc;
-      border-radius: 10px;
-      margin: 0.8rem 0;
-      overflow: hidden;
-    }
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #b8875a, #9b6e44);
-      border-radius: 10px;
-      transition: width 0.3s ease;
-    }
-    .streak-badge {
-      background: #ffd966;
-      color: #5c4308;
-      padding: 0.4rem 1.2rem;
-      border-radius: 1.5rem;
-      display: inline-block;
-      font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 2px 8px rgba(255, 217, 102, 0.3);
-    }
-    .spinner {
-      display: inline-block;
-      width: 1.2rem;
-      height: 1.2rem;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-    }
+    .btn-delete { background: #b23b3b; color: #fff; }
+    .btn-delete:hover { background: #8b2a2a; }
+    .btn-add-community { background: #6c5ce7; color: #fff; }
+    .btn-add-community:hover { background: #5a4bd1; }
+    .btn-library { background: #2c3e50; color: #fff; }
+    .btn-library:hover { background: #1a252f; }
+    .spinner { display: inline-block; width: 1.2rem; height: 1.2rem; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem; }
+    .badge-genre { background: #eaddcf; color: #8c5e34; }
+    .badge-shared { background: #d4a373; color: #fff; }
+    .badge-uploaded { background: #7b4b8a; color: #fff; }
+    .badge-community { background: #6c5ce7; color: #fff; }
+    .empty-state { text-align: center; color: #8c7664; padding: 3rem 0; grid-column: 1 / -1; }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .stats-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .stat-item { background: #fdfaf4; padding: 0.8rem 1.2rem; border-radius: 1rem; font-weight: 600; color: #4b2e1a; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; }
+    .section-title { font-size: 1.1rem; font-weight: 600; color: #4b2e1a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .auth-toggle { text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #8c5e34; }
+    .auth-toggle a { color: #b8875a; font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .error-message { color: #b23b3b; font-size: 0.9rem; margin-top: 0.5rem; font-weight: 600; }
+    .success-message { color: #2d6a4f; font-size: 0.9rem; margin-top: 0.5rem; font-weight: 600; }
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); display: flex; justify-content: center;
+      align-items: center; z-index: 1000;
+    }
+    .modal-content {
+      background: #fff; border-radius: 1.5rem; padding: 2rem;
+      max-width: 500px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    .modal-content h3 { color: #4b2e1a; margin-bottom: 1rem; }
+    .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+    .modal-buttons button { flex: 1; }
   </style>
 </head>
 <body>
 <div class="app" id="appRoot">
-  <!-- Màn hình đăng nhập -->
+  <!-- Màn hình đăng nhập / đăng ký -->
   <div id="authScreen">
-    <h2>📚 Bạn đồng hành đọc sách</h2>
-    <p class="subtitle">Kết nối dữ liệu cá nhân & Trợ lý ảo thông minh Gemini AI</p>
+    <h2 id="authTitle">📚 Thư viện sách cộng đồng</h2>
+    <p class="subtitle" id="authSubtitle">Đăng nhập để vào thư viện của bạn</p>
     <div class="card">
-      <div class="form-group"><label>👤 Tên của bạn</label><input type="text" id="nameInput" placeholder="Ví dụ: Đỗ Thanh Lài" required></div>
-      <div class="form-group"><label>📧 Email liên hệ</label><input type="email" id="emailInput" placeholder="example@gmail.com" required></div>
-      <div class="form-group"><label>📱 Số điện thoại</label><input type="tel" id="phoneInput" placeholder="09xxxxxxxx" required></div>
       <div class="form-group">
-        <label>🔑 API Key Gemini <span style="color:red">*</span></label>
-        <input type="text" id="apiKeyInput" placeholder="Nhập mã AIzaSy..." required>
-        <small style="color:#8c6f54; display:block; margin-top:0.3rem">Lấy miễn phí tại <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#9b6e44; font-weight:600">Google AI Studio</a></small>
+        <label>👤 Tên đăng nhập</label>
+        <input type="text" id="usernameInput" placeholder="Nhập tên đăng nhập" required>
       </div>
-      <button class="btn" id="loginBtn" style="width:100%; margin-top:0.5rem">🚀 Kích hoạt & Kết nối AI</button>
-      <p id="loginError" style="color:#b23b3b; text-align:center; margin-top:0.8rem; font-weight:600"></p>
+      <div class="form-group">
+        <label>🔒 Mật khẩu</label>
+        <input type="password" id="passwordInput" placeholder="Nhập mật khẩu" required>
+      </div>
+      <div class="form-group hidden" id="confirmPasswordGroup">
+        <label>🔒 Xác nhận mật khẩu</label>
+        <input type="password" id="confirmPasswordInput" placeholder="Nhập lại mật khẩu">
+      </div>
+      <button class="btn" id="authBtn" style="width:100%; margin-top:0.5rem">🚀 Đăng nhập</button>
+      <p class="error-message" id="authError"></p>
+      <p class="success-message hidden" id="authSuccess"></p>
+      <div class="auth-toggle">
+        <span id="authToggleText">Chưa có tài khoản? </span><a id="authToggleLink">Đăng ký ngay</a>
+      </div>
     </div>
   </div>
 
   <!-- Giao diện chính -->
   <div id="mainScreen" class="hidden">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem">
-      <h1>📖 Bạn đồng hành đọc sách</h1>
+      <h1>📖 Thư viện sách cộng đồng - Gieo mầm văn hóa đọc 📖</h1>
       <div>
-        <span id="userGreeting" style="margin-right:1rem; font-weight:500; color:#5c4636"></span>
-        <button class="btn btn-outline" id="logoutBtn" style="padding:0.4rem 1.2rem; font-size:0.85rem">Đăng xuất</button>
+        <button class="btn btn-library btn-small" id="libraryBtn">📚 Thư viện số trường</button>
+        <span id="userGreeting" style="margin-left:1rem; font-weight:500; color:#5c4636"></span>
+        <button class="btn btn-outline btn-small" id="logoutBtn">Đăng xuất</button>
       </div>
     </div>
 
-    <!-- Tải lên & phân tích -->
-    <div class="card">
-      <label>📤 Tải tác phẩm/Tài liệu của bạn lên (PDF, DOCX, TXT)</label>
-      <p style="font-size:0.85rem; color:#7a624e; margin-bottom:1rem">AI sẽ tự động đọc, phân tích và phân loại chính xác.</p>
+    <!-- Thống kê nhanh -->
+    <div class="stats-bar" id="statsBar"></div>
+
+    <!-- Khu vực tải sách lên -->
+    <div class="card" id="uploadCard" style="display:none;">
+      <div class="section-title">📤 Tải sách lên</div>
+      <p style="font-size:0.85rem; color:#7a624e; margin-bottom:1rem">Chia sẻ sách hay với mọi người. Hỗ trợ PDF, Word, TXT.</p>
       <div class="drop-zone" id="dropZone">
         <p>📂 Kéo & thả tệp tin vào đây</p>
-        <p style="font-size:0.9rem; color:#8c7664">hoặc <button class="btn btn-outline" id="selectFileBtn" style="padding:0.2rem 0.8rem; font-size:0.85rem">Duyệt file</button></p>
+        <p style="font-size:0.9rem; color:#8c7664">hoặc <button class="btn btn-outline btn-small" id="selectFileBtn">Duyệt file</button></p>
         <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none">
       </div>
       <div id="fileInfo" style="display:none; margin:0.8rem 0; font-weight:600; color:#2d6a4f"></div>
-      <button class="btn" id="analyzeBtn" style="display:none; width:100%">🤖 Gemini AI Phân tích & Lưu vào tủ sách</button>
-      <div id="analysisResult" style="margin-top:1.2rem; padding:1rem; border-radius:1rem; background:#f4eedf; display:none; border:1px solid #decbb2"></div>
+      
+      <!-- Form thông tin sách -->
+      <div id="bookForm" class="hidden" style="margin-top:1rem;">
+        <div class="form-group"><label>📖 Tên sách</label><input type="text" id="bookTitleInput" placeholder="Nhập tên sách"></div>
+        <div class="form-group"><label>✍️ Tác giả</label><input type="text" id="bookAuthorInput" placeholder="Nhập tên tác giả"></div>
+        <div class="form-group"><label>📝 Mô tả ngắn</label><textarea id="bookDescInput" rows="2" placeholder="Mô tả ngắn về sách"></textarea></div>
+        <div class="form-group"><label>🏷️ Thể loại</label><select id="bookGenreSelect">
+          <option value="vanhocvn">Văn học Việt Nam</option>
+          <option value="vanhocnn">Văn học nước ngoài</option>
+          <option value="khoahoc">Khoa học & Đời sống</option>
+          <option value="lichsu">Lịch sử & Địa lý</option>
+          <option value="phattrienbanthan">Phát triển bản thân</option>
+          <option value="trinhtham">Trinh thám & Kinh dị</option>
+          <option value="thieunhi">Văn học Thiếu nhi</option>
+          <option value="triethoc">Triết học & Tư tưởng</option>
+          <option value="kinhte">Kinh tế & Kinh doanh</option>
+          <option value="khac">Thể loại khác</option>
+        </select></div>
+        <p style="font-size:0.9rem; color:#8c5e34; margin-bottom:0.5rem; font-weight:600;">👇 Chọn nơi lưu sách:</p>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn" id="addToMyLibBtn" style="flex:1;">📁 Lưu vào Tủ sách của tôi</button>
+          <button class="btn btn-add-community" id="addToCommunityBtn" style="flex:1;">🌍 Chia sẻ lên Cộng đồng</button>
+        </div>
+      </div>
     </div>
 
     <!-- Thư viện sách với 3 tab -->
@@ -337,7 +200,6 @@
         <div class="tab" data-tab="community">🌍 Cộng đồng chia sẻ</div>
       </div>
 
-      <!-- Tìm kiếm cho Thư viện hệ thống -->
       <div class="search-box" id="discoverSearch">
         <select id="genreSelect">
           <option value="all">🎯 Tất cả thể loại</option>
@@ -352,51 +214,55 @@
           <option value="kinhte">Kinh tế & Kinh doanh</option>
         </select>
         <input type="text" id="searchQuery" placeholder="🔍 Tên sách hoặc tác giả...">
-        <button class="btn" id="searchBtn">Tìm kiếm</button>
+        <button class="btn btn-small" id="searchBtn">Tìm kiếm</button>
       </div>
 
-      <!-- Tìm kiếm cho Tủ sách của tôi -->
       <div class="search-box hidden" id="mylibSearch">
-        <input type="text" id="mylibQuery" placeholder="🔍 Tìm trong tài liệu đã tải lên...">
-        <button class="btn" id="mylibSearchBtn">Tìm</button>
+        <input type="text" id="mylibQuery" placeholder="🔍 Tìm trong tủ sách của tôi...">
+        <button class="btn btn-small" id="mylibSearchBtn">Tìm</button>
+        <button class="btn btn-outline btn-small" id="showUploadForMyLib">📤 Tải sách mới</button>
       </div>
 
-      <!-- Tìm kiếm cho Cộng đồng -->
       <div class="search-box hidden" id="communitySearch">
         <input type="text" id="communityQuery" placeholder="🔍 Tìm trong tủ sách cộng đồng...">
-        <button class="btn" id="communitySearchBtn">Tìm</button>
+        <button class="btn btn-small" id="communitySearchBtn">Tìm</button>
+        <button class="btn btn-add-community btn-small" id="showUploadForCommunity">🌍 Thêm sách vào cộng đồng</button>
       </div>
 
       <div id="bookContainer" class="book-grid"></div>
     </div>
-
-    <!-- Chat với Gemini -->
-    <div class="card">
-      <label>💬 Trò chuyện học thuật cùng Gemini AI</label>
-      <p style="font-size:0.85rem; color:#7a624e">Hỏi về sách, phân tích nhân vật, tóm tắt, dịch thuật...</p>
-      <div class="chat-box" id="chatBox"></div>
-      <div style="display:flex; gap:0.5rem">
-        <input type="text" id="chatInput" placeholder="Nhập câu hỏi...">
-        <button class="btn" id="sendChatBtn">Gửi</button>
-      </div>
-    </div>
-
-    <!-- Thử thách 15 phút -->
-    <div class="card">
-      <label>⏱️ Thử thách 15 Phút Đọc Mỗi Ngày</label>
-      <p style="font-size:0.85rem; color:#7a624e; margin-bottom:0.8rem">Bộ đếm tự động kích hoạt khi bạn mở sách.</p>
-      <div class="timer-box"><span id="timerDisplay">00:00</span> / 15:00</div>
-      <div style="margin-top:0.5rem; text-align:center">
-        <div class="progress-bar-container"><div id="dailyProgress" class="progress-bar"></div></div>
-        <span id="streakDisplay" class="streak-badge">🔥 0 ngày liên tiếp</span>
-      </div>
-    </div>
   </div>
 </div>
 
+<!-- Modal tra cứu thư viện số -->
+<div id="libraryModal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3>📚 Tra cứu tài khoản Thư viện số</h3>
+    <p style="font-size:0.9rem; color:#7a624e; margin-bottom:1rem;">Nhập họ tên đầy đủ và chọn khối lớp để nhận tài khoản.</p>
+    <div class="form-group">
+      <label>👤 Họ và tên đầy đủ</label>
+      <input type="text" id="studentFullName" placeholder="Ví dụ: Nguyễn Văn A">
+    </div>
+    <div class="form-group">
+      <label>🏫 Khối lớp</label>
+      <select id="studentClass">
+        <option value="">-- Chọn khối lớp --</option>
+        <option value="6A1">6A1</option><option value="6A2">6A2</option><option value="6A3">6A3</option>
+        <option value="7A1">7A1</option><option value="7A2">7A2</option><option value="7A3">7A3</option><option value="7A4">7A4</option>
+        <option value="8A1">8A1</option><option value="8A2">8A2</option><option value="8A3">8A3</option><option value="8A4">8A4</option>
+        <option value="9A1">9A1</option><option value="9A2">9A2</option><option value="9A3">9A3</option>
+      </select>
+    </div>
+    <div id="libraryResult" style="margin:1rem 0; padding:1rem; background:#f4eedf; border-radius:0.5rem; display:none;"></div>
+    <div class="modal-buttons">
+      <button class="btn" id="searchLibraryBtn">🔍 Tra cứu</button>
+      <button class="btn btn-outline" id="closeLibraryModal">Đóng</button>
+    </div>
+  </div>
+</div>
 <script>
 // ==========================================================================
-// DỮ LIỆU SÁCH MẪU (đầy đủ, không cắt bớt)
+// DANH SÁCH SÁCH MẪU (đầy đủ) – Thư viện hệ thống
 // ==========================================================================
 const sampleBooks = [
   // Văn học Việt Nam
@@ -491,7 +357,7 @@ const sampleBooks = [
   {title:"Án mạng trên sông Nile",author:"Agatha Christie",genre:"vanhocnn",desc:"Bí ẩn.",read:"https://sachmoi.net/an-mang-tren-song-nile/"},
   {title:"Mười người da đen nhỏ",author:"Agatha Christie",genre:"vanhocnn",desc:"Án mạng.",read:"https://sachmoi.net/muoi-nguoi-da-den-nho/"},
   {title:"Phía sau nghi can X",author:"Higashino Keigo",genre:"vanhocnn",desc:"Trinh thám Nhật.",read:"https://sachmoi.net/phia-sau-nghi-can-x/"},
-  {title:"Cô gái có hình xăm rồng",author:"Stieg Larsson",genre:"vanhocnn",desc:"Bí ẩn Thụy Điển.",read:"https://sachmoi.net/co-gai-co-hinh-xam-rong/"},
+  {title:"Cô gái có hình xăm rồng",author:"Stieg Larsson",genre:"vanhocnn",desc:"Bí ẩn.",read:"https://sachmoi.net/co-gai-co-hinh-xam-rong/"},
   {title:"Những tấm lòng cao cả",author:"Edmondo De Amicis",genre:"vanhocnn",desc:"Giáo dục.",read:"https://sachmoi.net/nhung-tam-long-cao-ca/"},
   {title:"Totto-chan bên cửa sổ",author:"Tetsuko Kuroyanagi",genre:"vanhocnn",desc:"Trường học.",read:"https://sachmoi.net/totto-chan-ben-cua-so/"},
   {title:"Ông già và biển cả",author:"Ernest Hemingway",genre:"vanhocnn",desc:"Thiên nhiên.",read:"https://sachmoi.net/ong-gia-va-bien-ca/"},
@@ -684,162 +550,677 @@ const sampleBooks = [
   {title:"Suy nghĩ nhanh và chậm",author:"Daniel Kahneman",genre:"kinhte",desc:"Tâm lý học.",read:"https://sachmoi.net/suy-nghi-nhanh-va-cham/"},
   {title:"Tiền bạc và cuộc sống",author:"Vicki Robin",genre:"kinhte",desc:"Tài chính cá nhân.",read:"https://sachmoi.net/tien-bac-va-cuoc-song/"}
 ];
+</script>
+<script>
+// ==========================================================================
+// DANH SÁCH HỌC SINH THƯ VIỆN SỐ (đầy đủ)
+// ==========================================================================
+const studentList = [
+  // 9A1
+  {fullName:"Lục Thiên Ân", class:"9A1", account:"2300175875", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Minh Diệp", class:"9A1", account:"2002998235", password:"DLibK12@2025"},
+  {fullName:"Dương Nguyễn Thu Hiền", class:"9A1", account:"2002998253", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Minh Hiệu", class:"9A1", account:"2002998244", password:"DLibK12@2025"},
+  {fullName:"Vi Gia Huy", class:"9A1", account:"2002998156", password:"DLibK12@2025"},
+  {fullName:"Bế Bảo Khang", class:"9A1", account:"2002998169", password:"DLibK12@2025"},
+  {fullName:"Hoàng Minh Khang", class:"9A1", account:"2002998255", password:"DLibK12@2025"},
+  {fullName:"Lê Khang", class:"9A1", account:"2002998127", password:"DLibK12@2025"},
+  {fullName:"Bùi Nhân Kiệt", class:"9A1", account:"2002998129", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Kim Liên", class:"9A1", account:"2009984618", password:"DLibK12@2025"},
+  {fullName:"Bùi Thị Hà Linh", class:"9A1", account:"2009984617", password:"DLibK12@2025"},
+  {fullName:"Lê Thị Khánh Ly", class:"9A1", account:"2002998246", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Anh Mỹ", class:"9A1", account:"2009984619", password:"DLibK12@2025"},
+  {fullName:"Võ Thị Thúy Nga", class:"9A1", account:"2009639030", password:"DLibK12@2025"},
+  {fullName:"Đinh Ngọc Bảo Ngân", class:"9A1", account:"2303396134", password:"DLibK12@2025"},
+  {fullName:"Trần Bảo Ngân", class:"9A1", account:"2009984626", password:"DLibK12@2025"},
+  {fullName:"Dương Lê Bảo Ngọc", class:"9A1", account:"2002998254", password:"DLibK12@2025"},
+  {fullName:"Phạm Thị Thảo Nguyên", class:"9A1", account:"2009984628", password:"DLibK12@2025"},
+  {fullName:"Đinh Văn Nhân", class:"9A1", account:"2009984621", password:"DLibK12@2025"},
+  {fullName:"Mã Thị Kim Oanh", class:"9A1", account:"2002998256", password:"DLibK12@2025"},
+  {fullName:"Đàm Thị Diễm Quỳnh", class:"9A1", account:"2002998178", password:"DLibK12@2025"},
+  {fullName:"Phạm Lê Tuấn Thành", class:"9A1", account:"2002998136", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hữu Thắng", class:"9A1", account:"2002998240", password:"DLibK12@2025"},
+  {fullName:"Lục Phương Thùy", class:"9A1", account:"2009984633", password:"DLibK12@2025"},
+  {fullName:"Lê Thị Minh Thư", class:"9A1", account:"2009984634", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Anh Thư", class:"9A1", account:"2002998142", password:"DLibK12@2025"},
+  {fullName:"Phạm Hà Anh Thư", class:"9A1", account:"2002998138", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thanh Toàn", class:"9A1", account:"2009984629", password:"DLibK12@2025"},
+  {fullName:"Ma Hiệu Huyền Trang", class:"9A1", account:"2002998252", password:"DLibK12@2025"},
+  {fullName:"Hứa Ngọc Bảo Trâm", class:"9A1", account:"2002998172", password:"DLibK12@2025"},
+  {fullName:"Vi Ngọc Trinh", class:"9A1", account:"2002998174", password:"DLibK12@2025"},
+  {fullName:"Hoàng Nguyễn Ngọc Trúc", class:"9A1", account:"2205117097", password:"DLibK12@2025"},
+  {fullName:"Vũ Thị Thanh Trúc", class:"9A1", account:"2002998171", password:"DLibK12@2025"},
+  {fullName:"Mai Thanh Tú", class:"9A1", account:"2009984631", password:"DLibK12@2025"},
+  {fullName:"Phan Anh Tú", class:"9A1", account:"2009984630", password:"DLibK12@2025"},
+  {fullName:"Phạm Lê Vy", class:"9A1", account:"2202480238", password:"DLibK12@2025"},
+  {fullName:"Lý Lục Gia Vỹ", class:"9A1", account:"2009984638", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Thanh Xuân", class:"9A1", account:"2009984639", password:"DLibK12@2025"},
+  // 9A2
+  {fullName:"Nguyễn Phúc Thiên An", class:"9A2", account:"2002998160", password:"DLibK12@2025"},
+  {fullName:"Phan Hoài An", class:"9A2", account:"2002998237", password:"DLibK12@2025"},
+  {fullName:"Hoàng Ngọc Lan Anh", class:"9A2", account:"2002998119", password:"DLibK12@2025"},
+  {fullName:"Đinh Nguyễn Minh Anh", class:"9A2", account:"2002998233", password:"DLibK12@2025"},
+  {fullName:"Võ Hữu Anh", class:"9A2", account:"2002998157", password:"DLibK12@2025"},
+  {fullName:"Man Tuấn Anh", class:"9A2", account:"2002998167", password:"DLibK12@2025"},
+  {fullName:"Hứa Thanh Bình", class:"9A2", account:"2009984536", password:"DLibK12@2025"},
+  {fullName:"Lê Đức Duy", class:"9A2", account:"2002998161", password:"DLibK12@2025"},
+  {fullName:"Lê Vũ Minh Duy", class:"9A2", account:"2002998164", password:"DLibK12@2025"},
+  {fullName:"Lục Thị Thanh Hiền", class:"9A2", account:"2002998153", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thanh Hiếu", class:"9A2", account:"2304889886", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Mỹ Hương", class:"9A2", account:"2002998257", password:"DLibK12@2025"},
+  {fullName:"Trương Thị Mỹ Kiều", class:"9A2", account:"2009984614", password:"DLibK12@2025"},
+  {fullName:"Phạm Thị Thu Hiền", class:"9A2", account:"2009984574", password:"DLibK12@2025"},
+  {fullName:"Doãn Hồng Thảo Lim", class:"9A2", account:"2002998185", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Trần Đức Lợi", class:"9A2", account:"2002998187", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đình Luân", class:"9A2", account:"2002998173", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Trúc Lan", class:"9A2", account:"2002998249", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Thanh Ngân", class:"9A2", account:"2002998170", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Nhi", class:"9A2", account:"2009984623", password:"DLibK12@2025"},
+  {fullName:"Phạm Tuyết My", class:"9A2", account:"2002998176", password:"DLibK12@2025"},
+  {fullName:"Thạch Thị Yến Nhi", class:"9A2", account:"2009984624", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Quỳnh Như", class:"9A2", account:"2002998140", password:"DLibK12@2025"},
+  {fullName:"Đàm Phạm Vĩnh Nội", class:"9A2", account:"2009984620", password:"DLibK12@2025"},
+  {fullName:"Ngô Nguyễn Đông Nguyên", class:"9A2", account:"2002998132", password:"DLibK12@2025"},
+  {fullName:"Phạm Đức Phong", class:"9A2", account:"2002998182", password:"DLibK12@2025"},
+  {fullName:"Võ Ngọc Phước", class:"9A2", account:"2002998133", password:"DLibK12@2025"},
+  {fullName:"Vũ Như Quỳnh", class:"9A2", account:"2204841413", password:"DLibK12@2025"},
+  {fullName:"Đỗ Anh Quốc", class:"9A2", account:"2002998135", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Minh Thư", class:"9A2", account:"2002998183", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lý Anh Thư", class:"9A2", account:"2002998150", password:"DLibK12@2025"},
+  {fullName:"Phan Thị Thùy Trang", class:"9A2", account:"2009984635", password:"DLibK12@2025"},
+  {fullName:"Hồ Ngọc Bảo Trâm", class:"9A2", account:"2002998148", password:"DLibK12@2025"},
+  {fullName:"Bùi Thị Cẩm Tú", class:"9A2", account:"2001160827", password:"DLibK12@2025"},
+  {fullName:"Lục Văn Tú", class:"9A2", account:"2202385131", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hà Thảo Uyên", class:"9A2", account:"2203172969", password:"DLibK12@2025"},
+  {fullName:"Bế Quốc Việt", class:"9A2", account:"2009984636", password:"DLibK12@2025"},
+  {fullName:"Bế Thị Thảo Vy", class:"9A2", account:"2009984637", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hùng Tài Quý", class:"9A2", account:"2002998179", password:"DLibK12@2025"},
+  // 9A3
+  {fullName:"Bế Hoài Anh", class:"9A3", account:"2002998162", password:"DLibK12@2025"},
+  {fullName:"Nông Ngọc Bảo", class:"9A3", account:"2002998238", password:"DLibK12@2025"},
+  {fullName:"Phan Gia Bảo", class:"9A3", account:"2009984489", password:"DLibK12@2025"},
+  {fullName:"Nông Nguyễn Bảo Châu", class:"9A3", account:"2005671036", password:"DLibK12@2025"},
+  {fullName:"Lê Thanh Dung", class:"9A3", account:"2002998152", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Tấn Dũng", class:"9A3", account:"2002998163", password:"DLibK12@2025"},
+  {fullName:"Võ Trung Duy", class:"9A3", account:"2002998166", password:"DLibK12@2025"},
+  {fullName:"Trần Thị Như Hà", class:"9A3", account:"2002998122", password:"DLibK12@2025"},
+  {fullName:"Võ Hồng Hải", class:"9A3", account:"2002998121", password:"DLibK12@2025"},
+  {fullName:"Luân Thị Ngọc Hân", class:"9A3", account:"2002998128", password:"DLibK12@2025"},
+  {fullName:"Đặng Khánh Lê Huy", class:"9A3", account:"2009984612", password:"DLibK12@2025"},
+  {fullName:"Hoàng Tuấn Khanh", class:"9A3", account:"2009984615", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bách Khoa", class:"9A3", account:"2002998116", password:"DLibK12@2025"},
+  {fullName:"Đoàn Mai Linh", class:"9A3", account:"2002998126", password:"DLibK12@2025"},
+  {fullName:"Phùng Tiểu Mẫn", class:"9A3", account:"2002998117", password:"DLibK12@2025"},
+  {fullName:"Trần Bảo Nam", class:"9A3", account:"2002998239", password:"DLibK12@2025"},
+  {fullName:"Trần Thị Thanh Ngân", class:"9A3", account:"2002998151", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Trung Nguyên", class:"9A3", account:"2202383200", password:"DLibK12@2025"},
+  {fullName:"Trần Đình Nguyên", class:"9A3", account:"2002998131", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Nhân", class:"9A3", account:"2009984622", password:"DLibK12@2025"},
+  {fullName:"Bùi Nguyễn Minh Nhật", class:"9A3", account:"2002998139", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Thảo Nhi", class:"9A3", account:"2002998141", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Dương Hồng Nhung", class:"9A3", account:"2002998181", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Hồng Nhung", class:"9A3", account:"2009984625", password:"DLibK12@2025"},
+  {fullName:"Nông Hoàng Ninh", class:"9A3", account:"2002998241", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Quý", class:"9A3", account:"2511717164", password:"DLibK12@2025"},
+  {fullName:"Hoàng Anh Tuấn Tài", class:"9A3", account:"2002998137", password:"DLibK12@2025"},
+  {fullName:"Triệu Hồng Thắm", class:"9A3", account:"2009984632", password:"DLibK12@2025"},
+  {fullName:"Lê Phúc Thịnh", class:"9A3", account:"2002998258", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Duy Thịnh", class:"9A3", account:"2002998145", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đức Thuận", class:"9A3", account:"2002998180", password:"DLibK12@2025"},
+  {fullName:"Hoàng Thị Phương Thùy", class:"9A3", account:"2002998147", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Minh Thùy", class:"9A3", account:"2202418761", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Diễm Thư", class:"9A3", account:"2002998134", password:"DLibK12@2025"},
+  {fullName:"Trần Thị Kiều Trang", class:"9A3", account:"2002998168", password:"DLibK12@2025"},
+  {fullName:"Lôi Thanh Trúc", class:"9A3", account:"2002998242", password:"DLibK12@2025"},
+  {fullName:"Nông Quang Trung", class:"9A3", account:"2002998243", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Tuấn", class:"9A3", account:"2009611897", password:"DLibK12@2025"},
+  {fullName:"Long Tuấn Vũ", class:"9A3", account:"2002998130", password:"DLibK12@2025"},
+  // 8A1
+  {fullName:"Nguyễn Hoài An", class:"8A1", account:"2002998029", password:"DLibK12@2025"},
+  {fullName:"Nông Nguyễn Bảo An", class:"8A1", account:"2002998103", password:"DLibK12@2025"},
+  {fullName:"Lê Hà Anh", class:"8A1", account:"2002998024", password:"DLibK12@2025"},
+  {fullName:"Triệu Trương Hoàng Anh", class:"8A1", account:"2009994426", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Gia Bảo", class:"8A1", account:"2009994763", password:"DLibK12@2025"},
+  {fullName:"Lương Ngọc Khánh Băng", class:"8A1", account:"2009642357", password:"DLibK12@2025"},
+  {fullName:"Hoàng Đình Tri Giao", class:"8A1", account:"2010010292", password:"DLibK12@2025"},
+  {fullName:"Lý Thị Ngọc Hà", class:"8A1", account:"2009994760", password:"DLibK12@2025"},
+  {fullName:"Trần Thị Thanh Hà", class:"8A1", account:"2002998040", password:"DLibK12@2025"},
+  {fullName:"Mã Anh Hào", class:"8A1", account:"2010010289", password:"DLibK12@2025"},
+  {fullName:"Trần Ngọc Hân", class:"8A1", account:"2002998045", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Mạnh Hòa", class:"8A1", account:"2002998050", password:"DLibK12@2025"},
+  {fullName:"Nông Ngọc Huy", class:"8A1", account:"2303339035", password:"DLibK12@2025"},
+  {fullName:"Đặng Gia Hưng", class:"8A1", account:"2002998043", password:"DLibK12@2025"},
+  {fullName:"Mã Phúc Hưng", class:"8A1", account:"2002998102", password:"DLibK12@2025"},
+  {fullName:"Tiêu Đăng Kha", class:"8A1", account:"2009994713", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Diễm Kiều", class:"8A1", account:"2002998012", password:"DLibK12@2025"},
+  {fullName:"Bế Ngọc Thùy Linh", class:"8A1", account:"2009994762", password:"DLibK12@2025"},
+  {fullName:"Nông Duy Mạnh", class:"8A1", account:"2009994714", password:"DLibK12@2025"},
+  {fullName:"Hoàng Nhật Minh", class:"8A1", account:"2002998114", password:"DLibK12@2025"},
+  {fullName:"Chu Hoàng Trà My", class:"8A1", account:"2010010282", password:"DLibK12@2025"},
+  {fullName:"Hồ Thị Ngọc Mỹ", class:"8A1", account:"2002998004", password:"DLibK12@2025"},
+  {fullName:"Hà Thị Thanh Nhàn", class:"8A1", account:"2002998006", password:"DLibK12@2025"},
+  {fullName:"Nông Đức Nhân", class:"8A1", account:"2010008800", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Yến Nhi", class:"8A1", account:"2002998115", password:"DLibK12@2025"},
+  {fullName:"Hoàng Quỳnh Như", class:"8A1", account:"2002998099", password:"DLibK12@2025"},
+  {fullName:"Chu Tuấn Sang", class:"8A1", account:"2003824519", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Bảo Trâm", class:"8A1", account:"2010008816", password:"DLibK12@2025"},
+  {fullName:"Phạm Thùy Trâm", class:"8A1", account:"2002997996", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lam Phương Tuấn", class:"8A1", account:"2002998001", password:"DLibK12@2025"},
+  {fullName:"Đinh Huỳnh Quốc Việt", class:"8A1", account:"2200264360", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Thu Điều", class:"8A1", account:"2009994678", password:"DLibK12@2025"},
+  {fullName:"Hà Thiên Long", class:"8A1", account:"2408333786", password:"DLibK12@2025"},
+  // 8A2
+  {fullName:"Nguyễn Thiên Ân", class:"8A2", account:"2002998030", password:"DLibK12@2025"},
+  {fullName:"Đoàn Mai Chi", class:"8A2", account:"2002998031", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Văn Cường", class:"8A2", account:"2009994765", password:"DLibK12@2025"},
+  {fullName:"Trần Văn Dương", class:"8A2", account:"2002998048", password:"DLibK12@2025"},
+  {fullName:"Thẩm Thiên Đức", class:"8A2", account:"2002997997", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Gia", class:"8A2", account:"2002998104", password:"DLibK12@2025"},
+  {fullName:"Đỗ Bảo Hân", class:"8A2", account:"2002998101", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Hân", class:"8A2", account:"2009994710", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đức Hiền", class:"8A2", account:"2002998002", password:"DLibK12@2025"},
+  {fullName:"Nông Văn Hữu", class:"8A2", account:"2010008744", password:"DLibK12@2025"},
+  {fullName:"Mai Anh Khoa", class:"8A2", account:"2002998007", password:"DLibK12@2025"},
+  {fullName:"Trần Nhã Kỳ", class:"8A2", account:"2002998095", password:"DLibK12@2025"},
+  {fullName:"Đàm Nguyễn Bảo Lâm", class:"8A2", account:"2002998055", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thùy Linh", class:"8A2", account:"2010008745", password:"DLibK12@2025"},
+  {fullName:"Lương Thị Kim Loan", class:"8A2", account:"2010010286", password:"DLibK12@2025"},
+  {fullName:"Võ Thị Hồng Mai", class:"8A2", account:"2002998058", password:"DLibK12@2025"},
+  {fullName:"Trần Quang Minh", class:"8A2", account:"2009994385", password:"DLibK12@2025"},
+  {fullName:"Ma Kiên Nghĩa", class:"8A2", account:"2009994716", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bảo Ngọc", class:"8A2", account:"2002998019", password:"DLibK12@2025"},
+  {fullName:"Thời Võ Hoàng Nhân", class:"8A2", account:"2002998046", password:"DLibK12@2025"},
+  {fullName:"Đinh Hoàng Phong", class:"8A2", account:"2009994749", password:"DLibK12@2025"},
+  {fullName:"Trần Huy Phong", class:"8A2", account:"2010008803", password:"DLibK12@2025"},
+  {fullName:"Đỗ Minh Phú", class:"8A2", account:"2002998020", password:"DLibK12@2025"},
+  {fullName:"Đàm Thị Mai Phương", class:"8A2", account:"2010008925", password:"DLibK12@2025"},
+  {fullName:"Võ Trung Quân", class:"8A2", account:"2002998009", password:"DLibK12@2025"},
+  {fullName:"Thạch Văn Quốc", class:"8A2", account:"2010008923", password:"DLibK12@2025"},
+  {fullName:"Chu Tấn Sang", class:"8A2", account:"2010008922", password:"DLibK12@2025"},
+  {fullName:"Phạm Thị Bích Thủy", class:"8A2", account:"2009994754", password:"DLibK12@2025"},
+  {fullName:"Nông Nguyễn Hoài Thương", class:"8A2", account:"2002998017", password:"DLibK12@2025"},
+  {fullName:"Phạm Hoàng Bảo Trâm", class:"8A2", account:"2002998025", password:"DLibK12@2025"},
+  {fullName:"Bế Thị Thanh Trúc", class:"8A2", account:"2009994756", password:"DLibK12@2025"},
+  {fullName:"Điểu K Tuấn", class:"8A2", account:"2009994753", password:"DLibK12@2025"},
+  {fullName:"Phan Long Vũ", class:"8A2", account:"2202852266", password:"DLibK12@2025"},
+  {fullName:"Bế Nhật Tường Vy", class:"8A2", account:"2010008921", password:"DLibK12@2025"},
+  // 8A3
+  {fullName:"Nguyễn Long Gia Bảo", class:"8A3", account:"2002998003", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Khánh Băng", class:"8A3", account:"2002998035", password:"DLibK12@2025"},
+  {fullName:"Lê Thanh Bình", class:"8A3", account:"2002998037", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Long Chính", class:"8A3", account:"2002998100", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Ngọc Diệp", class:"8A3", account:"2009994380", password:"DLibK12@2025"},
+  {fullName:"Hoàng Kim Dũng", class:"8A3", account:"2002998057", password:"DLibK12@2025"},
+  {fullName:"Bế Hoài Duy", class:"8A3", account:"2010008841", password:"DLibK12@2025"},
+  {fullName:"Phạm Duy", class:"8A3", account:"2009994758", password:"DLibK12@2025"},
+  {fullName:"Trương Thị Hồng Gấm", class:"8A3", account:"2010000646", password:"DLibK12@2025"},
+  {fullName:"Điểu Thị Mỹ Hạnh", class:"8A3", account:"2010008742", password:"DLibK12@2025"},
+  {fullName:"Chu Lý Hào", class:"8A3", account:"2009994679", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Võ Minh Hằng", class:"8A3", account:"2002998053", password:"DLibK12@2025"},
+  {fullName:"Lê Vũ Minh Hiền", class:"8A3", account:"2200169842", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Tấn Hiển", class:"8A3", account:"2002998047", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Nhật Huy", class:"8A3", account:"2009994712", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Quốc Huy", class:"8A3", account:"2002998105", password:"DLibK12@2025"},
+  {fullName:"Thời Trần Đăng Khoa", class:"8A3", account:"2002998013", password:"DLibK12@2025"},
+  {fullName:"Hồ Viết Gia Long", class:"8A3", account:"2002998014", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thành Long", class:"8A3", account:"2002998054", password:"DLibK12@2025"},
+  {fullName:"Võ Nhật Minh", class:"8A3", account:"2002998042", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thanh Nhã", class:"8A3", account:"2002998109", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoài Nhân", class:"8A3", account:"2107467303", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Thạch", class:"8A3", account:"2002998093", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Anh Thơ", class:"8A3", account:"2002998022", password:"DLibK12@2025"},
+  {fullName:"Lê Phạm Anh Thư", class:"8A3", account:"2002998107", password:"DLibK12@2025"},
+  {fullName:"Võ Trần Anh Thư", class:"8A3", account:"2010008813", password:"DLibK12@2025"},
+  {fullName:"Đỗ Văn Thức", class:"8A3", account:"2002998026", password:"DLibK12@2025"},
+  {fullName:"Ngô Tùng Tiến", class:"8A3", account:"2002998000", password:"DLibK12@2025"},
+  {fullName:"Đặng Tuyết Trinh", class:"8A3", account:"2002997999", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Mạnh Tường", class:"8A3", account:"2002997995", password:"DLibK12@2025"},
+  {fullName:"Trương Công Việt", class:"8A3", account:"2002998108", password:"DLibK12@2025"},
+  {fullName:"Sái Anh Vũ", class:"8A3", account:"2204344157", password:"DLibK12@2025"},
+  {fullName:"Phan Thị Mỹ Yến", class:"8A3", account:"2009994757", password:"DLibK12@2025"},
+  // 8A4
+  {fullName:"Phan Thị Hoài Băng", class:"8A4", account:"2009994432", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Thùy Dương", class:"8A4", account:"2002997998", password:"DLibK12@2025"},
+  {fullName:"Đinh Ngọc Đồng", class:"8A4", account:"2009994534", password:"DLibK12@2025"},
+  {fullName:"Đinh Ngọc Hương Giang", class:"8A4", account:"2002998097", password:"DLibK12@2025"},
+  {fullName:"Đàm Trường Hải", class:"8A4", account:"2002998041", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Ngọc Hân", class:"8A4", account:"2002998044", password:"DLibK12@2025"},
+  {fullName:"Long Văn Hiền", class:"8A4", account:"2002998092", password:"DLibK12@2025"},
+  {fullName:"Nông Phan Anh Huân", class:"8A4", account:"2009994761", password:"DLibK12@2025"},
+  {fullName:"Đinh Gia Huy", class:"8A4", account:"2010008743", password:"DLibK12@2025"},
+  {fullName:"Lâm Gia Hưng", class:"8A4", account:"2002998038", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Lâm", class:"8A4", account:"2010010288", password:"DLibK12@2025"},
+  {fullName:"Đinh Đức Minh", class:"8A4", account:"2002998051", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Kim Minh", class:"8A4", account:"2010008746", password:"DLibK12@2025"},
+  {fullName:"Trương Võ Trà My", class:"8A4", account:"2002998021", password:"DLibK12@2025"},
+  {fullName:"Đỗ Nguyên", class:"8A4", account:"2002998049", password:"DLibK12@2025"},
+  {fullName:"Trần Huỳnh Tâm Như", class:"8A4", account:"2002998052", password:"DLibK12@2025"},
+  {fullName:"Vũ Đào Xuân Phúc", class:"8A4", account:"2002998027", password:"DLibK12@2025"},
+  {fullName:"Bế Hoài Phương", class:"8A4", account:"2002998036", password:"DLibK12@2025"},
+  {fullName:"Bế Hoàng Thiên", class:"8A4", account:"2002998010", password:"DLibK12@2025"},
+  {fullName:"Phạm Ngọc Thịnh", class:"8A4", account:"2002998096", password:"DLibK12@2025"},
+  {fullName:"Trần Gia Thịnh", class:"8A4", account:"2002998016", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lê Gia Thuận", class:"8A4", account:"2002998015", password:"DLibK12@2025"},
+  {fullName:"Trần Minh Thuận", class:"8A4", account:"2010008808", password:"DLibK12@2025"},
+  {fullName:"Võ Trần Thu Trang", class:"8A4", account:"2002998111", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Bảo Trâm", class:"8A4", account:"2002998033", password:"DLibK12@2025"},
+  {fullName:"Đỗ Trần Thành Trì", class:"8A4", account:"2002998106", password:"DLibK12@2025"},
+  {fullName:"Đàm Lưu Ngọc Trúc", class:"8A4", account:"2010014510", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đỗ Mỹ Tuyền", class:"8A4", account:"2002998113", password:"DLibK12@2025"},
+  {fullName:"Lâm Chí Vĩ", class:"8A4", account:"2002998110", password:"DLibK12@2025"},
+  {fullName:"Chung Thiên Vũ", class:"8A4", account:"2002998023", password:"DLibK12@2025"},
+  {fullName:"Nông Ngọc Vy", class:"8A4", account:"2010008822", password:"DLibK12@2025"},
+  {fullName:"Vũ Minh Thư", class:"8A4", account:"2009994755", password:"DLibK12@2025"},
+  {fullName:"Trần Nguyễn Quý", class:"8A4", account:"2511720644", password:"DLibK12@2025"},
+  {fullName:"Lê Nguyễn Mai Lan", class:"8A4", account:"2511914184", password:"DLibK12@2025"},
+  // 7A1
+  {fullName:"Huỳnh Lưu Khánh An", class:"7A1", account:"2002998259", password:"DLibK12@2025"},
+  {fullName:"Bế Nhật Minh Anh", class:"7A1", account:"2009989127", password:"DLibK12@2025"},
+  {fullName:"Cao Hoàng Bảo Anh", class:"7A1", account:"2009996703", password:"DLibK12@2025"},
+  {fullName:"Phùng Chung Anh", class:"7A1", account:"2404120959", password:"DLibK12@2025"},
+  {fullName:"Võ Đức Anh", class:"7A1", account:"2002998272", password:"DLibK12@2025"},
+  {fullName:"Bùi Phúc Ân", class:"7A1", account:"2006084201", password:"DLibK12@2025"},
+  {fullName:"Bùi Gia Bảo", class:"7A1", account:"2002998262", password:"DLibK12@2025"},
+  {fullName:"Nông Minh Du", class:"7A1", account:"2009989154", password:"DLibK12@2025"},
+  {fullName:"Trần Trí Dũng", class:"7A1", account:"2002998347", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đăng Hà", class:"7A1", account:"2002998264", password:"DLibK12@2025"},
+  {fullName:"Trần Gia Huy", class:"7A1", account:"2002997949", password:"DLibK12@2025"},
+  {fullName:"Tô Quốc Hưng", class:"7A1", account:"2009996712", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bảo Khang", class:"7A1", account:"2002997956", password:"DLibK12@2025"},
+  {fullName:"Sĩ An Khang", class:"7A1", account:"2100421873", password:"DLibK12@2025"},
+  {fullName:"Trương Anh Khoa", class:"7A1", account:"2009993679", password:"DLibK12@2025"},
+  {fullName:"Triệu Thị Phương Linh", class:"7A1", account:"2206850124", password:"DLibK12@2025"},
+  {fullName:"Hoàng Văn Luân", class:"7A1", account:"2002997941", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Châu Tường My", class:"7A1", account:"2002998280", password:"DLibK12@2025"},
+  {fullName:"Hoàng Thị Hằng Nga", class:"7A1", account:"2104672830", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Yến Nhi", class:"7A1", account:"2002998274", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Quỳnh Như", class:"7A1", account:"2404777885", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Hà Phương", class:"7A1", account:"2002998292", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Thanh Thảo", class:"7A1", account:"2002998282", password:"DLibK12@2025"},
+  {fullName:"Phạm Thị Minh Thư", class:"7A1", account:"2009996733", password:"DLibK12@2025"},
+  {fullName:"Trần Ngọc Bảo Trâm", class:"7A1", account:"2002998334", password:"DLibK12@2025"},
+  {fullName:"Trương Gia Tường", class:"7A1", account:"2002997934", password:"DLibK12@2025"},
+  {fullName:"Trần Nhã Uyên", class:"7A1", account:"2002998331", password:"DLibK12@2025"},
+  {fullName:"Lê Nguyễn Như Ý", class:"7A1", account:"2002998261", password:"DLibK12@2025"},
+  // 7A2
+  {fullName:"Bùi Nguyễn Hoài Anh", class:"7A2", account:"2002998330", password:"DLibK12@2025"},
+  {fullName:"Mai Nguyễn Trung Anh", class:"7A2", account:"2202459683", password:"DLibK12@2025"},
+  {fullName:"Hoàng Gia Bảo", class:"7A2", account:"2009996475", password:"DLibK12@2025"},
+  {fullName:"Trần Đăng Chuẩn", class:"7A2", account:"2007366940", password:"DLibK12@2025"},
+  {fullName:"Trương Quốc Đại", class:"7A2", account:"2009996708", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Linh Đan", class:"7A2", account:"2002998355", password:"DLibK12@2025"},
+  {fullName:"Trần Hoàng Hải Đăng", class:"7A2", account:"2002997942", password:"DLibK12@2025"},
+  {fullName:"Phan Văn Hào", class:"7A2", account:"2002997945", password:"DLibK12@2025"},
+  {fullName:"Đàm Nguyễn An Hiếu", class:"7A2", account:"2002998360", password:"DLibK12@2025"},
+  {fullName:"Nông Sĩ Hoan", class:"7A2", account:"2002998345", password:"DLibK12@2025"},
+  {fullName:"Hoàng Khánh Hưng", class:"7A2", account:"2009989759", password:"DLibK12@2025"},
+  {fullName:"Phan Tuấn Khanh", class:"7A2", account:"2009994335", password:"DLibK12@2025"},
+  {fullName:"Thẩm Đình Khương", class:"7A2", account:"2202474889", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Trung Kiên", class:"7A2", account:"2009651988", password:"DLibK12@2025"},
+  {fullName:"Phùng Kỳ Lân", class:"7A2", account:"2009994377", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Khánh Linh", class:"7A2", account:"2002998350", password:"DLibK12@2025"},
+  {fullName:"Bùi Văn Bảo Nam", class:"7A2", account:"2002998283", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Kim Ngân", class:"7A2", account:"2002998353", password:"DLibK12@2025"},
+  {fullName:"Phạm Thảo Ngân", class:"7A2", account:"2002998359", password:"DLibK12@2025"},
+  {fullName:"Mai Nguyễn Kiều Đan Nguyên", class:"7A2", account:"2404777778", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thành Nhân", class:"7A2", account:"2002998348", password:"DLibK12@2025"},
+  {fullName:"Trịnh Thị Phương Thảo", class:"7A2", account:"2009996725", password:"DLibK12@2025"},
+  {fullName:"Long Quỳnh Thi", class:"7A2", account:"2009994382", password:"DLibK12@2025"},
+  {fullName:"Bế Đại Thông", class:"7A2", account:"2002998277", password:"DLibK12@2025"},
+  {fullName:"Đặng Quỳnh Thư", class:"7A2", account:"2002998337", password:"DLibK12@2025"},
+  {fullName:"Thời Hồ Khánh Thy", class:"7A2", account:"2002998275", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Minh Tú", class:"7A2", account:"2009652157", password:"DLibK12@2025"},
+  {fullName:"Triệu Minh Tuấn", class:"7A2", account:"2009993789", password:"DLibK12@2025"},
+  {fullName:"Trương Thúy Vy", class:"7A2", account:"2002998338", password:"DLibK12@2025"},
+  // 7A3
+  {fullName:"Lý Thị Bảo An", class:"7A3", account:"2202458448", password:"DLibK12@2025"},
+  {fullName:"Ma Nguyễn Gia Bảo", class:"7A3", account:"2002998266", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Gia Bảo", class:"7A3", account:"2002998339", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Gia Bảo", class:"7A3", account:"2202475563", password:"DLibK12@2025"},
+  {fullName:"Điểu Đắc Di", class:"7A3", account:"2009996705", password:"DLibK12@2025"},
+  {fullName:"Hoàng Nhật Dương", class:"7A3", account:"2009989222", password:"DLibK12@2025"},
+  {fullName:"La Thẩm Phi Đông", class:"7A3", account:"2002997955", password:"DLibK12@2025"},
+  {fullName:"Hứa Thị Hồng Hạnh", class:"7A3", account:"2002997938", password:"DLibK12@2025"},
+  {fullName:"Lục Trung Hiếu", class:"7A3", account:"2002998268", password:"DLibK12@2025"},
+  {fullName:"Thẩm Bảo Khánh", class:"7A3", account:"2002997950", password:"DLibK12@2025"},
+  {fullName:"Trần Đăng Khôi", class:"7A3", account:"2202476390", password:"DLibK12@2025"},
+  {fullName:"Phạm Bình Minh", class:"7A3", account:"2009996719", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Tuyết Nga", class:"7A3", account:"2002997948", password:"DLibK12@2025"},
+  {fullName:"Trần Thị Thu Ngân", class:"7A3", account:"2009996722", password:"DLibK12@2025"},
+  {fullName:"Trương Thảo Nguyên", class:"7A3", account:"2002998290", password:"DLibK12@2025"},
+  {fullName:"Hồ Lưu Tuyết Nhi", class:"7A3", account:"2002998279", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Phi", class:"7A3", account:"2002998356", password:"DLibK12@2025"},
+  {fullName:"Phạm Quang Phong", class:"7A3", account:"2002998352", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Gia Phú", class:"7A3", account:"2002998293", password:"DLibK12@2025"},
+  {fullName:"Nông Trung Sơn", class:"7A3", account:"2002998285", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Kim Thoa", class:"7A3", account:"2002998332", password:"DLibK12@2025"},
+  {fullName:"Hoàng Gia Thương", class:"7A3", account:"2009996736", password:"DLibK12@2025"},
+  {fullName:"Hoàng Bảo Thy", class:"7A3", account:"2002997951", password:"DLibK12@2025"},
+  {fullName:"Hà Lê Bảo Trâm", class:"7A3", account:"2002998335", password:"DLibK12@2025"},
+  {fullName:"Trần Ngọc Mai Trâm", class:"7A3", account:"2002998269", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bùi Bảo Trân", class:"7A3", account:"1902503957", password:"DLibK12@2025"},
+  {fullName:"Hồ Văn Trường", class:"7A3", account:"2002998341", password:"DLibK12@2025"},
+  {fullName:"Lê Nguyễn Gia Vĩ", class:"7A3", account:"2002997935", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Quốc Vĩ", class:"7A3", account:"2009993861", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Quang Khải", class:"7A3", account:"2405481887", password:"DLibK12@2025"},
+  // 7A4
+  {fullName:"Vũ Ngọc Châm", class:"7A4", account:"2006312914", password:"DLibK12@2025"},
+  {fullName:"Vũ Minh Đức", class:"7A4", account:"2404120956", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Ngọc Hà", class:"7A4", account:"2009996711", password:"DLibK12@2025"},
+  {fullName:"Lô Công Hiếu", class:"7A4", account:"2002998361", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Ngọc Hùng", class:"7A4", account:"2002998354", password:"DLibK12@2025"},
+  {fullName:"Phạm Quỳnh Hương", class:"7A4", account:"2002997953", password:"DLibK12@2025"},
+  {fullName:"Lê Phúc Khang", class:"7A4", account:"2002997944", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đăng Khôi", class:"7A4", account:"2002998271", password:"DLibK12@2025"},
+  {fullName:"Lục Tuấn Kiệt", class:"7A4", account:"2009996478", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Ký", class:"7A4", account:"2002997939", password:"DLibK12@2025"},
+  {fullName:"Ngô Võ Gia Linh", class:"7A4", account:"2200424625", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Nhật Minh", class:"7A4", account:"2009652020", password:"DLibK12@2025"},
+  {fullName:"Phan Thị Tuyết Nhung", class:"7A4", account:"2009994379", password:"DLibK12@2025"},
+  {fullName:"Hoàng Đan Như", class:"7A4", account:"2002998351", password:"DLibK12@2025"},
+  {fullName:"Trần Nguyễn Ngọc Nữ", class:"7A4", account:"2002997952", password:"DLibK12@2025"},
+  {fullName:"Trương Hoàng Minh Phương", class:"7A4", account:"2404120955", password:"DLibK12@2025"},
+  {fullName:"Ngô Nhật Quang", class:"7A4", account:"2002998342", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bá Quân", class:"7A4", account:"2002998281", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Nhã Quyên", class:"7A4", account:"2002998288", password:"DLibK12@2025"},
+  {fullName:"Võ Ngọc Bảo Quyên", class:"7A4", account:"2002998278", password:"DLibK12@2025"},
+  {fullName:"Lê Thành Tâm", class:"7A4", account:"2002997943", password:"DLibK12@2025"},
+  {fullName:"Đàm Minh Thiện", class:"7A4", account:"2009996730", password:"DLibK12@2025"},
+  {fullName:"Hồ Thị Vân Trang", class:"7A4", account:"2002998291", password:"DLibK12@2025"},
+  {fullName:"Đàm Ngọc Bảo Trâm", class:"7A4", account:"2002998289", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lâm Trường", class:"7A4", account:"2009993836", password:"DLibK12@2025"},
+  {fullName:"Lý Quang Vinh", class:"7A4", account:"2002997936", password:"DLibK12@2025"},
+  {fullName:"Phạm Nguyễn Như Ý", class:"7A4", account:"2202475971", password:"DLibK12@2025"},
+  {fullName:"Bế Thị Kim Yến", class:"7A4", account:"2009994330", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Phạm Hải Yến", class:"7A4", account:"2202476785", password:"DLibK12@2025"},
+  // 6A1
+  {fullName:"Đỗ Hoài An", class:"6A1", account:"2107863674", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Phú An", class:"6A1", account:"2007281540", password:"DLibK12@2025"},
+  {fullName:"Đỗ Võ Minh Anh", class:"6A1", account:"2007281553", password:"DLibK12@2025"},
+  {fullName:"Cao Gia Bảo", class:"6A1", account:"2007281367", password:"DLibK12@2025"},
+  {fullName:"Trần Lê Thái Bảo", class:"6A1", account:"2007281544", password:"DLibK12@2025"},
+  {fullName:"Dương Thị Linh Chi", class:"6A1", account:"2007281497", password:"DLibK12@2025"},
+  {fullName:"Võ Xuân Cường", class:"6A1", account:"2007281560", password:"DLibK12@2025"},
+  {fullName:"Hà Thành Doanh", class:"6A1", account:"2009987520", password:"DLibK12@2025"},
+  {fullName:"Lê Tấn Dũng", class:"6A1", account:"2010006239", password:"DLibK12@2025"},
+  {fullName:"Hoàng Thị Duyên", class:"6A1", account:"2010006248", password:"DLibK12@2025"},
+  {fullName:"Lê Mỹ Hạnh", class:"6A1", account:"2007281372", password:"DLibK12@2025"},
+  {fullName:"Dương Gia Hân", class:"6A1", account:"2007281502", password:"DLibK12@2025"},
+  {fullName:"Phạm Hoàng Hân", class:"6A1", account:"2007281373", password:"DLibK12@2025"},
+  {fullName:"Đàm Quang Huy", class:"6A1", account:"2010006279", password:"DLibK12@2025"},
+  {fullName:"Triệu Gia Hưng", class:"6A1", account:"2009996218", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đăng Khôi", class:"6A1", account:"2007281505", password:"DLibK12@2025"},
+  {fullName:"Mai Lan", class:"6A1", account:"2007281537", password:"DLibK12@2025"},
+  {fullName:"Đàm Nguyễn Bảo Long", class:"6A1", account:"2007281509", password:"DLibK12@2025"},
+  {fullName:"Hoàng Nhật Minh", class:"6A1", account:"2007281552", password:"DLibK12@2025"},
+  {fullName:"Võ Trung Minh", class:"6A1", account:"2007281510", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Trần Khải My", class:"6A1", account:"2007281554", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lê Bảo Nam", class:"6A1", account:"2007281555", password:"DLibK12@2025"},
+  {fullName:"Đặng Phạm Khánh Ngân", class:"6A1", account:"2007281512", password:"DLibK12@2025"},
+  {fullName:"Đặng Trần Thảo Nguyên", class:"6A1", account:"2007281514", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lê Hồng Nhi", class:"6A1", account:"2007281517", password:"DLibK12@2025"},
+  {fullName:"Đỗ Phan An Nhiên", class:"6A1", account:"2009996224", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Tuyết Nhung", class:"6A1", account:"2007281518", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Hồng Nhung", class:"6A1", account:"2009996226", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Vĩnh Phát", class:"6A1", account:"2512597344", password:"DLibK12@2025"},
+  {fullName:"Lương Lê Nhã Phương", class:"6A1", account:"2007281380", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Thanh Sang", class:"6A1", account:"2007281561", password:"DLibK12@2025"},
+  {fullName:"Phạm Nguyễn Minh Thiện", class:"6A1", account:"2007281562", password:"DLibK12@2025"},
+  {fullName:"Trần Đức Thuận", class:"6A1", account:"2007281563", password:"DLibK12@2025"},
+  {fullName:"Lương Vinh Tú", class:"6A1", account:"2007281387", password:"DLibK12@2025"},
+  {fullName:"Sái Anh Tuấn", class:"6A1", account:"2007281388", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Phương Tuyền", class:"6A1", account:"2007281390", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hoàng Yến", class:"6A1", account:"2007281393", password:"DLibK12@2025"},
+  // 6A2
+  {fullName:"Đỗ Nhật Anh", class:"6A2", account:"2007281365", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Tuấn Anh", class:"6A2", account:"2007281495", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Gia Bảo", class:"6A2", account:"2007281543", password:"DLibK12@2025"},
+  {fullName:"Ngô Văn Bình", class:"6A2", account:"2107459369", password:"DLibK12@2025"},
+  {fullName:"Phan Nông Quỳnh Chi", class:"6A2", account:"2007281369", password:"DLibK12@2025"},
+  {fullName:"Phan Đàm Thành Danh", class:"6A2", account:"2010006235", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Lê Dũng", class:"6A2", account:"2009996211", password:"DLibK12@2025"},
+  {fullName:"Cao Hà Kỳ Duyên", class:"6A2", account:"2007281370", password:"DLibK12@2025"},
+  {fullName:"Phan Vũ Linh Đan", class:"6A2", account:"2106624288", password:"DLibK12@2025"},
+  {fullName:"Trần Tiến Đạt", class:"6A2", account:"2007281501", password:"DLibK12@2025"},
+  {fullName:"Trần Ngô Minh Đức", class:"6A2", account:"2007281371", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Hùng", class:"6A2", account:"2009996215", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Minh Hùng", class:"6A2", account:"2007281504", password:"DLibK12@2025"},
+  {fullName:"Nông Hoàng Vĩnh Hưng", class:"6A2", account:"2007281375", password:"DLibK12@2025"},
+  {fullName:"Phạm Kha", class:"6A2", account:"2007281549", password:"DLibK12@2025"},
+  {fullName:"Trần Nguyên Khang", class:"6A2", account:"2009996220", password:"DLibK12@2025"},
+  {fullName:"Đào Huy Khánh", class:"6A2", account:"2007281547", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Vân Kiều", class:"6A2", account:"2007281507", password:"DLibK12@2025"},
+  {fullName:"Hoàng Thành Long", class:"6A2", account:"2010006283", password:"DLibK12@2025"},
+  {fullName:"Long Thị Thảo My", class:"6A2", account:"2010006326", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Tô Trà My", class:"6A2", account:"2007281511", password:"DLibK12@2025"},
+  {fullName:"Phạm Ngọc Thiên Mỹ", class:"6A2", account:"2007281378", password:"DLibK12@2025"},
+  {fullName:"Trình Lê Bảo Ngọc", class:"6A2", account:"2007281513", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Quỳnh Như", class:"6A2", account:"2202803959", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Tú Nữ", class:"6A2", account:"2007281538", password:"DLibK12@2025"},
+  {fullName:"Nông Ngọc Quyến", class:"6A2", account:"2009996233", password:"DLibK12@2025"},
+  {fullName:"Đinh Chấn Thiên", class:"6A2", account:"2010006502", password:"DLibK12@2025"},
+  {fullName:"Phạm Minh Tiến", class:"6A2", account:"2512548744", password:"DLibK12@2025"},
+  {fullName:"Ngô Nhã Trân", class:"6A2", account:"2007281386", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Bảo Trân", class:"6A2", account:"2009996238", password:"DLibK12@2025"},
+  {fullName:"Nông Thị Thanh Trúc", class:"6A2", account:"2010006513", password:"DLibK12@2025"},
+  {fullName:"Võ Tuấn", class:"6A2", account:"2007281389", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Nhã Uyên", class:"6A2", account:"2004338677", password:"DLibK12@2025"},
+  {fullName:"Hà Anh Vũ", class:"6A2", account:"2009996243", password:"DLibK12@2025"},
+  {fullName:"Nông Minh Vũ", class:"6A2", account:"2007281392", password:"DLibK12@2025"},
+  {fullName:"Hoàng Hải Yến", class:"6A2", account:"2009996245", password:"DLibK12@2025"},
+  // 6A3
+  {fullName:"Nguyễn Bảo Anh", class:"6A3", account:"2007281366", password:"DLibK12@2025"},
+  {fullName:"Ma Kiên Ân", class:"6A3", account:"2415829664", password:"DLibK12@2025"},
+  {fullName:"Lê Trần Gia Bảo", class:"6A3", account:"2007281542", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Long Biên", class:"6A3", account:"2009987265", password:"DLibK12@2025"},
+  {fullName:"Lục Thị Linh Chi", class:"6A3", account:"2007281368", password:"DLibK12@2025"},
+  {fullName:"Ninh Ngọc Dũng", class:"6A3", account:"2007281498", password:"DLibK12@2025"},
+  {fullName:"Trần Văn Dũng", class:"6A3", account:"2007281499", password:"DLibK12@2025"},
+  {fullName:"Đàm Quang Duy", class:"6A3", account:"2007281500", password:"DLibK12@2025"},
+  {fullName:"Châu Nhã Hân", class:"6A3", account:"2007281546", password:"DLibK12@2025"},
+  {fullName:"Trần Bảo Hân", class:"6A3", account:"2007281503", password:"DLibK12@2025"},
+  {fullName:"Đinh Tiến Hùng", class:"6A3", account:"2010006249", password:"DLibK12@2025"},
+  {fullName:"Đặng Quốc Hưng", class:"6A3", account:"2007281374", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Minh Tiến Hưng", class:"6A3", account:"2006746714", password:"DLibK12@2025"},
+  {fullName:"Phạm Hoàng Bảo Khang", class:"6A3", account:"2007281376", password:"DLibK12@2025"},
+  {fullName:"Nông Đăng Khôi", class:"6A3", account:"2010006281", password:"DLibK12@2025"},
+  {fullName:"Đinh Vi Thế Kiệt", class:"6A3", account:"2007281506", password:"DLibK12@2025"},
+  {fullName:"Bùi Thanh Mai", class:"6A3", account:"2009996222", password:"DLibK12@2025"},
+  {fullName:"Đỗ Lê Kim Ngọc", class:"6A3", account:"2512596104", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Thị Ánh Ngọc", class:"6A3", account:"2007281556", password:"DLibK12@2025"},
+  {fullName:"Đinh Nguyễn Nhật Linh", class:"6A3", account:"2007281508", password:"DLibK12@2025"},
+  {fullName:"Trương Đan Như", class:"6A3", account:"2100025664", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Thanh Phong", class:"6A3", account:"2007281539", password:"DLibK12@2025"},
+  {fullName:"Bế Nguyên Phước", class:"6A3", account:"2009996230", password:"DLibK12@2025"},
+  {fullName:"Đinh Thị Thu Phương", class:"6A3", account:"2007281559", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đinh Như Quỳnh", class:"6A3", account:"2007281558", password:"DLibK12@2025"},
+  {fullName:"Đàm Đức Tâm", class:"6A3", account:"2010006381", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Ngọc Thảo Nhi", class:"6A3", account:"2007281516", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Phương Hồng Thắm", class:"6A3", account:"2010006492", password:"DLibK12@2025"},
+  {fullName:"Bế Quốc Thiên", class:"6A3", account:"2009996236", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Đức Thịnh", class:"6A3", account:"2002998286", password:"DLibK12@2025"},
+  {fullName:"Huỳnh Quang Thuận", class:"6A3", account:"2007281385", password:"DLibK12@2025"},
+  {fullName:"Nông Phan Thanh Trúc", class:"6A3", account:"2009996241", password:"DLibK12@2025"},
+  {fullName:"Thạch Tuấn Tuyên", class:"6A3", account:"2010006405", password:"DLibK12@2025"},
+  {fullName:"Bế Gia Uy", class:"6A3", account:"2010006516", password:"DLibK12@2025"},
+  {fullName:"Tạ Đặng Quang Vinh", class:"6A3", account:"2009625375", password:"DLibK12@2025"},
+  {fullName:"Triệu Thị Thảo Vy", class:"6A3", account:"2010006519", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bảo Gia", class:"6A3", account:"2515683284", password:"DLibK12@2025"},
+  {fullName:"Nguyễn Bảo Khoa", class:"6A3", account:"2515683304", password:"DLibK12@2025"}
+];
 
 // ==========================================================================
 // BIẾN TOÀN CỤC
 // ==========================================================================
 let currentUser = null;
-let readingTimer = null;
-let readingSeconds = 0;
-let streak = 0;
-let completedToday = false;
-let activeModel = null;
-let uploadedText = '';
 let currentTab = 'discover';
+let uploadedFileData = null;
+let isRegisterMode = false;
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 // ==========================================================================
-// QUẢN LÝ LOCAL STORAGE
+// QUẢN LÝ NGƯỜI DÙNG
 // ==========================================================================
-function getMyBooks() { return JSON.parse(localStorage.getItem('my_books') || '[]'); }
-function saveMyBooks(books) { localStorage.setItem('my_books', JSON.stringify(books)); }
-function addMyBook(book) {
-  const books = getMyBooks();
-  const newBook = { ...book, id: Date.now(), date: new Date().toISOString(), textPreview: uploadedText };
-  books.unshift(newBook);
-  saveMyBooks(books);
-  return newBook;
+function getUsers() { return JSON.parse(localStorage.getItem('users') || '[]'); }
+function saveUsers(users) { localStorage.setItem('users', JSON.stringify(users)); }
+function findUser(username) { return getUsers().find(u => u.username === username); }
+function registerUser(username, password) {
+  const users = getUsers();
+  if (findUser(username)) return false;
+  const newUser = { id: Date.now().toString(), username, password };
+  users.push(newUser);
+  saveUsers(users);
+  return newUser;
+}
+function loginUser(username, password) {
+  const user = findUser(username);
+  if (!user || user.password !== password) return null;
+  return user;
+}
+function saveSession(user) { localStorage.setItem('current_user', JSON.stringify(user)); }
+function clearSession() { localStorage.removeItem('current_user'); }
+function getSession() {
+  try { return JSON.parse(localStorage.getItem('current_user')); } catch (e) { return null; }
+}
+
+// ==========================================================================
+// LOCAL STORAGE – QUẢN LÝ SÁCH
+// ==========================================================================
+function getMyBooks() {
+  const all = JSON.parse(localStorage.getItem('my_books') || '[]');
+  return currentUser ? all.filter(b => b.userId === currentUser.id) : [];
+}
+function saveMyBooks(books) {
+  const all = JSON.parse(localStorage.getItem('my_books') || '[]');
+  const other = all.filter(b => b.userId !== currentUser?.id);
+  localStorage.setItem('my_books', JSON.stringify([...other, ...books]));
 }
 function getSharedBooks() { return JSON.parse(localStorage.getItem('shared_books') || '[]'); }
 function saveSharedBooks(books) { localStorage.setItem('shared_books', JSON.stringify(books)); }
+
+function addBook(book, target = 'mylib') {
+  if (target === 'community') {
+    const books = getSharedBooks();
+    const newBook = {
+      ...book, id: Date.now(), date: new Date().toISOString(),
+      textPreview: uploadedFileData,
+      sharedBy: currentUser?.username || 'Ẩn danh',
+      sharedDate: new Date().toISOString(),
+      userId: currentUser?.id
+    };
+    books.unshift(newBook);
+    saveSharedBooks(books);
+  } else {
+    const books = getMyBooks();
+    const newBook = {
+      ...book, id: Date.now(), date: new Date().toISOString(),
+      textPreview: uploadedFileData,
+      userId: currentUser.id
+    };
+    books.unshift(newBook);
+    saveMyBooks(books);
+  }
+}
+
 function shareBookToCommunity(bookId) {
-  const myBooks = getMyBooks();
-  const idx = myBooks.findIndex(b => b.id == bookId);
+  const books = getMyBooks();
+  const idx = books.findIndex(b => b.id == bookId);
   if (idx === -1) return false;
-  const book = myBooks[idx];
+  const book = books[idx];
   const shared = getSharedBooks();
-  shared.unshift({...book, sharedDate: new Date().toISOString()});
+  shared.unshift({ ...book, sharedDate: new Date().toISOString(), sharedBy: currentUser?.username || 'Ẩn danh' });
   saveSharedBooks(shared);
-  myBooks.splice(idx,1);
-  saveMyBooks(myBooks);
   return true;
 }
 
+function deleteMyBook(bookId) { saveMyBooks(getMyBooks().filter(b => b.id != bookId)); }
+function deleteSharedBook(bookId) { saveSharedBooks(getSharedBooks().filter(b => b.id != bookId)); }
+
 // ==========================================================================
-// MODEL AI TỰ ĐỘNG
+// TRÍCH XUẤT VĂN BẢN
 // ==========================================================================
-async function discoverAndSelectModel(apiKey) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
-  const res = await fetch(url);
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.error?.message || 'API Key không hợp lệ.');
-  }
-  const data = await res.json();
-  const capable = data.models.filter(m => m.supportedGenerationMethods?.includes('generateContent'));
-  if (capable.length === 0) throw new Error('Không tìm thấy model Gemini hỗ trợ.');
-  const priority = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'];
-  let best = null;
-  for (let p of priority) {
-    best = capable.find(m => m.name.includes(p));
-    if (best) break;
-  }
-  if (!best) best = capable[0];
-  activeModel = best.name.replace('models/', '');
-  console.log('✅ Model AI được chọn:', activeModel);
+async function extractText(file) {
+  const buffer = await file.arrayBuffer();
+  if (file.name.endsWith('.pdf')) {
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    let text = '';
+    const maxPages = Math.min(pdf.numPages, 15);
+    for (let i = 1; i <= maxPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(item => item.str).join(' ') + ' \n';
+    }
+    return text;
+  } else if (file.name.endsWith('.docx')) {
+    const result = await mammoth.extractRawText({ arrayBuffer: buffer });
+    return result.value;
+  } else if (file.name.endsWith('.txt')) {
+    return new TextDecoder().decode(buffer);
+  } else throw new Error('Định dạng không hỗ trợ.');
 }
 
-async function callGemini(prompt) {
-  if (!currentUser?.apiKey) throw new Error('Thiếu API Key.');
-  if (!activeModel) throw new Error('Chưa chọn model AI.');
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${activeModel}:generateContent?key=${currentUser.apiKey}`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: 2000 }
-    })
-  });
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.error?.message || 'Gemini Server quá tải.');
-  }
-  const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) {
-    if (data.candidates?.[0]?.finishReason === 'SAFETY') throw new Error('Nội dung bị chặn an toàn.');
-    throw new Error('Gemini không phản hồi.');
-  }
-  return text;
+function openReader(text) {
+  const win = window.open('', '_blank', 'width=850,height=700');
+  win.document.write(`<html><head><meta charset="UTF-8"><title>📖 Đọc sách</title><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>body{font-family:'Lora',serif;padding:3rem;line-height:1.9;max-width:800px;margin:0 auto;background:#fdfcf9;color:#333;font-size:1.15rem}h2{color:#4b2e1a;border-bottom:1px solid #eadecc;padding-bottom:0.5rem}</style></head><body><h2>📖 Nội dung sách</h2><hr>${text.replace(/\n/g,'<br>')}</body></html>`);
+  win.document.close();
 }
 
 // ==========================================================================
 // RENDER SÁCH
 // ==========================================================================
-function openReader(text) {
-  const win = window.open('', '_blank', 'width=850,height=700');
-  win.document.write(`<html><head><meta charset="UTF-8"><title>Đọc tập trung</title><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>body{font-family:'Lora',serif;padding:3rem;line-height:1.9;max-width:800px;margin:0 auto;background:#fdfcf9;color:#333;font-size:1.15rem}</style></head><body><h2>Trích xuất nội dung</h2><hr>${text.replace(/\n/g,'<br>')}</body></html>`);
-  win.document.close();
-}
-
-function renderBooks(containerId, books, showShare = false) {
+function renderBooks(containerId, books, showDelete = false, isCommunity = false) {
   const container = document.getElementById(containerId);
   if (!container) return;
   if (!books.length) {
-    container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8c7664;padding:2rem 0;">Không tìm thấy tác phẩm nào.</p>';
+    container.innerHTML = `<div class="empty-state"><div class="empty-state-icon">📭</div><p>Chưa có cuốn sách nào.</p><p style="font-size:0.9rem;">${isCommunity ? 'Hãy là người đầu tiên chia sẻ sách lên cộng đồng!' : 'Tải sách lên để bắt đầu xây dựng tủ sách của bạn.'}</p></div>`;
     return;
   }
   container.innerHTML = books.map(b => {
     const safeTextPreview = b.textPreview ? encodeURIComponent(b.textPreview).replace(/'/g, "%27") : '';
-    const safeTitle = (b.title || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
-    const safeAuthor = (b.author || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    const safeTitle = (b.title || 'Không có tiêu đề').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    const safeAuthor = (b.author || 'Đang cập nhật').replace(/'/g, "\\'").replace(/"/g, "&quot;");
     return `
     <div class="book-card">
       <div>
         <div class="book-title">${b.title || 'Không có tiêu đề'}</div>
-        <div class="book-author">Tác giả: ${b.author || 'Đang cập nhật'}</div>
-        <div class="book-desc">${b.desc || ''}</div>
+        <div class="book-author">✍️ ${b.author || 'Đang cập nhật'}</div>
+        <div class="book-desc">${b.desc || 'Chưa có mô tả.'}</div>
+        <div class="book-meta">
+          <span class="badge badge-genre">${getGenreLabel(b.genre)}</span>
+          ${isCommunity ? `<span class="badge badge-community">👤 ${b.sharedBy || 'Ẩn danh'}</span>` : ''}
+          ${b.textPreview ? '<span class="badge badge-uploaded">📄 Có nội dung</span>' : ''}
+        </div>
       </div>
       <div class="book-links">
-        ${b.read ? `<a href="${b.read}" target="_blank" class="btn-read">📖 Mở Đọc</a>` : ''}
-        ${!b.read && b.textPreview ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Mở bản tải lên</button>` : ''}
-        <button class="btn-review" onclick="askGeminiAboutBook('${safeTitle}', '${safeAuthor}')">💬 Trò chuyện</button>
-        ${showShare ? `<button class="btn-share" onclick="shareAndRefresh('${b.id}')">🌍 Chia sẻ</button>` : ''}
+        ${b.read ? `<a href="${b.read}" target="_blank" rel="noreferrer" class="btn-read">📖 Đọc online</a>` : ''}
+        ${!b.read && b.textPreview ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Đọc nội dung</button>` : ''}
+        ${!isCommunity && !showDelete ? `<button class="btn-share" onclick="shareAndRefresh('${b.id}')">🌍 Chia sẻ</button>` : ''}
+        ${showDelete ? `<button class="btn-delete" onclick="deleteAndRefresh('${b.id}', 'mylib')">🗑️ Xóa</button>` : ''}
+        ${isCommunity ? `<button class="btn-delete" onclick="deleteAndRefresh('${b.id}', 'community')">🗑️ Xóa</button>` : ''}
       </div>
     </div>`;
   }).join('');
 }
+function getGenreLabel(g) { return {vanhocvn:'Văn học VN', vanhocnn:'Văn học NN', khoahoc:'Khoa học', lichsu:'Lịch sử', phattrienbanthan:'Phát triển bản thân', trinhtham:'Trinh thám', thieunhi:'Thiếu nhi', triethoc:'Triết học', kinhte:'Kinh tế', khac:'Khác'}[g] || g; }
 
-window.shareAndRefresh = function(bookId) {
-  if (shareBookToCommunity(bookId)) {
-    alert('✅ Đã chia sẻ lên cộng đồng!');
-    if (currentTab === 'mylib') showMyLibrary();
-    else if (currentTab === 'community') showCommunity();
-  } else alert('❌ Không tìm thấy sách để chia sẻ.');
-};
-
+// ==========================================================================
+// HIỂN THỊ & CHỨC NĂNG
+// ==========================================================================
 function showDiscover(genre = '') {
   let books = sampleBooks;
-  if (genre && genre !== 'all') books = sampleBooks.filter(b => b.genre === genre);
+  if (genre && genre !== 'all') books = books.filter(b => b.genre === genre);
   renderBooks('bookContainer', books);
 }
 function showMyLibrary(filter = '') {
   let books = getMyBooks();
-  if (filter) {
-    const q = filter.toLowerCase();
-    books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q));
-  }
+  if (filter) { const q = filter.toLowerCase(); books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q)); }
   renderBooks('bookContainer', books, true);
 }
 function showCommunity(filter = '') {
   let books = getSharedBooks();
-  if (filter) {
-    const q = filter.toLowerCase();
-    books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q));
-  }
-  renderBooks('bookContainer', books);
+  if (filter) { const q = filter.toLowerCase(); books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q)); }
+  renderBooks('bookContainer', books, false, true);
 }
 function switchTab(tab) {
   currentTab = tab;
@@ -848,239 +1229,185 @@ function switchTab(tab) {
   document.getElementById('discoverSearch').classList.toggle('hidden', tab !== 'discover');
   document.getElementById('mylibSearch').classList.toggle('hidden', tab !== 'mylib');
   document.getElementById('communitySearch').classList.toggle('hidden', tab !== 'community');
+  document.getElementById('uploadCard').style.display = 'none';
   if (tab === 'discover') showDiscover(document.getElementById('genreSelect').value);
   else if (tab === 'mylib') showMyLibrary();
   else if (tab === 'community') showCommunity();
+  updateStats();
 }
-function askGeminiAboutBook(title, author) {
-  const input = document.getElementById('chatInput');
-  input.value = `Hãy giới thiệu chi tiết về tác phẩm "${title}" của tác giả ${author}. Nội dung chính và bài học?`;
-  document.getElementById('sendChatBtn').click();
-  document.getElementById('chatInput').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ==========================================================================
-// TRÍCH XUẤT & PHÂN TÍCH FILE
-// ==========================================================================
-async function extractText(file) {
-  const buffer = await file.arrayBuffer();
-  if (file.name.endsWith('.pdf')) {
-    const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
-    let text = '';
-    const maxPages = Math.min(pdf.numPages, 15);
-    for (let i=1; i<=maxPages; i++) {
-      const page = await pdf.getPage(i);
-      const content = await page.getTextContent();
-      text += content.items.map(item => item.str).join(' ') + ' \n';
-    }
-    return text;
-  } else if (file.name.endsWith('.docx')) {
-    const result = await mammoth.extractRawText({arrayBuffer: buffer});
-    return result.value;
-  } else if (file.name.endsWith('.txt')) {
-    return new TextDecoder().decode(buffer);
-  } else throw new Error('Định dạng không hỗ trợ.');
+function showUploadForm() {
+  document.getElementById('uploadCard').style.display = 'block';
+  document.getElementById('uploadCard').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('bookForm').classList.add('hidden');
+  document.getElementById('fileInfo').style.display = 'none';
+  document.getElementById('fileInput').value = '';
+  uploadedFileData = null;
+  document.querySelector('#uploadCard .section-title').innerHTML = '📤 Tải sách lên';
 }
 
-async function analyzeBook(text) {
-  const prompt = `Bạn là chuyên gia thẩm định tài liệu. Đọc và phân tích JSON.
-QUY TẮC: Tự suy luận "genre". Không bọc JSON.
-Cấu trúc: {"title":"...","author":"...","genre":"...","desc":"...","review":"..."}
-VĂN BẢN: ${text.substring(0,15000)}`;
-  const reply = await callGemini(prompt);
-  const clean = reply.replace(/```json/gi, '').replace(/```/g, '').trim();
-  const match = clean.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('AI không trả về JSON.');
-  const book = JSON.parse(match[0]);
-  if (!book.title) book.title = "Tài liệu chưa rõ tên";
-  if (!book.genre) book.genre = "vanhocvn";
-  return book;
-}
-
-// ==========================================================================
-// CHAT & THỬ THÁCH
-// ==========================================================================
-function addChatMessage(role, text, senderName) {
-  const box = document.getElementById('chatBox');
-  const div = document.createElement('div');
-  div.className = `msg ${role}`;
-  let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-  div.innerHTML = `<div class="sender-name">${senderName}</div><div class="bubble">${html}</div>`;
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
-}
-function updateTimerDisplay() {
-  const m = String(Math.floor(readingSeconds/60)).padStart(2,'0');
-  const s = String(readingSeconds%60).padStart(2,'0');
-  document.getElementById('timerDisplay').textContent = `${m}:${s}`;
-  document.getElementById('dailyProgress').style.width = `${Math.min((readingSeconds/900)*100,100)}%`;
-}
-function updateStreakDisplay() {
-  document.getElementById('streakDisplay').textContent = `🔥 ${streak} ngày liên tiếp`;
-}
-function saveChallengeState() {
-  localStorage.setItem('reading_challenge', JSON.stringify({
-    date: new Date().toISOString().slice(0,10), seconds: readingSeconds, completed: completedToday, streak
-  }));
-}
-function startTimer() {
-  if (completedToday || readingTimer) return;
-  readingTimer = setInterval(() => {
-    readingSeconds++;
-    updateTimerDisplay();
-    if (readingSeconds >= 900) completeChallenge();
-    if (readingSeconds % 10 === 0) saveChallengeState();
-  }, 1000);
-}
-function completeChallenge() {
-  if (readingTimer) { clearInterval(readingTimer); readingTimer = null; }
-  completedToday = true; streak++;
-  updateTimerDisplay(); updateStreakDisplay(); saveChallengeState();
-  alert('🎉 Chúc mừng! Bạn đã hoàn thành 15 phút đọc hôm nay.');
-}
-
-// ==========================================================================
-// SỰ KIỆN
-// ==========================================================================
-document.getElementById('loginBtn').addEventListener('click', async () => {
-  const name = document.getElementById('nameInput').value.trim();
-  const email = document.getElementById('emailInput').value.trim();
-  const phone = document.getElementById('phoneInput').value.trim();
-  const apiKey = document.getElementById('apiKeyInput').value.trim();
-  const errorEl = document.getElementById('loginError');
-  if (!name || !email || !phone || !apiKey) {
-    errorEl.textContent = 'Vui lòng điền đầy đủ thông tin.'; return;
+window.shareAndRefresh = function(bookId) {
+  if (shareBookToCommunity(bookId)) { alert('✅ Đã chia sẻ lên cộng đồng!'); showMyLibrary(); updateStats(); }
+  else alert('❌ Không tìm thấy sách.');
+};
+window.deleteAndRefresh = function(bookId, source) {
+  if (confirm('Xóa sách này?')) {
+    if (source === 'mylib') { deleteMyBook(bookId); showMyLibrary(); }
+    else { deleteSharedBook(bookId); showCommunity(); }
+    updateStats();
   }
-  errorEl.textContent = '⏳ Đang kết nối Google AI...';
-  errorEl.style.color = '#8c5e34';
-  try {
-    await discoverAndSelectModel(apiKey);
-    currentUser = { name, email, phone, apiKey };
-    localStorage.setItem('book_user', JSON.stringify(currentUser));
-    initAppUI();
-  } catch(err) {
-    errorEl.textContent = '❌ ' + err.message;
-    errorEl.style.color = '#b23b3b';
+};
+function updateStats() {
+  const my = getMyBooks().length, shared = getSharedBooks().length;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-item">📚 Tổng: <strong>${sampleBooks.length + my + shared}</strong></div>
+    <div class="stat-item">📁 Tủ tôi: <strong>${my}</strong></div>
+    <div class="stat-item">🌍 Cộng đồng: <strong>${shared}</strong></div>`;
+}
+
+// ==========================================================================
+// ĐĂNG NHẬP / ĐĂNG KÝ
+// ==========================================================================
+function toggleAuthMode() {
+  isRegisterMode = !isRegisterMode;
+  if (isRegisterMode) {
+    document.getElementById('authTitle').textContent = '📝 Đăng ký tài khoản';
+    document.getElementById('authSubtitle').textContent = 'Tạo tài khoản để lưu trữ tủ sách riêng';
+    document.getElementById('authBtn').textContent = '📝 Đăng ký';
+    document.getElementById('confirmPasswordGroup').classList.remove('hidden');
+    document.getElementById('authToggleText').textContent = 'Đã có tài khoản? ';
+    document.getElementById('authToggleLink').textContent = 'Đăng nhập';
+  } else {
+    document.getElementById('authTitle').textContent = '📚 Thư viện sách cộng đồng';
+    document.getElementById('authSubtitle').textContent = 'Đăng nhập để vào thư viện của bạn';
+    document.getElementById('authBtn').textContent = '🚀 Đăng nhập';
+    document.getElementById('confirmPasswordGroup').classList.add('hidden');
+    document.getElementById('authToggleText').textContent = 'Chưa có tài khoản? ';
+    document.getElementById('authToggleLink').textContent = 'Đăng ký ngay';
   }
+  document.getElementById('authError').textContent = '';
+  document.getElementById('authSuccess').classList.add('hidden');
+}
+document.getElementById('authToggleLink').addEventListener('click', toggleAuthMode);
+
+document.getElementById('authBtn').addEventListener('click', () => {
+  const username = document.getElementById('usernameInput').value.trim();
+  const password = document.getElementById('passwordInput').value;
+  const confirm = document.getElementById('confirmPasswordInput').value;
+  const errorEl = document.getElementById('authError');
+  const successEl = document.getElementById('authSuccess');
+  errorEl.textContent = '';
+  successEl.classList.add('hidden');
+  if (!username || !password) { errorEl.textContent = 'Vui lòng nhập đầy đủ thông tin.'; return; }
+  if (isRegisterMode) {
+    if (password !== confirm) { errorEl.textContent = 'Mật khẩu xác nhận không khớp.'; return; }
+    const newUser = registerUser(username, password);
+    if (!newUser) { errorEl.textContent = 'Tên đăng nhập đã tồn tại.'; return; }
+    successEl.textContent = 'Đăng ký thành công! Đang chuyển sang đăng nhập...';
+    successEl.classList.remove('hidden');
+    setTimeout(() => { toggleAuthMode(); document.getElementById('usernameInput').value = username; document.getElementById('passwordInput').value = ''; successEl.classList.add('hidden'); }, 1500);
+    return;
+  }
+  const user = loginUser(username, password);
+  if (!user) { errorEl.textContent = 'Sai tên đăng nhập hoặc mật khẩu.'; return; }
+  currentUser = user;
+  saveSession(user);
+  initAppUI();
 });
 
-document.getElementById('logoutBtn').addEventListener('click', () => {
-  if (readingTimer) clearInterval(readingTimer);
-  saveChallengeState();
-  localStorage.removeItem('book_user');
-  currentUser = null;
-  document.getElementById('authScreen').classList.remove('hidden');
-  document.getElementById('mainScreen').classList.add('hidden');
-});
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-});
-
-document.getElementById('searchBtn').addEventListener('click', async () => {
+// ==========================================================================
+// SỰ KIỆN GIAO DIỆN CHÍNH
+// ==========================================================================
+document.getElementById('logoutBtn').addEventListener('click', () => { clearSession(); currentUser = null; document.getElementById('authScreen').classList.remove('hidden'); document.getElementById('mainScreen').classList.add('hidden'); });
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+document.getElementById('searchBtn').addEventListener('click', () => {
   if (currentTab !== 'discover') return;
-  const genre = document.getElementById('genreSelect').value;
-  const query = document.getElementById('searchQuery').value.trim();
+  const genre = document.getElementById('genreSelect').value, query = document.getElementById('searchQuery').value.trim();
   if (query) {
-    document.getElementById('bookContainer').innerHTML = '<div class="spinner" style="margin:0 auto;display:block;border-color:#b8875a;border-top-color:transparent;"></div><p style="text-align:center;color:#b8875a;">Đang tìm trên Open Library...</p>';
-    try {
-      const online = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=12`).then(r => r.json());
-      const books = online.docs.map(doc => ({
-        title: doc.title,
-        author: doc.author_name?.[0] || 'Không rõ',
-        desc: (doc.subject || []).slice(0,3).join(', ') + '...',
-        read: doc.ia ? `https://archive.org/details/${doc.ia}` : `https://openlibrary.org${doc.key}`
-      }));
-      renderBooks('bookContainer', books);
-    } catch(e) {
-      alert('Lỗi mạng, hiển thị kết quả cục bộ.');
-      showDiscover(genre || 'all');
-    }
-  } else showDiscover(genre || 'all');
+    let books = sampleBooks.filter(b => b.title.toLowerCase().includes(query.toLowerCase()) || b.author.toLowerCase().includes(query.toLowerCase()));
+    if (genre !== 'all') books = books.filter(b => b.genre === genre);
+    renderBooks('bookContainer', books);
+  } else showDiscover(genre);
 });
-
-document.getElementById('genreSelect').addEventListener('change', () => {
-  document.getElementById('searchQuery').value = '';
-  showDiscover(document.getElementById('genreSelect').value);
-});
-
+document.getElementById('genreSelect').addEventListener('change', () => { document.getElementById('searchQuery').value = ''; showDiscover(document.getElementById('genreSelect').value); });
 document.getElementById('mylibSearchBtn').addEventListener('click', () => showMyLibrary(document.getElementById('mylibQuery').value.trim()));
 document.getElementById('communitySearchBtn').addEventListener('click', () => showCommunity(document.getElementById('communityQuery').value.trim()));
+document.getElementById('showUploadForMyLib').addEventListener('click', showUploadForm);
+document.getElementById('showUploadForCommunity').addEventListener('click', showUploadForm);
 
 document.getElementById('selectFileBtn').addEventListener('click', () => document.getElementById('fileInput').click());
-
 async function handleFileSelection(file) {
   if (!file) return;
-  const infoDiv = document.getElementById('fileInfo');
-  const analyzeBtn = document.getElementById('analyzeBtn');
-  const resultDiv = document.getElementById('analysisResult');
-  infoDiv.style.display = 'block';
-  infoDiv.innerHTML = `<span class="spinner"></span> Đang đọc: <b>${file.name}</b> (${(file.size/1024).toFixed(1)} KB)...`;
-  analyzeBtn.style.display = 'none';
-  resultDiv.style.display = 'none';
-  try {
-    uploadedText = await extractText(file);
-    infoDiv.innerHTML = `✅ Đã trích xuất <b>${file.name}</b> (${uploadedText.length.toLocaleString()} ký tự). Nhấn nút bên dưới.`;
-    analyzeBtn.style.display = 'inline-block';
-  } catch(e) {
-    infoDiv.innerHTML = `❌ ${e.message}`;
-  }
+  const infoDiv = document.getElementById('fileInfo'), formDiv = document.getElementById('bookForm');
+  infoDiv.style.display = 'block'; infoDiv.innerHTML = `<span class="spinner"></span> Đang đọc: <b>${file.name}</b>...`; formDiv.classList.add('hidden');
+  try { uploadedFileData = await extractText(file); infoDiv.innerHTML = `✅ Đã trích xuất <b>${file.name}</b> (${uploadedFileData.length.toLocaleString()} ký tự).`; formDiv.classList.remove('hidden'); }
+  catch (e) { infoDiv.innerHTML = `❌ ${e.message}`; }
+}
+document.getElementById('fileInput').addEventListener('change', e => handleFileSelection(e.target.files[0]));
+const dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('dragover'); handleFileSelection(e.dataTransfer.files[0]); });
+
+document.getElementById('addToMyLibBtn').addEventListener('click', () => {
+  if (!uploadedFileData) { alert('Vui lòng tải file trước.'); return; }
+  addBook({
+    title: document.getElementById('bookTitleInput').value.trim()||'Chưa có tiêu đề',
+    author: document.getElementById('bookAuthorInput').value.trim()||'Không rõ',
+    desc: document.getElementById('bookDescInput').value.trim()||'',
+    genre: document.getElementById('bookGenreSelect').value
+  }, 'mylib');
+  resetUploadForm(); alert('✅ Đã thêm vào tủ sách!'); switchTab('mylib');
+});
+document.getElementById('addToCommunityBtn').addEventListener('click', () => {
+  if (!uploadedFileData) { alert('Vui lòng tải file trước.'); return; }
+  addBook({
+    title: document.getElementById('bookTitleInput').value.trim()||'Chưa có tiêu đề',
+    author: document.getElementById('bookAuthorInput').value.trim()||'Không rõ',
+    desc: document.getElementById('bookDescInput').value.trim()||'',
+    genre: document.getElementById('bookGenreSelect').value
+  }, 'community');
+  resetUploadForm(); alert('✅ Đã chia sẻ lên cộng đồng!'); switchTab('community');
+});
+
+function resetUploadForm() {
+  ['bookTitleInput','bookAuthorInput','bookDescInput'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fileInfo').style.display = 'none';
+  document.getElementById('bookForm').classList.add('hidden');
+  document.getElementById('uploadCard').style.display = 'none';
+  uploadedFileData = null;
 }
 
-document.getElementById('fileInput').addEventListener('change', e => handleFileSelection(e.target.files[0]));
-const dropZone = document.getElementById('dropZone');
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-dropZone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropZone.classList.remove('dragover');
-  handleFileSelection(e.dataTransfer.files[0]);
+// ==========================================================================
+// MODAL THƯ VIỆN SỐ
+// ==========================================================================
+document.getElementById('libraryBtn').addEventListener('click', () => {
+  document.getElementById('libraryModal').classList.remove('hidden');
+  document.getElementById('libraryResult').style.display = 'none';
+  document.getElementById('studentFullName').value = '';
+  document.getElementById('studentClass').value = '';
 });
-
-document.getElementById('analyzeBtn').addEventListener('click', async () => {
-  const resultDiv = document.getElementById('analysisResult');
-  resultDiv.style.display = 'block';
-  resultDiv.innerHTML = '<div class="spinner"></div> Gemini đang suy luận...';
-  try {
-    const book = await analyzeBook(uploadedText);
+document.getElementById('closeLibraryModal').addEventListener('click', () => {
+  document.getElementById('libraryModal').classList.add('hidden');
+});
+document.getElementById('searchLibraryBtn').addEventListener('click', () => {
+  const fullName = document.getElementById('studentFullName').value.trim().toLowerCase();
+  const className = document.getElementById('studentClass').value;
+  const resultDiv = document.getElementById('libraryResult');
+  if (!fullName) { alert('Vui lòng nhập họ tên đầy đủ.'); return; }
+  const student = studentList.find(s => s.fullName.toLowerCase() === fullName && (!className || s.class === className));
+  if (student) {
+    resultDiv.style.display = 'block';
     resultDiv.innerHTML = `
-      <h3 style="color:#2d6a4f">📖 ${book.title}</h3>
-      <p><strong>Tác giả:</strong> ${book.author}</p>
-      <p><strong>Thể loại AI nhận diện:</strong> ${book.genre}</p>
-      <p><strong>Tóm tắt:</strong> ${book.desc}</p>
-      <p style="margin-top:0.5rem;padding:0.8rem;background:#fff;border-radius:0.5rem;border-left:3px solid #b8875a">⭐ <strong>Đánh giá:</strong> ${book.review || 'Không có'}</p>
+      <strong>🎓 Học sinh:</strong> ${student.fullName}<br>
+      <strong>📚 Lớp:</strong> ${student.class}<br>
+      <strong>🔑 Tài khoản TVS:</strong> ${student.account}<br>
+      <strong>🔒 Mật khẩu:</strong> ${student.password}<br>
+      <a href="https://thcs-phuoccat-cattien2.lamdong.dlib.vn/" target="_blank" style="color:#2d6a4f; font-weight:600;">👉 Nhấn vào đây để đến Thư viện số</a>
     `;
-    addMyBook({...book});
-    switchTab('mylib');
-  } catch(err) {
-    resultDiv.innerHTML = `<span style="color:#b23b3b">❌ ${err.message}</span>`;
+  } else {
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<span style="color:#b23b3b;">❌ Không tìm thấy học sinh. Vui lòng kiểm tra lại họ tên và lớp.</span>';
   }
-});
-
-document.getElementById('sendChatBtn').addEventListener('click', async () => {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  const userName = currentUser ? currentUser.name : 'Bạn';
-  addChatMessage('user', msg, userName);
-  input.value = '';
-  addChatMessage('ai', '⏳ Đang tổng hợp...', 'Gemini');
-  try {
-    const reply = await callGemini(msg);
-    document.getElementById('chatBox').lastElementChild.remove();
-    addChatMessage('ai', reply, 'Gemini');
-  } catch(err) {
-    document.getElementById('chatBox').lastElementChild.remove();
-    addChatMessage('ai', `❌ ${err.message}`, 'Hệ thống');
-  }
-});
-
-document.getElementById('chatInput').addEventListener('keypress', e => {
-  if (e.key === 'Enter') document.getElementById('sendChatBtn').click();
-});
-
-document.addEventListener('click', e => {
-  if (e.target.closest('.btn-read') && !completedToday) startTimer();
 });
 
 // ==========================================================================
@@ -1089,42 +1416,10 @@ document.addEventListener('click', e => {
 function initAppUI() {
   document.getElementById('authScreen').classList.add('hidden');
   document.getElementById('mainScreen').classList.remove('hidden');
-  document.getElementById('userGreeting').textContent = `Xin chào, ${currentUser.name}!`;
-  showDiscover('all');
-  const chatBox = document.getElementById('chatBox');
-  if (chatBox.children.length === 0) {
-    addChatMessage('ai', `Xin chào **${currentUser.name}**! Tôi là Gemini, sẵn sàng trò chuyện về sách.`, 'Gemini');
-  }
-  const challenge = JSON.parse(localStorage.getItem('reading_challenge') || '{}');
-  const today = new Date().toISOString().slice(0,10);
-  if (challenge.date === today) {
-    readingSeconds = challenge.seconds || 0;
-    completedToday = challenge.completed || false;
-    streak = challenge.streak || 0;
-  } else {
-    streak = (challenge.date && challenge.completed) ? (challenge.streak || 0) + 1 : (challenge.streak || 0);
-    readingSeconds = 0;
-    completedToday = false;
-    saveChallengeState();
-  }
-  updateTimerDisplay(); updateStreakDisplay();
-  if (!completedToday && readingSeconds > 0) startTimer();
+  document.getElementById('userGreeting').textContent = `👋 Xin chào, ${currentUser.username}!`;
+  showDiscover('all'); updateStats();
 }
-
-(function bootstrap() {
-  const saved = localStorage.getItem('book_user');
-  if (saved) {
-    try {
-      currentUser = JSON.parse(saved);
-      if (currentUser.apiKey) {
-        discoverAndSelectModel(currentUser.apiKey).then(() => initAppUI()).catch(() => {
-          localStorage.removeItem('book_user');
-          alert('API Key không còn hợp lệ. Vui lòng đăng nhập lại.');
-        });
-      }
-    } catch(e) { localStorage.removeItem('book_user'); }
-  }
-})();
+(function() { const u = getSession(); if (u) { currentUser = u; initAppUI(); } })();
 </script>
 </body>
 </html>
