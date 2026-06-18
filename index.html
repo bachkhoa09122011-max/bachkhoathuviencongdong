@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>📚 Bạn đồng hành đọc sách – Phiên bản Cộng đồng</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: linear-gradient(145deg, #f9f6f0, #f0e7db);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      color: #2b2b2b;
+    }
+    .app {
+      max-width: 1000px;
+      width: 100%;
+      background: rgba(255, 252, 245, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px rgba(80, 40, 10, 0.12);
+      padding: 2.5rem;
+      border: 1px solid #eadecc;
+    }
+    .hidden { display: none !important; }
+    h1 {
+      color: #4b2e1a;
+      font-size: 2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 {
+      color: #4b2e1a;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #7a624e;
+      margin-top: -1rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    label {
+      font-weight: 600;
+      color: #4b3621;
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border-radius: 1rem;
+      border: 1px solid #dcd1be;
+      background: #fdfcf9;
+      font-size: 1rem;
+      outline: none;
+      color: #3a2e2b;
+      transition: all 0.2s ease;
+    }
+    input:focus, select:focus {
+      border-color: #b8875a;
+      box-shadow: 0 0 0 3px rgba(184, 135, 90, 0.15);
+      background: #ffffff;
+    }
+    .btn {
+      background: linear-gradient(135deg, #b8875a, #9b6e44);
+      border: none;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(155, 110, 68, 0.2);
+    }
+    .btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(155, 110, 68, 0.3);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-outline {
+      background: transparent;
+      color: #8c5e34;
+      border: 1.5px solid #c79a6e;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #fdf7ee;
+      color: #6f4621;
+      box-shadow: none;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 24px rgba(120, 70, 20, 0.04);
+      border: 1px solid #f2e6d5;
+    }
+    .drop-zone {
+      border: 2px dashed #c79a6e;
+      border-radius: 1.5rem;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: #fefcf9;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: #9b6e44;
+      background: #fdf3e7;
+    }
+    .drop-zone p { color: #5c4636; font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .tab-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid #f0e3d0;
+      padding-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.8rem 0.8rem 0 0;
+      cursor: pointer;
+      background: transparent;
+      color: #7a624e;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+    .tab.active { background: #b8875a; color: #ffffff; }
+    .search-box {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .search-box select, .search-box input { flex: 1; min-width: 180px; }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .book-card {
+      background: #fdfaf4;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      border-left: 5px solid #b8875a;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .book-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(120, 70, 20, 0.08);
+    }
+    .book-title { font-weight: 700; color: #4b2e1a; font-size: 1.05rem; margin-bottom: 0.3rem; }
+    .book-author { font-size: 0.85rem; color: #9b7a5a; font-style: italic; margin-bottom: 0.6rem; }
+    .book-desc { font-size: 0.88rem; color: #5c4a33; line-height: 1.4; margin-bottom: 1rem; }
+    .book-links {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .book-links a, .book-links button {
+      padding: 0.4rem 0.8rem;
+      border-radius: 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-read { background: #2d6a4f; color: #ffffff; }
+    .btn-read:hover { background: #1b4332; }
+    .btn-review { background: #7b4b8a; color: #ffffff; }
+    .btn-review:hover { background: #5a3366; }
+    .btn-share { background: #d4a373; color: #fff; }
+    .btn-share:hover { background: #b8875a; }
+    .chat-box {
+      background: #faf7f2;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      height: 300px;
+      overflow-y: auto;
+      margin: 1rem 0;
+      border: 1px solid #ebdcc5;
+    }
+    .msg { margin-bottom: 1rem; display: flex; flex-direction: column; }
+    .msg.user { align-items: flex-end; }
+    .msg.ai { align-items: flex-start; }
+    .msg .bubble {
+      max-width: 85%;
+      padding: 0.7rem 1.1rem;
+      border-radius: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+    .msg.user .bubble {
+      background: #e2ede4;
+      color: #1b4332;
+      border-bottom-right-radius: 0.2rem;
+    }
+    .msg.ai .bubble {
+      background: #ffffff;
+      color: #3a2b20;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      border-bottom-left-radius: 0.2rem;
+      border: 1px solid #f0e4d3;
+    }
+    .msg .sender-name { font-size: 0.75rem; color: #8c7664; margin-bottom: 0.2rem; font-weight: 500; }
+    .timer-box {
+      background: linear-gradient(135deg, #f7efe2, #ebdcc5);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4b2e1a;
+      letter-spacing: 1px;
+      border: 1px solid #decbb2;
+    }
+    .progress-bar-container {
+      height: 10px;
+      background: #e6d5bc;
+      border-radius: 10px;
+      margin: 0.8rem 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #b8875a, #9b6e44);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+    .streak-badge {
+      background: #ffd966;
+      color: #5c4308;
+      padding: 0.4rem 1.2rem;
+      border-radius: 1.5rem;
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(255, 217, 102, 0.3);
+    }
+    .spinner {
+      display: inline-block;
+      width: 1.2rem;
+      height: 1.2rem;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+<div class="app" id="appRoot">
+  <!-- Màn hình đăng nhập -->
+  <div id="authScreen">
+    <h2>📚 Bạn đồng hành đọc sách</h2>
+    <p class="subtitle">Kết nối dữ liệu cá nhân & Trợ lý ảo thông minh Gemini AI</p>
+    <div class="card">
+      <div class="form-group"><label>👤 Tên của bạn</label><input type="text" id="nameInput" placeholder="Ví dụ: Đỗ Thanh Lài" required></div>
+      <div class="form-group"><label>📧 Email liên hệ</label><input type="email" id="emailInput" placeholder="example@gmail.com" required></div>
+      <div class="form-group"><label>📱 Số điện thoại</label><input type="tel" id="phoneInput" placeholder="09xxxxxxxx" required></div>
+      <div class="form-group">
+        <label>🔑 API Key Gemini <span style="color:red">*</span></label>
+        <input type="text" id="apiKeyInput" placeholder="Nhập mã AIzaSy..." required>
+        <small style="color:#8c6f54; display:block; margin-top:0.3rem">Lấy miễn phí tại <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:#9b6e44; font-weight:600">Google AI Studio</a></small>
+      </div>
+      <button class="btn" id="loginBtn" style="width:100%; margin-top:0.5rem">🚀 Kích hoạt & Kết nối AI</button>
+      <p id="loginError" style="color:#b23b3b; text-align:center; margin-top:0.8rem; font-weight:600"></p>
+    </div>
+  </div>
+
+  <!-- Giao diện chính -->
+  <div id="mainScreen" class="hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem">
+      <h1>📖 Bạn đồng hành đọc sách</h1>
+      <div>
+        <span id="userGreeting" style="margin-right:1rem; font-weight:500; color:#5c4636"></span>
+        <button class="btn btn-outline" id="logoutBtn" style="padding:0.4rem 1.2rem; font-size:0.85rem">Đăng xuất</button>
+      </div>
+    </div>
+
+    <!-- Tải lên & phân tích -->
+    <div class="card">
+      <label>📤 Tải tác phẩm/Tài liệu của bạn lên (PDF, DOCX, TXT)</label>
+      <p style="font-size:0.85rem; color:#7a624e; margin-bottom:1rem">AI sẽ tự động đọc, phân tích và phân loại chính xác.</p>
+      <div class="drop-zone" id="dropZone">
+        <p>📂 Kéo & thả tệp tin vào đây</p>
+        <p style="font-size:0.9rem; color:#8c7664">hoặc <button class="btn btn-outline" id="selectFileBtn" style="padding:0.2rem 0.8rem; font-size:0.85rem">Duyệt file</button></p>
+        <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none">
+      </div>
+      <div id="fileInfo" style="display:none; margin:0.8rem 0; font-weight:600; color:#2d6a4f"></div>
+      <button class="btn" id="analyzeBtn" style="display:none; width:100%">🤖 Gemini AI Phân tích & Lưu vào tủ sách</button>
+      <div id="analysisResult" style="margin-top:1.2rem; padding:1rem; border-radius:1rem; background:#f4eedf; display:none; border:1px solid #decbb2"></div>
+    </div>
+
+    <!-- Thư viện sách với 3 tab -->
+    <div class="card">
+      <div class="tab-container">
+        <div class="tab active" data-tab="discover">📚 Thư viện hệ thống</div>
+        <div class="tab" data-tab="mylib">📁 Tủ sách của tôi</div>
+        <div class="tab" data-tab="community">🌍 Cộng đồng chia sẻ</div>
+      </div>
+
+      <!-- Tìm kiếm cho Thư viện hệ thống -->
+      <div class="search-box" id="discoverSearch">
+        <select id="genreSelect">
+          <option value="all">🎯 Tất cả thể loại</option>
+          <option value="vanhocvn">Văn học Việt Nam</option>
+          <option value="vanhocnn">Văn học nước ngoài</option>
+          <option value="khoahoc">Khoa học & Đời sống</option>
+          <option value="lichsu">Lịch sử & Địa lý</option>
+          <option value="phattrienbanthan">Phát triển bản thân</option>
+          <option value="trinhtham">Trinh thám & Kinh dị</option>
+          <option value="thieunhi">Văn học Thiếu nhi</option>
+          <option value="triethoc">Triết học & Tư tưởng</option>
+          <option value="kinhte">Kinh tế & Kinh doanh</option>
+        </select>
+        <input type="text" id="searchQuery" placeholder="🔍 Tên sách hoặc tác giả...">
+        <button class="btn" id="searchBtn">Tìm kiếm</button>
+      </div>
+
+      <!-- Tìm kiếm cho Tủ sách của tôi -->
+      <div class="search-box hidden" id="mylibSearch">
+        <input type="text" id="mylibQuery" placeholder="🔍 Tìm trong tài liệu đã tải lên...">
+        <button class="btn" id="mylibSearchBtn">Tìm</button>
+      </div>
+
+      <!-- Tìm kiếm cho Cộng đồng -->
+      <div class="search-box hidden" id="communitySearch">
+        <input type="text" id="communityQuery" placeholder="🔍 Tìm trong tủ sách cộng đồng...">
+        <button class="btn" id="communitySearchBtn">Tìm</button>
+      </div>
+
+      <div id="bookContainer" class="book-grid"></div>
+    </div>
+
+    <!-- Chat với Gemini -->
+    <div class="card">
+      <label>💬 Trò chuyện học thuật cùng Gemini AI</label>
+      <p style="font-size:0.85rem; color:#7a624e">Hỏi về sách, phân tích nhân vật, tóm tắt, dịch thuật...</p>
+      <div class="chat-box" id="chatBox"></div>
+      <div style="display:flex; gap:0.5rem">
+        <input type="text" id="chatInput" placeholder="Nhập câu hỏi...">
+        <button class="btn" id="sendChatBtn">Gửi</button>
+      </div>
+    </div>
+
+    <!-- Thử thách 15 phút -->
+    <div class="card">
+      <label>⏱️ Thử thách 15 Phút Đọc Mỗi Ngày</label>
+      <p style="font-size:0.85rem; color:#7a624e; margin-bottom:0.8rem">Bộ đếm tự động kích hoạt khi bạn mở sách.</p>
+      <div class="timer-box"><span id="timerDisplay">00:00</span> / 15:00</div>
+      <div style="margin-top:0.5rem; text-align:center">
+        <div class="progress-bar-container"><div id="dailyProgress" class="progress-bar"></div></div>
+        <span id="streakDisplay" class="streak-badge">🔥 0 ngày liên tiếp</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================================================
+// DỮ LIỆU SÁCH MẪU (đầy đủ, không cắt bớt)
+// ==========================================================================
+const sampleBooks = [
+  // Văn học Việt Nam
+  {title:"Truyện Kiều",author:"Nguyễn Du",genre:"vanhocvn",desc:"Kiệt tác thơ Nôm.",read:"https://kholuu.wordpress.com/wp-content/uploads/2015/07/truyen_kieu_tron_bo.pdf"},
+  {title:"Số đỏ",author:"Vũ Trọng Phụng",genre:"vanhocvn",desc:"Trào phúng xã hội.",read:"https://sachmoi.net/so-do/"},
+  {title:"Chí Phèo",author:"Nam Cao",genre:"vanhocvn",desc:"Bi kịch nông dân.",read:"https://sachmoi.net/chi-pheo/"},
+  {title:"Tắt đèn",author:"Ngô Tất Tố",genre:"vanhocvn",desc:"Số phận nông dân.",read:"https://sachmoi.net/tat-den/"},
+  {title:"Những ngày thơ ấu",author:"Nguyên Hồng",genre:"vanhocvn",desc:"Hồi ký tuổi thơ.",read:"https://sachmoi.net/nhung-ngay-tho-au/"},
+  {title:"Vợ nhặt",author:"Kim Lân",genre:"vanhocvn",desc:"Nạn đói 1945.",read:"https://sachmoi.net/vo-nhat/"},
+  {title:"Đất rừng phương Nam",author:"Đoàn Giỏi",genre:"vanhocvn",desc:"Phiêu lưu miền Tây.",read:"https://sachmoi.net/dat-rung-phuong-nam/"},
+  {title:"Tuổi thơ dữ dội",author:"Phùng Quán",genre:"vanhocvn",desc:"Thiếu niên cách mạng.",read:"https://sachmoi.net/tuoi-tho-du-doi/"},
+  {title:"Mắt biếc",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Tình yêu học trò.",read:"https://sachmoi.net/mat-biec/"},
+  {title:"Cho tôi xin một vé đi tuổi thơ",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Hồi ức tuổi thơ.",read:"https://sachmoi.net/cho-toi-xin-mot-ve-di-tuoi-tho/"},
+  {title:"Tôi thấy hoa vàng trên cỏ xanh",author:"Nguyễn Nhật Ánh",genre:"vanhocvn",desc:"Ký ức tuổi thơ.",read:"https://sachmoi.net/toi-thay-hoa-vang-tren-co-xanh/"},
+  {title:"Cánh đồng bất tận",author:"Nguyễn Ngọc Tư",genre:"vanhocvn",desc:"Số phận con người.",read:"https://sachmoi.net/canh-dong-bat-tan/"},
+  {title:"Nỗi buồn chiến tranh",author:"Bảo Ninh",genre:"vanhocvn",desc:"Hậu chiến.",read:"https://sachmoi.net/noi-buon-chien-tranh/"},
+  {title:"Bỉ vỏ",author:"Nguyên Hồng",genre:"vanhocvn",desc:"Tầng lớp đáy xã hội.",read:"https://sachmoi.net/bi-vo/"},
+  {title:"Gió lạnh đầu mùa",author:"Thạch Lam",genre:"vanhocvn",desc:"Truyện ngắn ấm áp.",read:"https://sachmoi.net/gio-lanh-dau-mua/"},
+  {title:"Lão Hạc",author:"Nam Cao",genre:"vanhocvn",desc:"Số phận nông dân.",read:"https://sachmoi.net/lao-hac/"},
+  {title:"Sống mòn",author:"Nam Cao",genre:"vanhocvn",desc:"Cuộc sống trí thức.",read:"https://sachmoi.net/song-mon/"},
+  {title:"Truyện ngắn Nam Cao",author:"Nam Cao",genre:"vanhocvn",desc:"Tuyển tập.",read:"https://sachmoi.net/truyen-ngan-nam-cao/"},
+  {title:"Thương nhớ mười hai",author:"Vũ Bằng",genre:"vanhocvn",desc:"Tùy bút.",read:"https://sachmoi.net/thuong-nho-muoi-hai/"},
+  {title:"Hà Nội băm sáu phố phường",author:"Thạch Lam",genre:"vanhocvn",desc:"Hà Nội xưa.",read:"https://sachmoi.net/ha-noi-bam-sau-pho-phuong/"},
+  {title:"Miếng ngon Hà Nội",author:"Vũ Bằng",genre:"vanhocvn",desc:"Ẩm thực.",read:"https://sachmoi.net/mieng-ngon-ha-noi/"},
+  {title:"Dế mèn phiêu lưu ký",author:"Tô Hoài",genre:"vanhocvn",desc:"Phiêu lưu.",read:"https://sachmoi.net/de-men-phieu-luu-ky/"},
+  {title:"Vợ chồng A Phủ",author:"Tô Hoài",genre:"vanhocvn",desc:"Số phận.",read:"https://sachmoi.net/vo-chong-a-phu/"},
+  {title:"Rừng xà nu",author:"Nguyễn Trung Thành",genre:"vanhocvn",desc:"Sử thi.",read:"https://sachmoi.net/rung-xa-nu/"},
+  {title:"Chiếc thuyền ngoài xa",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Triết lý.",read:"https://sachmoi.net/chiec-thuyen-ngoai-xa/"},
+  {title:"Bến quê",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Suy ngẫm.",read:"https://sachmoi.net/ben-que/"},
+  {title:"Mảnh trăng cuối rừng",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/manh-trang-cuoi-rung/"},
+  {title:"Cố hương",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Hiện thực.",read:"https://sachmoi.net/co-huong/"},
+  {title:"Thuốc",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Phê phán.",read:"https://sachmoi.net/thuoc/"},
+  {title:"AQ chính truyện",author:"Lỗ Tấn",genre:"vanhocvn",desc:"Trào phúng.",read:"https://sachmoi.net/aq-chinh-truyen/"},
+  {title:"Truyện ngắn Nguyễn Công Hoan",author:"Nguyễn Công Hoan",genre:"vanhocvn",desc:"Tuyển tập.",read:"https://sachmoi.net/truyen-ngan-nguyen-cong-hoan/"},
+  {title:"Truyện ngắn Thạch Lam",author:"Thạch Lam",genre:"vanhocvn",desc:"Nhẹ nhàng.",read:"https://sachmoi.net/truyen-ngan-thach-lam/"},
+  {title:"Truyện ngắn Nguyễn Tuân",author:"Nguyễn Tuân",genre:"vanhocvn",desc:"Tài hoa.",read:"https://sachmoi.net/truyen-ngan-nguyen-tuan/"},
+  {title:"Truyện ngắn Kim Lân",author:"Kim Lân",genre:"vanhocvn",desc:"Nông thôn.",read:"https://sachmoi.net/truyen-ngan-kim-lan/"},
+  {title:"Truyện ngắn Nguyễn Minh Châu",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Hiện thực.",read:"https://sachmoi.net/truyen-ngan-nguyen-minh-chau/"},
+  {title:"Truyện ngắn Bảo Ninh",author:"Bảo Ninh",genre:"vanhocvn",desc:"Chiến tranh.",read:"https://sachmoi.net/truyen-ngan-bao-ninh/"},
+  {title:"Truyện ngắn Nguyễn Huy Thiệp",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Đương đại.",read:"https://sachmoi.net/truyen-ngan-nguyen-huy-thiep/"},
+  {title:"Tướng về hưu",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/tuong-ve-huu/"},
+  {title:"Không có vua",author:"Nguyễn Huy Thiệp",genre:"vanhocvn",desc:"Phê phán.",read:"https://sachmoi.net/khong-co-vua/"},
+  {title:"Những giọt mực",author:"Nguyễn Quang Lập",genre:"vanhocvn",desc:"Tản văn.",read:"https://sachmoi.net/nhung-giot-muc/"},
+  {title:"Cánh đồng hoang",author:"Nguyễn Đình Thi",genre:"vanhocvn",desc:"Chiến tranh.",read:"https://sachmoi.net/canh-dong-hoang/"},
+  {title:"Mùa lạc",author:"Nguyễn Khải",genre:"vanhocvn",desc:"Hậu chiến.",read:"https://sachmoi.net/mua-lac/"},
+  {title:"Hòn Đất",author:"Anh Đức",genre:"vanhocvn",desc:"Cách mạng.",read:"https://sachmoi.net/hon-dat/"},
+  {title:"Người đàn bà trên chuyến tàu tốc hành",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/nguoi-dan-ba-tren-chuyen-tau-toc-hanh/"},
+  {title:"Bức tranh",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/buc-tranh/"},
+  {title:"Dấu chân người lính",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/dau-chan-nguoi-linh/"},
+  {title:"Cửa sông",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/cua-song/"},
+  {title:"Những vùng trời khác nhau",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/nhung-vung-troi-khac-nhau/"},
+  {title:"Người khách",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/nguoi-khach/"},
+  {title:"Đảo",author:"Nguyễn Minh Châu",genre:"vanhocvn",desc:"Truyện ngắn.",read:"https://sachmoi.net/dao/"},
+  {title:"Mảnh đất lắm người nhiều ma",author:"Nguyễn Khắc Trường",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/manh-dat-lam-nguoi-nhieu-ma/"},
+  {title:"Bến không chồng",author:"Dương Hướng",genre:"vanhocvn",desc:"Số phận.",read:"https://sachmoi.net/ben-khong-chong/"},
+  {title:"Thời xa vắng",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/thoi-xa-vang/"},
+  {title:"Chuyện làng Cuội",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/chuyen-lang-cuoi/"},
+  {title:"Mở rừng",author:"Lê Lựu",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/mo-rung/"},
+  {title:"Sông Côn mùa lũ",author:"Nguyễn Mộng Giác",genre:"vanhocvn",desc:"Lịch sử.",read:"https://sachmoi.net/song-con-mua-lu/"},
+  {title:"Đất trời",author:"Nguyễn Mộng Giác",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/dat-troi/"},
+  {title:"Người không mang họ",author:"Xuân Đức",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/nguoi-khong-mang-ho/"},
+  {title:"Cõi người rung chuông tận thế",author:"Hồ Anh Thái",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/coi-nguoi-rung-chuong-tan-the/"},
+  {title:"Đi tìm nhân vật",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/di-tim-nhan-vat/"},
+  {title:"Thiên thần sám hối",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/thien-than-sam-hoi/"},
+  {title:"Lão Khổ",author:"Tạ Duy Anh",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/lao-kho/"},
+  {title:"Nháp",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/nhap/"},
+  {title:"Bên kia sông",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/ben-kia-song/"},
+  {title:"Xác phàm",author:"Nguyễn Đình Tú",genre:"vanhocvn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/xac-pham/"},
+
+  // Văn học nước ngoài
+  {title:"Nhà giả kim",author:"Paulo Coelho",genre:"vanhocnn",desc:"Kho báu.",read:"https://sachmoi.net/nha-gia-kim/"},
+  {title:"Harry Potter và Hòn đá phù thủy",author:"J.K. Rowling",genre:"vanhocnn",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-hon-da-phu-thuy/"},
+  {title:"Chúa tể những chiếc nhẫn",author:"J.R.R. Tolkien",genre:"vanhocnn",desc:"Nhẫn quyền lực.",read:"https://sachmoi.net/chua-te-nhung-chiec-nhan/"},
+  {title:"Bố già",author:"Mario Puzo",genre:"vanhocnn",desc:"Mafia.",read:"https://sachmoi.net/bo-gia/"},
+  {title:"Những người khốn khổ",author:"Victor Hugo",genre:"vanhocnn",desc:"Công lý.",read:"https://sachmoi.net/nhung-nguoi-khon-kho/"},
+  {title:"Cuốn theo chiều gió",author:"Margaret Mitchell",genre:"vanhocnn",desc:"Nội chiến.",read:"https://sachmoi.net/cuon-theo-chieu-gio/"},
+  {title:"Giết con chim nhại",author:"Harper Lee",genre:"vanhocnn",desc:"Phân biệt.",read:"https://sachmoi.net/giet-con-chim-nhai/"},
+  {title:"Trăm năm cô đơn",author:"Gabriel García Márquez",genre:"vanhocnn",desc:"Dòng họ.",read:"https://sachmoi.net/tram-nam-co-don/"},
+  {title:"Hoàng tử bé",author:"Antoine de Saint-Exupéry",genre:"vanhocnn",desc:"Triết lý.",read:"https://sachmoi.net/hoang-tu-be/"},
+  {title:"Không gia đình",author:"Hector Malot",genre:"vanhocnn",desc:"Tìm mẹ.",read:"https://sachmoi.net/khong-gia-dinh/"},
+  {title:"Đồi gió hú",author:"Emily Brontë",genre:"vanhocnn",desc:"Tình yêu.",read:"https://sachmoi.net/doi-gio-hu/"},
+  {title:"Kiêu hãnh và định kiến",author:"Jane Austen",genre:"vanhocnn",desc:"Giai cấp.",read:"https://sachmoi.net/kieu-hanh-va-dinh-kien/"},
+  {title:"Jane Eyre",author:"Charlotte Brontë",genre:"vanhocnn",desc:"Nữ quyền.",read:"https://sachmoi.net/jane-eyre/"},
+  {title:"Tội ác và trừng phạt",author:"Fyodor Dostoevsky",genre:"vanhocnn",desc:"Tâm lý.",read:"https://sachmoi.net/toi-ac-va-trung-phat/"},
+  {title:"Chiến tranh và hòa bình",author:"Lev Tolstoy",genre:"vanhocnn",desc:"Sử thi.",read:"https://sachmoi.net/chien-tranh-va-hoa-binh/"},
+  {title:"Anna Karenina",author:"Lev Tolstoy",genre:"vanhocnn",desc:"Tình yêu.",read:"https://sachmoi.net/anna-karenina/"},
+  {title:"Bắt trẻ đồng xanh",author:"J.D. Salinger",genre:"vanhocnn",desc:"Tuổi mới.",read:"https://sachmoi.net/bat-tre-dong-xanh/"},
+  {title:"Rừng Na Uy",author:"Haruki Murakami",genre:"vanhocnn",desc:"Tình yêu.",read:"https://sachmoi.net/rung-na-uy/"},
+  {title:"Biên niên ký chim vặn dây cót",author:"Haruki Murakami",genre:"vanhocnn",desc:"Huyền ảo.",read:"https://sachmoi.net/bien-nien-ky-chim-van-day-cot/"},
+  {title:"Mật mã Da Vinci",author:"Dan Brown",genre:"vanhocnn",desc:"Tôn giáo.",read:"https://sachmoi.net/mat-ma-da-vinci/"},
+  {title:"Sherlock Holmes toàn tập",author:"Arthur Conan Doyle",genre:"vanhocnn",desc:"Thám tử.",read:"https://sachmoi.net/sherlock-holmes-toan-tap/"},
+  {title:"Án mạng trên sông Nile",author:"Agatha Christie",genre:"vanhocnn",desc:"Bí ẩn.",read:"https://sachmoi.net/an-mang-tren-song-nile/"},
+  {title:"Mười người da đen nhỏ",author:"Agatha Christie",genre:"vanhocnn",desc:"Án mạng.",read:"https://sachmoi.net/muoi-nguoi-da-den-nho/"},
+  {title:"Phía sau nghi can X",author:"Higashino Keigo",genre:"vanhocnn",desc:"Trinh thám Nhật.",read:"https://sachmoi.net/phia-sau-nghi-can-x/"},
+  {title:"Cô gái có hình xăm rồng",author:"Stieg Larsson",genre:"vanhocnn",desc:"Bí ẩn Thụy Điển.",read:"https://sachmoi.net/co-gai-co-hinh-xam-rong/"},
+  {title:"Những tấm lòng cao cả",author:"Edmondo De Amicis",genre:"vanhocnn",desc:"Giáo dục.",read:"https://sachmoi.net/nhung-tam-long-cao-ca/"},
+  {title:"Totto-chan bên cửa sổ",author:"Tetsuko Kuroyanagi",genre:"vanhocnn",desc:"Trường học.",read:"https://sachmoi.net/totto-chan-ben-cua-so/"},
+  {title:"Ông già và biển cả",author:"Ernest Hemingway",genre:"vanhocnn",desc:"Thiên nhiên.",read:"https://sachmoi.net/ong-gia-va-bien-ca/"},
+  {title:"1984",author:"George Orwell",genre:"vanhocnn",desc:"Giám sát.",read:"https://sachmoi.net/1984/"},
+  {title:"Trại súc vật",author:"George Orwell",genre:"vanhocnn",desc:"Chính trị.",read:"https://sachmoi.net/trai-suc-vat/"},
+  {title:"Chạng vạng",author:"Stephenie Meyer",genre:"vanhocnn",desc:"Ma cà rồng.",read:"https://sachmoi.net/chang-vang/"},
+  {title:"Nhật ký Anne Frank",author:"Anne Frank",genre:"vanhocnn",desc:"Thế chiến II.",read:"https://sachmoi.net/nhat-ky-anne-frank/"},
+  {title:"Kafka bên bờ biển",author:"Haruki Murakami",genre:"vanhocnn",desc:"Huyền ảo.",read:"https://sachmoi.net/kafka-ben-bo-bien/"},
+  {title:"1Q84",author:"Haruki Murakami",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/1q84/"},
+  {title:"Xứ cát",author:"Frank Herbert",genre:"vanhocnn",desc:"Khoa học viễn tưởng.",read:"https://sachmoi.net/xu-cat/"},
+  {title:"Chân dung của Dorian Gray",author:"Oscar Wilde",genre:"vanhocnn",desc:"Thẩm mỹ.",read:"https://sachmoi.net/chan-dung-cua-dorian-gray/"},
+  {title:"Bức thư của người đàn bà không quen",author:"Stefan Zweig",genre:"vanhocnn",desc:"Tình yêu.",read:"https://sachmoi.net/buc-thu-cua-nguoi-dan-ba-khong-quen/"},
+  {title:"Người cá",author:"Aleksandr Belyaev",genre:"vanhocnn",desc:"Khoa học viễn tưởng.",read:"https://sachmoi.net/nguoi-ca/"},
+  {title:"Hai vạn dặm dưới đáy biển",author:"Jules Verne",genre:"vanhocnn",desc:"Phiêu lưu.",read:"https://sachmoi.net/hai-van-dam-duoi-day-bien/"},
+  {title:"Cuộc phiêu lưu của Tom Sawyer",author:"Mark Twain",genre:"vanhocnn",desc:"Thiếu nhi.",read:"https://sachmoi.net/cuoc-phieu-luu-cua-tom-sawyer/"},
+  {title:"Những cuộc phiêu lưu của Huckleberry Finn",author:"Mark Twain",genre:"vanhocnn",desc:"Phiêu lưu.",read:"https://sachmoi.net/nhung-cuoc-phieu-luu-cua-huckleberry-finn/"},
+  {title:"Bà Bovary",author:"Gustave Flaubert",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/ba-bovary/"},
+  {title:"Đỏ và đen",author:"Stendhal",genre:"vanhocnn",desc:"Tiểu thuyết.",read:"https://sachmoi.net/do-va-den/"},
+  {title:"Đại gia Gatsby",author:"F. Scott Fitzgerald",genre:"vanhocnn",desc:"Giấc mơ Mỹ.",read:"https://sachmoi.net/dai-gia-gatsby/"},
+  {title:"Mùa hè không tên",author:"J.M. Coetzee",genre:"vanhocnn",desc:"Văn học Nam Phi.",read:"https://sachmoi.net/mua-he-khong-ten/"},
+  {title:"Người xa lạ",author:"Albert Camus",genre:"vanhocnn",desc:"Hiện sinh.",read:"https://sachmoi.net/nguoi-xa-la/"},
+  {title:"Dịch hạch",author:"Albert Camus",genre:"vanhocnn",desc:"Dịch bệnh.",read:"https://sachmoi.net/dich-hach/"},
+  {title:"Suy tưởng",author:"Marcus Aurelius",genre:"vanhocnn",desc:"Triết học.",read:"https://sachmoi.net/suy-tuong/"},
+  {title:"Đắc nhân tâm",author:"Dale Carnegie",genre:"vanhocnn",desc:"Giao tiếp.",read:"https://sachmoi.net/dac-nhan-tam/"},
+  {title:"Sức mạnh của thói quen",author:"Charles Duhigg",genre:"vanhocnn",desc:"Thói quen.",read:"https://sachmoi.net/suc-manh-cua-thoi-quen/"},
+  {title:"7 thói quen để thành đạt",author:"Stephen Covey",genre:"vanhocnn",desc:"Thành công.",read:"https://sachmoi.net/7-thoi-quen-de-thanh-dat/"},
+  {title:"Nghĩ giàu làm giàu",author:"Napoleon Hill",genre:"vanhocnn",desc:"Giàu có.",read:"https://sachmoi.net/nghi-giau-lam-giau/"},
+  {title:"Đi tìm lẽ sống",author:"Viktor Frankl",genre:"vanhocnn",desc:"Ý nghĩa.",read:"https://sachmoi.net/di-tim-le-song/"},
+  {title:"Sapiens – Lược sử loài người",author:"Yuval Noah Harari",genre:"vanhocnn",desc:"Lịch sử.",read:"https://sachmoi.net/sapiens-luoc-su-loai-nguoi/"},
+  {title:"Vũ trụ trong vỏ hạt dẻ",author:"Stephen Hawking",genre:"vanhocnn",desc:"Vật lý.",read:"https://sachmoi.net/vu-tru-trong-vo-hat-de/"},
+  {title:"Lược sử vạn vật",author:"Bill Bryson",genre:"vanhocnn",desc:"Khoa học.",read:"https://sachmoi.net/luoc-su-van-vat/"},
+  {title:"Gen vị kỷ",author:"Richard Dawkins",genre:"vanhocnn",desc:"Sinh học.",read:"https://sachmoi.net/gen-vi-ky/"},
+  {title:"Thế giới lượng tử",author:"Jim Al-Khalili",genre:"vanhocnn",desc:"Vật lý.",read:"https://sachmoi.net/the-gioi-luong-tu/"},
+  {title:"Não bộ kể gì?",author:"David Eagleman",genre:"vanhocnn",desc:"Thần kinh.",read:"https://sachmoi.net/nao-bo-ke-gi/"},
+  {title:"Tóm tắt khoa học",author:"Nhiều tác giả",genre:"vanhocnn",desc:"Phổ thông.",read:"https://sachmoi.net/tom-tat-khoa-hoc/"},
+  {title:"Bí ẩn của vật chất",author:"John Gribbin",genre:"vanhocnn",desc:"Vật lý.",read:"https://sachmoi.net/bi-an-cua-vat-chat/"},
+  {title:"Hành tinh của chúng ta",author:"Alastair Fothergill",genre:"vanhocnn",desc:"Địa lý.",read:"https://sachmoi.net/hanh-tinh-cua-chung-ta/"},
+  {title:"Thời gian trở lại",author:"David Deutsch",genre:"vanhocnn",desc:"Vũ trụ.",read:"https://sachmoi.net/thoi-gian-tro-lai/"},
+  {title:"Lịch sử Việt Nam",author:"Đào Duy Anh",genre:"vanhocnn",desc:"Sử.",read:"https://sachmoi.net/lich-su-viet-nam/"},
+  {title:"Súng, Vi trùng và Thép",author:"Jared Diamond",genre:"vanhocnn",desc:"Lịch sử.",read:"https://sachmoi.net/sung-vi-trung-va-thep/"},
+  {title:"Lịch sử thế giới",author:"J.M. Roberts",genre:"vanhocnn",desc:"Nhân loại.",read:"https://sachmoi.net/lich-su-the-gioi/"},
+  {title:"Đại Việt sử ký toàn thư",author:"Ngô Sĩ Liên",genre:"vanhocnn",desc:"Cổ sử.",read:"https://sachmoi.net/dai-viet-su-ky-toan-thu/"},
+  {title:"Lịch sử văn minh thế giới",author:"Will Durant",genre:"vanhocnn",desc:"Văn minh.",read:"https://sachmoi.net/lich-su-van-minh-the-gioi/"},
+
+  // Khoa học
+  {title:"Lược sử vạn vật",author:"Bill Bryson",genre:"khoahoc",desc:"Từ Big Bang.",read:"https://sachmoi.net/luoc-su-van-vat/"},
+  {title:"Vũ trụ trong vỏ hạt dẻ",author:"Stephen Hawking",genre:"khoahoc",desc:"Vật lý thiên văn.",read:"https://sachmoi.net/vu-tru-trong-vo-hat-de/"},
+  {title:"Nguồn gốc các loài",author:"Charles Darwin",genre:"khoahoc",desc:"Tiến hóa.",read:"https://sachmoi.net/nguon-goc-cac-loai/"},
+  {title:"Sapiens – Lược sử loài người",author:"Yuval Noah Harari",genre:"khoahoc",desc:"Lịch sử loài người.",read:"https://sachmoi.net/sapiens-luoc-su-loai-nguoi/"},
+  {title:"Vật lý của tương lai",author:"Michio Kaku",genre:"khoahoc",desc:"Dự đoán 100 năm.",read:"https://sachmoi.net/vat-ly-cua-tuong-lai/"},
+  {title:"Gen vị kỷ",author:"Richard Dawkins",genre:"khoahoc",desc:"Sinh học tiến hóa.",read:"https://sachmoi.net/gen-vi-ky/"},
+  {title:"Thế giới lượng tử",author:"Jim Al-Khalili",genre:"khoahoc",desc:"Vật lý lượng tử.",read:"https://sachmoi.net/the-gioi-luong-tu/"},
+  {title:"Não bộ kể gì?",author:"David Eagleman",genre:"khoahoc",desc:"Khoa học thần kinh.",read:"https://sachmoi.net/nao-bo-ke-gi/"},
+  {title:"Tóm tắt khoa học",author:"Nhiều tác giả",genre:"khoahoc",desc:"Kiến thức phổ thông.",read:"https://sachmoi.net/tom-tat-khoa-hoc/"},
+  {title:"Bí ẩn của vật chất",author:"John Gribbin",genre:"khoahoc",desc:"Vật lý hiện đại.",read:"https://sachmoi.net/bi-an-cua-vat-chat/"},
+  {title:"Hành tinh của chúng ta",author:"Alastair Fothergill",genre:"khoahoc",desc:"Địa lý.",read:"https://sachmoi.net/hanh-tinh-cua-chung-ta/"},
+  {title:"Thời gian trở lại",author:"David Deutsch",genre:"khoahoc",desc:"Vũ trụ song song.",read:"https://sachmoi.net/thoi-gian-tro-lai/"},
+  {title:"Vũ trụ",author:"Carl Sagan",genre:"khoahoc",desc:"Thiên văn.",read:"https://sachmoi.net/vu-tru/"},
+  {title:"Liên hệ vũ trụ",author:"Carl Sagan",genre:"khoahoc",desc:"Khoa học.",read:"https://sachmoi.net/lien-he-vu-tru/"},
+  {title:"Thế giới bị quỷ ám",author:"Carl Sagan",genre:"khoahoc",desc:"Khoa học.",read:"https://sachmoi.net/the-gioi-bi-quy-am/"},
+  {title:"Những giấc mơ của Einstein",author:"Alan Lightman",genre:"khoahoc",desc:"Vật lý.",read:"https://sachmoi.net/nhung-giac-mo-cua-einstein/"},
+  {title:"Thời gian của các hệ thống",author:"Ilya Prigogine",genre:"khoahoc",desc:"Nhiệt động.",read:"https://sachmoi.net/thoi-gian-cua-cac-he-thong/"},
+  {title:"Sự sống trên Trái Đất",author:"David Attenborough",genre:"khoahoc",desc:"Sinh học.",read:"https://sachmoi.net/su-song-tren-trai-dat/"},
+  {title:"Hành tinh xanh",author:"David Attenborough",genre:"khoahoc",desc:"Môi trường.",read:"https://sachmoi.net/hanh-tinh-xanh/"},
+  {title:"Nguồn gốc của sự sống",author:"Paul Davies",genre:"khoahoc",desc:"Sinh học.",read:"https://sachmoi.net/nguon-goc-cua-su-song/"},
+  {title:"Vũ trụ trong một nguyên tử",author:"Dalai Lama",genre:"khoahoc",desc:"Khoa học & Phật giáo.",read:"https://sachmoi.net/vu-tru-trong-mot-nguyen-tu/"},
+  {title:"Đi tìm thực tại",author:"Roger Penrose",genre:"khoahoc",desc:"Vật lý.",read:"https://sachmoi.net/di-tim-thuc-tai/"},
+  {title:"Con đường dẫn tới hiện thực",author:"Roger Penrose",genre:"khoahoc",desc:"Toán học.",read:"https://sachmoi.net/con-duong-dan-toi-hien-thuc/"},
+  {title:"Thế giới như tôi thấy",author:"Albert Einstein",genre:"khoahoc",desc:"Tư tưởng.",read:"https://sachmoi.net/the-gioi-nhu-toi-thay/"},
+  {title:"Ý nghĩa của thuyết tương đối",author:"Albert Einstein",genre:"khoahoc",desc:"Vật lý.",read:"https://sachmoi.net/y-nghia-cua-thuyet-tuong-doi/"},
+  {title:"Tiến hóa",author:"Stephen Jay Gould",genre:"khoahoc",desc:"Sinh học.",read:"https://sachmoi.net/tien-hoa/"},
+  {title:"Ngón tay cái của gấu trúc",author:"Stephen Jay Gould",genre:"khoahoc",desc:"Sinh học.",read:"https://sachmoi.net/ngon-tay-cai-cua-gau-truc/"},
+  {title:"Từ Darwin đến hiện đại",author:"Ernst Mayr",genre:"khoahoc",desc:"Tiến hóa.",read:"https://sachmoi.net/tu-darwin-den-hien-dai/"},
+  {title:"Sinh học của niềm tin",author:"Bruce Lipton",genre:"khoahoc",desc:"Sinh học.",read:"https://sachmoi.net/sinh-hoc-cua-niem-tin/"},
+  {title:"Vũ trụ tự nhiên",author:"Brian Cox",genre:"khoahoc",desc:"Thiên văn.",read:"https://sachmoi.net/vu-tru-tu-nhien/"},
+
+  // Lịch sử
+  {title:"Lịch sử Việt Nam từ nguồn gốc đến giữa thế kỷ XX",author:"Đào Duy Anh",genre:"lichsu",desc:"Toàn cảnh.",read:"https://sachmoi.net/lich-su-viet-nam/"},
+  {title:"Súng, Vi trùng và Thép",author:"Jared Diamond",genre:"lichsu",desc:"Định mệnh.",read:"https://sachmoi.net/sung-vi-trung-va-thep/"},
+  {title:"Lịch sử thế giới",author:"J.M. Roberts",genre:"lichsu",desc:"Nhân loại.",read:"https://sachmoi.net/lich-su-the-gioi/"},
+  {title:"Đại Việt sử ký toàn thư",author:"Ngô Sĩ Liên",genre:"lichsu",desc:"Cổ sử.",read:"https://sachmoi.net/dai-viet-su-ky-toan-thu/"},
+  {title:"Lịch sử văn minh thế giới",author:"Will Durant",genre:"lichsu",desc:"Văn minh.",read:"https://sachmoi.net/lich-su-van-minh-the-gioi/"},
+  {title:"Chiến tranh và văn minh",author:"Will Durant",genre:"lichsu",desc:"Lịch sử.",read:"https://sachmoi.net/chien-tranh-va-van-minh/"},
+  {title:"Đường tới hiện đại",author:"Niall Ferguson",genre:"lichsu",desc:"Phương Tây.",read:"https://sachmoi.net/duong-toi-hien-dai/"},
+  {title:"Sự trỗi dậy của các cường quốc",author:"Paul Kennedy",genre:"lichsu",desc:"Lịch sử.",read:"https://sachmoi.net/su-troi-day-cua-cac-cuong-quoc/"},
+  {title:"Lịch sử ẩm thực",author:"Felipe Fernández-Armesto",genre:"lichsu",desc:"Văn hóa.",read:"https://sachmoi.net/lich-su-am-thuc/"},
+  {title:"Sapiens – Lược sử loài người",author:"Yuval Noah Harari",genre:"lichsu",desc:"Lịch sử.",read:"https://sachmoi.net/sapiens-luoc-su-loai-nguoi/"},
+  {title:"Homo Deus: Lược sử tương lai",author:"Yuval Noah Harari",genre:"lichsu",desc:"Tương lai.",read:"https://sachmoi.net/homo-deus-luoc-su-tuong-lai/"},
+  {title:"21 bài học cho thế kỷ 21",author:"Yuval Noah Harari",genre:"lichsu",desc:"Hiện tại.",read:"https://sachmoi.net/21-bai-hoc-cho-the-ky-21/"},
+  {title:"Lịch sử thế giới qua 100 hiện vật",author:"Neil MacGregor",genre:"lichsu",desc:"Bảo tàng.",read:"https://sachmoi.net/lich-su-the-gioi-qua-100-hien-vat/"},
+  {title:"Lịch sử châu Âu",author:"Norman Davies",genre:"lichsu",desc:"Châu Âu.",read:"https://sachmoi.net/lich-su-chau-au/"},
+  {title:"Lịch sử Trung Quốc",author:"John Keay",genre:"lichsu",desc:"Trung Quốc.",read:"https://sachmoi.net/lich-su-trung-quoc/"},
+  {title:"Lịch sử Nhật Bản",author:"R.H.P. Mason",genre:"lichsu",desc:"Nhật Bản.",read:"https://sachmoi.net/lich-su-nhat-ban/"},
+  {title:"Lịch sử Ấn Độ",author:"John Keay",genre:"lichsu",desc:"Ấn Độ.",read:"https://sachmoi.net/lich-su-an-do/"},
+  {title:"Lịch sử Hoa Kỳ",author:"Paul Johnson",genre:"lichsu",desc:"Hoa Kỳ.",read:"https://sachmoi.net/lich-su-hoa-ky/"},
+  {title:"Lịch sử nước Nga",author:"Geoffrey Hosking",genre:"lichsu",desc:"Nga.",read:"https://sachmoi.net/lich-su-nuoc-nga/"},
+  {title:"Lịch sử Pháp",author:"Roger Price",genre:"lichsu",desc:"Pháp.",read:"https://sachmoi.net/lich-su-phap/"},
+  {title:"Lịch sử Anh",author:"Simon Schama",genre:"lichsu",desc:"Anh.",read:"https://sachmoi.net/lich-su-anh/"},
+  {title:"Lịch sử Đức",author:"Mary Fulbrook",genre:"lichsu",desc:"Đức.",read:"https://sachmoi.net/lich-su-duc/"},
+  {title:"Lịch sử Ý",author:"Christopher Duggan",genre:"lichsu",desc:"Ý.",read:"https://sachmoi.net/lich-su-y/"},
+  {title:"Lịch sử Tây Ban Nha",author:"John Lynch",genre:"lichsu",desc:"Tây Ban Nha.",read:"https://sachmoi.net/lich-su-tay-ban-nha/"},
+  {title:"Lịch sử Hy Lạp cổ đại",author:"Thomas R. Martin",genre:"lichsu",desc:"Hy Lạp.",read:"https://sachmoi.net/lich-su-hy-lap-co-dai/"},
+  {title:"Lịch sử La Mã",author:"Michael Grant",genre:"lichsu",desc:"La Mã.",read:"https://sachmoi.net/lich-su-la-ma/"},
+  {title:"Lịch sử Ai Cập cổ đại",author:"John Romer",genre:"lichsu",desc:"Ai Cập.",read:"https://sachmoi.net/lich-su-ai-cap-co-dai/"},
+  {title:"Lịch sử Trung Đông",author:"Peter Mansfield",genre:"lichsu",desc:"Trung Đông.",read:"https://sachmoi.net/lich-su-trung-dong/"},
+  {title:"Lịch sử châu Phi",author:"John Reader",genre:"lichsu",desc:"Châu Phi.",read:"https://sachmoi.net/lich-su-chau-phi/"},
+  {title:"Lịch sử Mỹ Latinh",author:"Edwin Williamson",genre:"lichsu",desc:"Mỹ Latinh.",read:"https://sachmoi.net/lich-su-my-latinh/"},
+
+  // Phát triển bản thân
+  {title:"Đắc nhân tâm",author:"Dale Carnegie",genre:"phattrienbanthan",desc:"Giao tiếp.",read:"https://sachmoi.net/dac-nhan-tam/"},
+  {title:"Sức mạnh của thói quen",author:"Charles Duhigg",genre:"phattrienbanthan",desc:"Thay đổi.",read:"https://sachmoi.net/suc-manh-cua-thoi-quen/"},
+  {title:"7 thói quen để thành đạt",author:"Stephen Covey",genre:"phattrienbanthan",desc:"Thành công.",read:"https://sachmoi.net/7-thoi-quen-de-thanh-dat/"},
+  {title:"Nghĩ giàu làm giàu",author:"Napoleon Hill",genre:"phattrienbanthan",desc:"Giàu có.",read:"https://sachmoi.net/nghi-giau-lam-giau/"},
+  {title:"Đi tìm lẽ sống",author:"Viktor Frankl",genre:"phattrienbanthan",desc:"Ý nghĩa.",read:"https://sachmoi.net/di-tim-le-song/"},
+  {title:"Sức mạnh của hiện tại",author:"Eckhart Tolle",genre:"phattrienbanthan",desc:"Hiện tại.",read:"https://sachmoi.net/suc-manh-cua-hien-tai/"},
+  {title:"Bí mật",author:"Rhonda Byrne",genre:"phattrienbanthan",desc:"Luật hấp dẫn.",read:"https://sachmoi.net/bi-mat/"},
+  {title:"Atomic Habits",author:"James Clear",genre:"phattrienbanthan",desc:"Thói quen nhỏ.",read:"https://sachmoi.net/atomic-habits/"},
+  {title:"Quẳng gánh lo đi và vui sống",author:"Dale Carnegie",genre:"phattrienbanthan",desc:"Lo âu.",read:"https://sachmoi.net/quang-ganh-lo-di-va-vui-song/"},
+  {title:"Đọc vị bất kỳ ai",author:"David J. Lieberman",genre:"phattrienbanthan",desc:"Tâm lý.",read:"https://sachmoi.net/doc-vi-bat-ky-ai/"},
+  {title:"Khéo ăn nói sẽ có được thiên hạ",author:"Trác Nhã",genre:"phattrienbanthan",desc:"Giao tiếp.",read:"https://sachmoi.net/kheo-an-noi-se-co-duoc-thien-ha/"},
+  {title:"Nghệ thuật giao tiếp để thành công",author:"Larry King",genre:"phattrienbanthan",desc:"Giao tiếp.",read:"https://sachmoi.net/nghe-thuat-giao-tiep-de-thanh-cong/"},
+  {title:"Sức mạnh của tư duy tích cực",author:"Norman Vincent Peale",genre:"phattrienbanthan",desc:"Tư duy.",read:"https://sachmoi.net/suc-manh-cua-tu-duy-tich-cuc/"},
+  {title:"Thức tỉnh mục đích sống",author:"Eckhart Tolle",genre:"phattrienbanthan",desc:"Tâm linh.",read:"https://sachmoi.net/thuc-tinh-muc-dich-song/"},
+  {title:"Dám thất bại",author:"Jack Ma",genre:"phattrienbanthan",desc:"Khởi nghiệp.",read:"https://sachmoi.net/dam-that-bai/"},
+  {title:"Tôi tài giỏi, bạn cũng thế",author:"Adam Khoo",genre:"phattrienbanthan",desc:"Phát triển.",read:"https://sachmoi.net/toi-tai-gioi-ban-cung-the/"},
+
+  // Trinh thám
+  {title:"Sherlock Holmes toàn tập",author:"Conan Doyle",genre:"trinhtham",desc:"Thám tử.",read:"https://sachmoi.net/sherlock-holmes-toan-tap/"},
+  {title:"Án mạng trên sông Nile",author:"Agatha Christie",genre:"trinhtham",desc:"Bí ẩn.",read:"https://sachmoi.net/an-mang-tren-song-nile/"},
+  {title:"Mười người da đen nhỏ",author:"Agatha Christie",genre:"trinhtham",desc:"Án mạng.",read:"https://sachmoi.net/muoi-nguoi-da-den-nho/"},
+  {title:"Phía sau nghi can X",author:"Higashino Keigo",genre:"trinhtham",desc:"Trinh thám Nhật.",read:"https://sachmoi.net/phia-sau-nghi-can-x/"},
+  {title:"Cô gái có hình xăm rồng",author:"Stieg Larsson",genre:"trinhtham",desc:"Bí ẩn.",read:"https://sachmoi.net/co-gai-co-hinh-xam-rong/"},
+  {title:"Mật mã Da Vinci",author:"Dan Brown",genre:"trinhtham",desc:"Tôn giáo.",read:"https://sachmoi.net/mat-ma-da-vinci/"},
+  {title:"Điệp viên 007",author:"Ian Fleming",genre:"trinhtham",desc:"Điệp viên.",read:"https://sachmoi.net/diep-vien-007/"},
+  {title:"Hồ sơ tội ác",author:"John Grisham",genre:"trinhtham",desc:"Pháp lý.",read:"https://sachmoi.net/ho-so-toi-ac/"},
+  {title:"Bản án",author:"John Grisham",genre:"trinhtham",desc:"Ly kỳ.",read:"https://sachmoi.net/ban-an/"},
+  {title:"Công ty",author:"John Grisham",genre:"trinhtham",desc:"Ly kỳ.",read:"https://sachmoi.net/cong-ty/"},
+  {title:"Người bào chữa",author:"John Grisham",genre:"trinhtham",desc:"Pháp lý.",read:"https://sachmoi.net/nguoi-bao-chua/"},
+  {title:"Nhân chứng",author:"John Grisham",genre:"trinhtham",desc:"Ly kỳ.",read:"https://sachmoi.net/nhan-chung/"},
+  {title:"Án mạng trên chuyến tàu tốc hành phương Đông",author:"Agatha Christie",genre:"trinhtham",desc:"Bí ẩn.",read:"https://sachmoi.net/an-mang-tren-chuyen-tau-toc-hanh-phuong-dong/"},
+  {title:"Cái chết trên sông Nile",author:"Agatha Christie",genre:"trinhtham",desc:"Trinh thám.",read:"https://sachmoi.net/cai-chet-tren-song-nile/"},
+  {title:"Vụ ám sát ông Roger Ackroyd",author:"Agatha Christie",genre:"trinhtham",desc:"Bí ẩn.",read:"https://sachmoi.net/vu-am-sat-ong-roger-ackroyd/"},
+  {title:"Sự im lặng của bầy cừu",author:"Thomas Harris",genre:"trinhtham",desc:"Tâm lý.",read:"https://sachmoi.net/su-im-lang-cua-bay-cuu/"},
+  {title:"Hội họa trừu tượng",author:"Patricia Cornwell",genre:"trinhtham",desc:"Pháp y.",read:"https://sachmoi.net/hoi-hoa-truu-tuong/"},
+  {title:"Xác ướp",author:"Michael Crichton",genre:"trinhtham",desc:"Khoa học.",read:"https://sachmoi.net/xac-uop/"},
+  {title:"Công viên kỷ Jura",author:"Michael Crichton",genre:"trinhtham",desc:"Khoa học.",read:"https://sachmoi.net/cong-vien-ky-jura/"},
+
+  // Thiếu nhi
+  {title:"Dế mèn phiêu lưu ký",author:"Tô Hoài",genre:"thieunhi",desc:"Phiêu lưu.",read:"https://sachmoi.net/de-men-phieu-luu-ky/"},
+  {title:"Truyện cổ Andersen",author:"Andersen",genre:"thieunhi",desc:"Cổ tích.",read:"https://sachmoi.net/truyen-co-andersen/"},
+  {title:"Alice ở xứ sở thần tiên",author:"Lewis Carroll",genre:"thieunhi",desc:"Kỳ diệu.",read:"https://sachmoi.net/alice-o-xu-so-than-tien/"},
+  {title:"Hoàng tử bé",author:"Antoine de Saint-Exupéry",genre:"thieunhi",desc:"Triết lý.",read:"https://sachmoi.net/hoang-tu-be/"},
+  {title:"Totto-chan bên cửa sổ",author:"Tetsuko Kuroyanagi",genre:"thieunhi",desc:"Trường học.",read:"https://sachmoi.net/totto-chan-ben-cua-so/"},
+  {title:"Peter Pan",author:"J.M. Barrie",genre:"thieunhi",desc:"Không lớn.",read:"https://sachmoi.net/peter-pan/"},
+  {title:"Cô bé quàng khăn đỏ",author:"Charles Perrault",genre:"thieunhi",desc:"Cổ tích.",read:"https://sachmoi.net/co-be-quang-khan-do/"},
+  {title:"Harry Potter và Hòn đá phù thủy",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-hon-da-phu-thuy/"},
+  {title:"Harry Potter và Phòng chứa bí mật",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-phong-chua-bi-mat/"},
+  {title:"Harry Potter và tên tù nhân ngục Azkaban",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-ten-tu-nhan-nguc-azkaban/"},
+  {title:"Harry Potter và Chiếc cốc lửa",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-chiec-coc-lua/"},
+  {title:"Harry Potter và Hội Phượng hoàng",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-hoi-phuong-hoang/"},
+  {title:"Harry Potter và Hoàng tử lai",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-hoang-tu-lai/"},
+  {title:"Harry Potter và Bảo bối Tử thần",author:"J.K. Rowling",genre:"thieunhi",desc:"Phép thuật.",read:"https://sachmoi.net/harry-potter-va-bao-boi-tu-than/"},
+  {title:"Chúa tể những chiếc nhẫn",author:"Tolkien",genre:"thieunhi",desc:"Nhẫn.",read:"https://sachmoi.net/chua-te-nhung-chiec-nhan/"},
+  {title:"Người Hobbit",author:"Tolkien",genre:"thieunhi",desc:"Phiêu lưu.",read:"https://sachmoi.net/nguoi-hobbit/"},
+  {title:"Narnia – Sư tử, Phù thủy và Tủ quần áo",author:"C.S. Lewis",genre:"thieunhi",desc:"Kỳ ảo.",read:"https://sachmoi.net/narnia-su-tu-phu-thuy-va-tu-quan-ao/"},
+  {title:"Charlie và nhà máy sô cô la",author:"Roald Dahl",genre:"thieunhi",desc:"Phiêu lưu.",read:"https://sachmoi.net/charlie-va-nha-may-so-co-la/"},
+  {title:"Matilda",author:"Roald Dahl",genre:"thieunhi",desc:"Cô bé.",read:"https://sachmoi.net/matilda/"},
+  {title:"Những cuộc phiêu lưu của Tom Sawyer",author:"Mark Twain",genre:"thieunhi",desc:"Phiêu lưu.",read:"https://sachmoi.net/nhung-cuoc-phieu-luu-cua-tom-sawyer/"},
+
+  // Triết học
+  {title:"Thế giới của Sophie",author:"Jostein Gaarder",genre:"triethoc",desc:"Triết học.",read:"https://sachmoi.net/the-gioi-cua-sophie/"},
+  {title:"Thiền và nghệ thuật sống",author:"Thích Nhất Hạnh",genre:"triethoc",desc:"Phật giáo.",read:"https://sachmoi.net/thien-va-nghe-thuat-song/"},
+  {title:"Bàn về tự do",author:"John Stuart Mill",genre:"triethoc",desc:"Tự do.",read:"https://sachmoi.net/ban-ve-tu-do/"},
+  {title:"Cộng hòa",author:"Plato",genre:"triethoc",desc:"Nhà nước.",read:"https://sachmoi.net/cong-hoa/"},
+  {title:"Những suy tưởng",author:"Marcus Aurelius",genre:"triethoc",desc:"Khắc kỷ.",read:"https://sachmoi.net/nhung-suy-tuong/"},
+  {title:"Vượt qua sinh tử",author:"Osho",genre:"triethoc",desc:"Tâm linh.",read:"https://sachmoi.net/vuot-qua-sinh-tu/"},
+  {title:"Hiện sinh là một chủ nghĩa nhân văn",author:"Jean-Paul Sartre",genre:"triethoc",desc:"Hiện sinh.",read:"https://sachmoi.net/hien-sinh-la-mot-chu-nghia-nhan-van/"},
+  {title:"Đạo đức học",author:"Aristotle",genre:"triethoc",desc:"Đạo đức.",read:"https://sachmoi.net/dao-duc-hoc/"},
+  {title:"Phê phán lý tính thuần túy",author:"Immanuel Kant",genre:"triethoc",desc:"Triết học.",read:"https://sachmoi.net/phe-phan-ly-tinh-thuan-tuy/"},
+
+  // Kinh tế
+  {title:"Cha giàu cha nghèo",author:"Robert Kiyosaki",genre:"kinhte",desc:"Tài chính.",read:"https://sachmoi.net/cha-giau-cha-ngheo/"},
+  {title:"Nhà đầu tư thông minh",author:"Benjamin Graham",genre:"kinhte",desc:"Đầu tư.",read:"https://sachmoi.net/nha-dau-tu-thong-minh/"},
+  {title:"Quốc gia hưng thịnh",author:"Adam Smith",genre:"kinhte",desc:"Kinh tế cổ điển.",read:"https://sachmoi.net/quoc-gia-hung-thinh/"},
+  {title:"Kinh tế học hài hước",author:"Steven Levitt",genre:"kinhte",desc:"Kinh tế kỳ lạ.",read:"https://sachmoi.net/kinh-te-hoc-hai-huoc/"},
+  {title:"Dám thất bại",author:"Jack Ma",genre:"kinhte",desc:"Khởi nghiệp.",read:"https://sachmoi.net/dam-that-bai/"},
+  {title:"Kinh tế học vĩ mô",author:"Gregory Mankiw",genre:"kinhte",desc:"Cơ bản.",read:"https://sachmoi.net/kinh-te-hoc-vi-mo/"},
+  {title:"Nguyên lý kinh tế học",author:"N. Gregory Mankiw",genre:"kinhte",desc:"Kinh tế.",read:"https://sachmoi.net/nguyen-ly-kinh-te-hoc/"},
+  {title:"Freakonomics",author:"Steven Levitt",genre:"kinhte",desc:"Kinh tế.",read:"https://sachmoi.net/freakonomics/"},
+  {title:"Suy nghĩ nhanh và chậm",author:"Daniel Kahneman",genre:"kinhte",desc:"Tâm lý học.",read:"https://sachmoi.net/suy-nghi-nhanh-va-cham/"},
+  {title:"Tiền bạc và cuộc sống",author:"Vicki Robin",genre:"kinhte",desc:"Tài chính cá nhân.",read:"https://sachmoi.net/tien-bac-va-cuoc-song/"}
+];
+
+// ==========================================================================
+// BIẾN TOÀN CỤC
+// ==========================================================================
+let currentUser = null;
+let readingTimer = null;
+let readingSeconds = 0;
+let streak = 0;
+let completedToday = false;
+let activeModel = null;
+let uploadedText = '';
+let currentTab = 'discover';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+// ==========================================================================
+// QUẢN LÝ LOCAL STORAGE
+// ==========================================================================
+function getMyBooks() { return JSON.parse(localStorage.getItem('my_books') || '[]'); }
+function saveMyBooks(books) { localStorage.setItem('my_books', JSON.stringify(books)); }
+function addMyBook(book) {
+  const books = getMyBooks();
+  const newBook = { ...book, id: Date.now(), date: new Date().toISOString(), textPreview: uploadedText };
+  books.unshift(newBook);
+  saveMyBooks(books);
+  return newBook;
+}
+function getSharedBooks() { return JSON.parse(localStorage.getItem('shared_books') || '[]'); }
+function saveSharedBooks(books) { localStorage.setItem('shared_books', JSON.stringify(books)); }
+function shareBookToCommunity(bookId) {
+  const myBooks = getMyBooks();
+  const idx = myBooks.findIndex(b => b.id == bookId);
+  if (idx === -1) return false;
+  const book = myBooks[idx];
+  const shared = getSharedBooks();
+  shared.unshift({...book, sharedDate: new Date().toISOString()});
+  saveSharedBooks(shared);
+  myBooks.splice(idx,1);
+  saveMyBooks(myBooks);
+  return true;
+}
+
+// ==========================================================================
+// MODEL AI TỰ ĐỘNG
+// ==========================================================================
+async function discoverAndSelectModel(apiKey) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error?.message || 'API Key không hợp lệ.');
+  }
+  const data = await res.json();
+  const capable = data.models.filter(m => m.supportedGenerationMethods?.includes('generateContent'));
+  if (capable.length === 0) throw new Error('Không tìm thấy model Gemini hỗ trợ.');
+  const priority = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro'];
+  let best = null;
+  for (let p of priority) {
+    best = capable.find(m => m.name.includes(p));
+    if (best) break;
+  }
+  if (!best) best = capable[0];
+  activeModel = best.name.replace('models/', '');
+  console.log('✅ Model AI được chọn:', activeModel);
+}
+
+async function callGemini(prompt) {
+  if (!currentUser?.apiKey) throw new Error('Thiếu API Key.');
+  if (!activeModel) throw new Error('Chưa chọn model AI.');
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${activeModel}:generateContent?key=${currentUser.apiKey}`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.2, maxOutputTokens: 2000 }
+    })
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error?.message || 'Gemini Server quá tải.');
+  }
+  const data = await res.json();
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) {
+    if (data.candidates?.[0]?.finishReason === 'SAFETY') throw new Error('Nội dung bị chặn an toàn.');
+    throw new Error('Gemini không phản hồi.');
+  }
+  return text;
+}
+
+// ==========================================================================
+// RENDER SÁCH
+// ==========================================================================
+function openReader(text) {
+  const win = window.open('', '_blank', 'width=850,height=700');
+  win.document.write(`<html><head><meta charset="UTF-8"><title>Đọc tập trung</title><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>body{font-family:'Lora',serif;padding:3rem;line-height:1.9;max-width:800px;margin:0 auto;background:#fdfcf9;color:#333;font-size:1.15rem}</style></head><body><h2>Trích xuất nội dung</h2><hr>${text.replace(/\n/g,'<br>')}</body></html>`);
+  win.document.close();
+}
+
+function renderBooks(containerId, books, showShare = false) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!books.length) {
+    container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8c7664;padding:2rem 0;">Không tìm thấy tác phẩm nào.</p>';
+    return;
+  }
+  container.innerHTML = books.map(b => {
+    const safeTextPreview = b.textPreview ? encodeURIComponent(b.textPreview).replace(/'/g, "%27") : '';
+    const safeTitle = (b.title || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    const safeAuthor = (b.author || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    return `
+    <div class="book-card">
+      <div>
+        <div class="book-title">${b.title || 'Không có tiêu đề'}</div>
+        <div class="book-author">Tác giả: ${b.author || 'Đang cập nhật'}</div>
+        <div class="book-desc">${b.desc || ''}</div>
+      </div>
+      <div class="book-links">
+        ${b.read ? `<a href="${b.read}" target="_blank" class="btn-read">📖 Mở Đọc</a>` : ''}
+        ${!b.read && b.textPreview ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Mở bản tải lên</button>` : ''}
+        <button class="btn-review" onclick="askGeminiAboutBook('${safeTitle}', '${safeAuthor}')">💬 Trò chuyện</button>
+        ${showShare ? `<button class="btn-share" onclick="shareAndRefresh('${b.id}')">🌍 Chia sẻ</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.shareAndRefresh = function(bookId) {
+  if (shareBookToCommunity(bookId)) {
+    alert('✅ Đã chia sẻ lên cộng đồng!');
+    if (currentTab === 'mylib') showMyLibrary();
+    else if (currentTab === 'community') showCommunity();
+  } else alert('❌ Không tìm thấy sách để chia sẻ.');
+};
+
+function showDiscover(genre = '') {
+  let books = sampleBooks;
+  if (genre && genre !== 'all') books = sampleBooks.filter(b => b.genre === genre);
+  renderBooks('bookContainer', books);
+}
+function showMyLibrary(filter = '') {
+  let books = getMyBooks();
+  if (filter) {
+    const q = filter.toLowerCase();
+    books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q));
+  }
+  renderBooks('bookContainer', books, true);
+}
+function showCommunity(filter = '') {
+  let books = getSharedBooks();
+  if (filter) {
+    const q = filter.toLowerCase();
+    books = books.filter(b => (b.title||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q));
+  }
+  renderBooks('bookContainer', books);
+}
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById('discoverSearch').classList.toggle('hidden', tab !== 'discover');
+  document.getElementById('mylibSearch').classList.toggle('hidden', tab !== 'mylib');
+  document.getElementById('communitySearch').classList.toggle('hidden', tab !== 'community');
+  if (tab === 'discover') showDiscover(document.getElementById('genreSelect').value);
+  else if (tab === 'mylib') showMyLibrary();
+  else if (tab === 'community') showCommunity();
+}
+function askGeminiAboutBook(title, author) {
+  const input = document.getElementById('chatInput');
+  input.value = `Hãy giới thiệu chi tiết về tác phẩm "${title}" của tác giả ${author}. Nội dung chính và bài học?`;
+  document.getElementById('sendChatBtn').click();
+  document.getElementById('chatInput').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==========================================================================
+// TRÍCH XUẤT & PHÂN TÍCH FILE
+// ==========================================================================
+async function extractText(file) {
+  const buffer = await file.arrayBuffer();
+  if (file.name.endsWith('.pdf')) {
+    const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
+    let text = '';
+    const maxPages = Math.min(pdf.numPages, 15);
+    for (let i=1; i<=maxPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(item => item.str).join(' ') + ' \n';
+    }
+    return text;
+  } else if (file.name.endsWith('.docx')) {
+    const result = await mammoth.extractRawText({arrayBuffer: buffer});
+    return result.value;
+  } else if (file.name.endsWith('.txt')) {
+    return new TextDecoder().decode(buffer);
+  } else throw new Error('Định dạng không hỗ trợ.');
+}
+
+async function analyzeBook(text) {
+  const prompt = `Bạn là chuyên gia thẩm định tài liệu. Đọc và phân tích JSON.
+QUY TẮC: Tự suy luận "genre". Không bọc JSON.
+Cấu trúc: {"title":"...","author":"...","genre":"...","desc":"...","review":"..."}
+VĂN BẢN: ${text.substring(0,15000)}`;
+  const reply = await callGemini(prompt);
+  const clean = reply.replace(/```json/gi, '').replace(/```/g, '').trim();
+  const match = clean.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error('AI không trả về JSON.');
+  const book = JSON.parse(match[0]);
+  if (!book.title) book.title = "Tài liệu chưa rõ tên";
+  if (!book.genre) book.genre = "vanhocvn";
+  return book;
+}
+
+// ==========================================================================
+// CHAT & THỬ THÁCH
+// ==========================================================================
+function addChatMessage(role, text, senderName) {
+  const box = document.getElementById('chatBox');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  div.innerHTML = `<div class="sender-name">${senderName}</div><div class="bubble">${html}</div>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+function updateTimerDisplay() {
+  const m = String(Math.floor(readingSeconds/60)).padStart(2,'0');
+  const s = String(readingSeconds%60).padStart(2,'0');
+  document.getElementById('timerDisplay').textContent = `${m}:${s}`;
+  document.getElementById('dailyProgress').style.width = `${Math.min((readingSeconds/900)*100,100)}%`;
+}
+function updateStreakDisplay() {
+  document.getElementById('streakDisplay').textContent = `🔥 ${streak} ngày liên tiếp`;
+}
+function saveChallengeState() {
+  localStorage.setItem('reading_challenge', JSON.stringify({
+    date: new Date().toISOString().slice(0,10), seconds: readingSeconds, completed: completedToday, streak
+  }));
+}
+function startTimer() {
+  if (completedToday || readingTimer) return;
+  readingTimer = setInterval(() => {
+    readingSeconds++;
+    updateTimerDisplay();
+    if (readingSeconds >= 900) completeChallenge();
+    if (readingSeconds % 10 === 0) saveChallengeState();
+  }, 1000);
+}
+function completeChallenge() {
+  if (readingTimer) { clearInterval(readingTimer); readingTimer = null; }
+  completedToday = true; streak++;
+  updateTimerDisplay(); updateStreakDisplay(); saveChallengeState();
+  alert('🎉 Chúc mừng! Bạn đã hoàn thành 15 phút đọc hôm nay.');
+}
+
+// ==========================================================================
+// SỰ KIỆN
+// ==========================================================================
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  const name = document.getElementById('nameInput').value.trim();
+  const email = document.getElementById('emailInput').value.trim();
+  const phone = document.getElementById('phoneInput').value.trim();
+  const apiKey = document.getElementById('apiKeyInput').value.trim();
+  const errorEl = document.getElementById('loginError');
+  if (!name || !email || !phone || !apiKey) {
+    errorEl.textContent = 'Vui lòng điền đầy đủ thông tin.'; return;
+  }
+  errorEl.textContent = '⏳ Đang kết nối Google AI...';
+  errorEl.style.color = '#8c5e34';
+  try {
+    await discoverAndSelectModel(apiKey);
+    currentUser = { name, email, phone, apiKey };
+    localStorage.setItem('book_user', JSON.stringify(currentUser));
+    initAppUI();
+  } catch(err) {
+    errorEl.textContent = '❌ ' + err.message;
+    errorEl.style.color = '#b23b3b';
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  if (readingTimer) clearInterval(readingTimer);
+  saveChallengeState();
+  localStorage.removeItem('book_user');
+  currentUser = null;
+  document.getElementById('authScreen').classList.remove('hidden');
+  document.getElementById('mainScreen').classList.add('hidden');
+});
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+document.getElementById('searchBtn').addEventListener('click', async () => {
+  if (currentTab !== 'discover') return;
+  const genre = document.getElementById('genreSelect').value;
+  const query = document.getElementById('searchQuery').value.trim();
+  if (query) {
+    document.getElementById('bookContainer').innerHTML = '<div class="spinner" style="margin:0 auto;display:block;border-color:#b8875a;border-top-color:transparent;"></div><p style="text-align:center;color:#b8875a;">Đang tìm trên Open Library...</p>';
+    try {
+      const online = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=12`).then(r => r.json());
+      const books = online.docs.map(doc => ({
+        title: doc.title,
+        author: doc.author_name?.[0] || 'Không rõ',
+        desc: (doc.subject || []).slice(0,3).join(', ') + '...',
+        read: doc.ia ? `https://archive.org/details/${doc.ia}` : `https://openlibrary.org${doc.key}`
+      }));
+      renderBooks('bookContainer', books);
+    } catch(e) {
+      alert('Lỗi mạng, hiển thị kết quả cục bộ.');
+      showDiscover(genre || 'all');
+    }
+  } else showDiscover(genre || 'all');
+});
+
+document.getElementById('genreSelect').addEventListener('change', () => {
+  document.getElementById('searchQuery').value = '';
+  showDiscover(document.getElementById('genreSelect').value);
+});
+
+document.getElementById('mylibSearchBtn').addEventListener('click', () => showMyLibrary(document.getElementById('mylibQuery').value.trim()));
+document.getElementById('communitySearchBtn').addEventListener('click', () => showCommunity(document.getElementById('communityQuery').value.trim()));
+
+document.getElementById('selectFileBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+
+async function handleFileSelection(file) {
+  if (!file) return;
+  const infoDiv = document.getElementById('fileInfo');
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  const resultDiv = document.getElementById('analysisResult');
+  infoDiv.style.display = 'block';
+  infoDiv.innerHTML = `<span class="spinner"></span> Đang đọc: <b>${file.name}</b> (${(file.size/1024).toFixed(1)} KB)...`;
+  analyzeBtn.style.display = 'none';
+  resultDiv.style.display = 'none';
+  try {
+    uploadedText = await extractText(file);
+    infoDiv.innerHTML = `✅ Đã trích xuất <b>${file.name}</b> (${uploadedText.length.toLocaleString()} ký tự). Nhấn nút bên dưới.`;
+    analyzeBtn.style.display = 'inline-block';
+  } catch(e) {
+    infoDiv.innerHTML = `❌ ${e.message}`;
+  }
+}
+
+document.getElementById('fileInput').addEventListener('change', e => handleFileSelection(e.target.files[0]));
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  handleFileSelection(e.dataTransfer.files[0]);
+});
+
+document.getElementById('analyzeBtn').addEventListener('click', async () => {
+  const resultDiv = document.getElementById('analysisResult');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = '<div class="spinner"></div> Gemini đang suy luận...';
+  try {
+    const book = await analyzeBook(uploadedText);
+    resultDiv.innerHTML = `
+      <h3 style="color:#2d6a4f">📖 ${book.title}</h3>
+      <p><strong>Tác giả:</strong> ${book.author}</p>
+      <p><strong>Thể loại AI nhận diện:</strong> ${book.genre}</p>
+      <p><strong>Tóm tắt:</strong> ${book.desc}</p>
+      <p style="margin-top:0.5rem;padding:0.8rem;background:#fff;border-radius:0.5rem;border-left:3px solid #b8875a">⭐ <strong>Đánh giá:</strong> ${book.review || 'Không có'}</p>
+    `;
+    addMyBook({...book});
+    switchTab('mylib');
+  } catch(err) {
+    resultDiv.innerHTML = `<span style="color:#b23b3b">❌ ${err.message}</span>`;
+  }
+});
+
+document.getElementById('sendChatBtn').addEventListener('click', async () => {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const userName = currentUser ? currentUser.name : 'Bạn';
+  addChatMessage('user', msg, userName);
+  input.value = '';
+  addChatMessage('ai', '⏳ Đang tổng hợp...', 'Gemini');
+  try {
+    const reply = await callGemini(msg);
+    document.getElementById('chatBox').lastElementChild.remove();
+    addChatMessage('ai', reply, 'Gemini');
+  } catch(err) {
+    document.getElementById('chatBox').lastElementChild.remove();
+    addChatMessage('ai', `❌ ${err.message}`, 'Hệ thống');
+  }
+});
+
+document.getElementById('chatInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') document.getElementById('sendChatBtn').click();
+});
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.btn-read') && !completedToday) startTimer();
+});
+
+// ==========================================================================
+// KHỞI TẠO
+// ==========================================================================
+function initAppUI() {
+  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('mainScreen').classList.remove('hidden');
+  document.getElementById('userGreeting').textContent = `Xin chào, ${currentUser.name}!`;
+  showDiscover('all');
+  const chatBox = document.getElementById('chatBox');
+  if (chatBox.children.length === 0) {
+    addChatMessage('ai', `Xin chào **${currentUser.name}**! Tôi là Gemini, sẵn sàng trò chuyện về sách.`, 'Gemini');
+  }
+  const challenge = JSON.parse(localStorage.getItem('reading_challenge') || '{}');
+  const today = new Date().toISOString().slice(0,10);
+  if (challenge.date === today) {
+    readingSeconds = challenge.seconds || 0;
+    completedToday = challenge.completed || false;
+    streak = challenge.streak || 0;
+  } else {
+    streak = (challenge.date && challenge.completed) ? (challenge.streak || 0) + 1 : (challenge.streak || 0);
+    readingSeconds = 0;
+    completedToday = false;
+    saveChallengeState();
+  }
+  updateTimerDisplay(); updateStreakDisplay();
+  if (!completedToday && readingSeconds > 0) startTimer();
+}
+
+(function bootstrap() {
+  const saved = localStorage.getItem('book_user');
+  if (saved) {
+    try {
+      currentUser = JSON.parse(saved);
+      if (currentUser.apiKey) {
+        discoverAndSelectModel(currentUser.apiKey).then(() => initAppUI()).catch(() => {
+          localStorage.removeItem('book_user');
+          alert('API Key không còn hợp lệ. Vui lòng đăng nhập lại.');
+        });
+      }
+    } catch(e) { localStorage.removeItem('book_user'); }
+  }
+})();
+</script>
+</body>
+</html>
