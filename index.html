@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <!-- Ngăn gửi Referer để tránh bị chặn bởi một số trang như sachmoi.net -->
+  <meta name="referrer" content="no-referrer">
   <title>📚 Thư viện sách cộng đồng – Chia sẻ tri thức</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1180,6 +1182,9 @@ function renderBooks(containerId, books, showDelete = false, isCommunity = false
     const safeTextPreview = b.textPreview ? encodeURIComponent(b.textPreview).replace(/'/g, "%27") : '';
     const safeTitle = (b.title || 'Không có tiêu đề').replace(/'/g, "\\'").replace(/"/g, "&quot;");
     const safeAuthor = (b.author || 'Đang cập nhật').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    // Sử dụng referrerpolicy="no-referrer" để tránh bị chặn bởi sachmoi.net
+    const readLink = b.read ? `<a href="${b.read}" target="_blank" rel="noreferrer" referrerpolicy="no-referrer" class="btn-read">📖 Đọc online</a>` : '';
+    const readLocal = (!b.read && b.textPreview) ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Đọc nội dung</button>` : '';
     return `
     <div class="book-card">
       <div>
@@ -1193,8 +1198,8 @@ function renderBooks(containerId, books, showDelete = false, isCommunity = false
         </div>
       </div>
       <div class="book-links">
-        ${b.read ? `<a href="${b.read}" target="_blank" rel="noreferrer" class="btn-read">📖 Đọc online</a>` : ''}
-        ${!b.read && b.textPreview ? `<button onclick="openReader(decodeURIComponent('${safeTextPreview}'))" class="btn-read">📖 Đọc nội dung</button>` : ''}
+        ${readLink}
+        ${readLocal}
         ${!isCommunity && !showDelete ? `<button class="btn-share" onclick="shareAndRefresh('${b.id}')">🌍 Chia sẻ</button>` : ''}
         ${showDelete ? `<button class="btn-delete" onclick="deleteAndRefresh('${b.id}', 'mylib')">🗑️ Xóa</button>` : ''}
         ${isCommunity ? `<button class="btn-delete" onclick="deleteAndRefresh('${b.id}', 'community')">🗑️ Xóa</button>` : ''}
